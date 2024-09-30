@@ -30,7 +30,6 @@ const Building = (props) => {
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-container",
-        markers: true,
         start: "top top",
         scrub: true,
         pin: true,
@@ -40,7 +39,7 @@ const Building = (props) => {
       .to(buildingRef.current.position, {
         x: 2,
         y: 0,
-        duration: 3,
+        duration: 1,
         ease: "power1.out",
       })
       .to(buildingRef.current.rotation, {
