@@ -50,8 +50,8 @@ const LocationContent = () => {
   }, []);
 
   return (
-    <div className="swipe-section relative h-screen w-screen max-w-[750px]">
-      <div className="text-white section absolute text-center mt-10 ">
+    <div className="swipe-section relative h-screen w-screen max-w-[750px] ">
+      <div className="text-white section absolute text-center mt-10 text-primary_light ">
         <h1 className="text-3xl uppercase flex flex-col">
           The <span className="text-4xl">Architecture</span>
           <span className="text-6xl">Marvels</span>
@@ -63,7 +63,7 @@ const LocationContent = () => {
           iure.
         </p>
       </div>
-      <div className="text-white section text-center absolute mt-10 ">
+      <div className="text-white section text-center absolute mt-10 text-primary_light ">
         <p className="text-xl">
           Explore the extraordinary feats of engineering that have shaped our
           world. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -71,7 +71,7 @@ const LocationContent = () => {
           exercitationem voluptas at ea.
         </p>
       </div>
-      <div className="text-white section text-center absolute mt-10 ">
+      <div className="text-white section text-center absolute mt-10 text-primary_light ">
         <p className="text-xl">
           Step back in time and discover the historical landmarks that tell the
           story of our past. Lorem ipsum dolor sit, amet consectetur adipisicing
