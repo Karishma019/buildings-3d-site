@@ -11,6 +11,7 @@ import { useGLTF, useAnimations, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Earth = (props) => {
@@ -19,11 +20,7 @@ const Earth = (props) => {
   const { nodes, materials, animations } = useGLTF("/models/earth.glb");
 
   useLayoutEffect(() => {
-    tl.current = gsap.timeline();
-    tl.current.to(group.current.position, {
-      z: 3,
-      duration: 3,
-      ease: "power1.out",
+    tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".earth-container",
         marker: true,
@@ -33,11 +30,17 @@ const Earth = (props) => {
         pin: true,
       },
     });
-    tl.current.to(group.current.rotation, {
-      x: -0.2,
-      duration: 3,
-      ease: "power1.out",
-    });
+    tl.current
+      .to(group.current.position, {
+        z: 3,
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(group.current.rotation, {
+        x: -0.2,
+        duration: 3,
+        ease: "power1.out",
+      });
   });
 
   return (

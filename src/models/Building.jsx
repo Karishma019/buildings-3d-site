@@ -9,50 +9,69 @@ import {
   useGLTF,
   useScroll,
 } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { angleToRadiants } from "../utils/angleToRadiants";
 gsap.registerPlugin(ScrollTrigger);
 
 const Building = (props) => {
-  const { nodes, materials, animations, scene } = useGLTF("/models/model.glb");
+  const { nodes, materials, animations } = useGLTF("/models/model.glb");
 
   const buildingRef = useRef();
   const tl = useRef();
   const orbitControlRef = useRef();
+  const { camera } = useThree();
+
+  console.log(camera);
+
   useLayoutEffect(() => {
-    tl.current = gsap.timeline();
-    tl.current.to(buildingRef.current.rotation, {
-      y: -1,
-      duration: 2,
-      ease: "power1.in",
+    new ScrollTrigger({});
+    tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-container",
-        marker: true,
-        scroller: "body",
+        markers: true,
         start: "top top",
         scrub: true,
         pin: true,
       },
     });
-    // tl.current.to(buildingRef.current.position, {
-    //   z: 3,
-    //   delay: 2,
-    //   duration: 2,
-    //   ease: "power1.out",
-    // });
+    tl.current
+      .to(buildingRef.current.position, {
+        x: 2,
+        y: 0,
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(buildingRef.current.rotation, {
+        x: 0,
+        y: angleToRadiants(45),
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(buildingRef.current.rotation, {
+        x: 0,
+        y: angleToRadiants(90),
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(buildingRef.current.position, {
+        x: 0,
+        y: 0,
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(buildingRef.current.rotation, {
+        x: 0,
+        y: angleToRadiants(180),
+        duration: 3,
+        ease: "power1.out",
+      });
   }, []);
 
   return (
     <>
-      <OrbitControls
-        ref={orbitControlRef}
-        minPolarAngle={angleToRadiants(60)}
-        maxPolarAngle={angleToRadiants(80)}
-        enableZoom={false}
-      />
-
+      <OrbitControls enableZoom={false} ref={orbitControlRef} />
       <group {...props} dispose={null} ref={buildingRef}>
         <mesh
           castShadow
