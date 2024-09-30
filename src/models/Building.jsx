@@ -16,14 +16,13 @@ import { angleToRadiants } from "../utils/angleToRadiants";
 gsap.registerPlugin(ScrollTrigger);
 
 const Building = (props) => {
-  const { nodes, materials, animations } = useGLTF("/models/model.glb");
+  const { nodes, materials, animations, scene } = useGLTF("/models/model.glb");
 
   const buildingRef = useRef();
   const tl = useRef();
   const orbitControlRef = useRef();
-  const { camera } = useThree();
 
-  console.log(camera);
+  console.log(nodes);
 
   useLayoutEffect(() => {
     new ScrollTrigger({});

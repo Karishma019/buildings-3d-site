@@ -20,7 +20,7 @@ const Buildings = () => {
           <directionalLight args={["#a9ceff", 15]} position={[-4, 2, 5]} />
           <Building
             scale={0.05}
-            position={[0, -1, 0]}
+            position={[0, -1.3, 0]}
             rotation={[angleToRadiants(60), -angleToRadiants(10), 0]}
           />
         </Suspense>

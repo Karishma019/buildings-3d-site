@@ -11,14 +11,13 @@ import { angleToRadiants } from "../utils/angleToRadiants";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CanvasLoader from "../components/CanvasLoader";
+import LocationContent from "../components/LocationContent";
 gsap.registerPlugin(ScrollTrigger);
 
 const Location = () => {
   return (
-    <div className="earth-container h-screen w-full bg-blackish relative flex flex-col justify-center ">
-      <div className="text-white">
-        <h1>The Architecture</h1>
-      </div>
+    <div className="earth-container h-screen w-full bg-blackish relative flex flex-col items-center">
+      <LocationContent />
       <Canvas>
         <PerspectiveCamera makeDefault position={[0, -1, 7]} />
         <ambientLight args={["#ffffff", 1]} />
@@ -30,8 +29,8 @@ const Location = () => {
 
         <Suspense fallback={<CanvasLoader />}>
           <Earth
-            scale={0.0025}
-            position={[0, -2.5, 0]}
+            scale={0.003}
+            position={[0, -2, 0]}
             rotation={[0, -angleToRadiants(85), 0]}
           />
         </Suspense>

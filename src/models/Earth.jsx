@@ -23,9 +23,10 @@ const Earth = (props) => {
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".earth-container",
-        marker: true,
+        // markers: true,
         scroller: "body",
         start: "top top",
+        end: "bottom 50%",
         scrub: true,
         pin: true,
       },
@@ -37,7 +38,7 @@ const Earth = (props) => {
         ease: "power1.out",
       })
       .to(group.current.rotation, {
-        x: -0.2,
+        x: -0.1,
         duration: 3,
         ease: "power1.out",
       });
