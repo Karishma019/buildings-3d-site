@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Location from "./pages/Location";
 import Buildings from "./pages/Buildings";
+import { useEffect } from "react";
+import { ScrollProvider } from "./components/ScrollProvider";
 
 function App() {
   return (

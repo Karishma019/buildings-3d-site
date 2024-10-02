@@ -5,14 +5,17 @@ import {
   PerspectiveCamera,
   Scroll,
   ScrollControls,
+  Text,
 } from "@react-three/drei";
 import { angleToRadiants } from "../utils/angleToRadiants";
 import Building from "../models/Building";
 import CanvasLoader from "../components/CanvasLoader";
+import BuildingContent from "../components/BuildingContent";
 
 const Buildings = () => {
   return (
-    <div className="building-container h-screen w-full bg-primary_light relative flex flex-col justify-center ">
+    <div className="building-container h-screen relative w-full bg-primary_light overflow-hidden">
+      <BuildingContent />
       <Canvas>
         <Suspense fallback={<CanvasLoader />}>
           <PerspectiveCamera makeDefault position={[0, 1, 9]} />
@@ -20,7 +23,7 @@ const Buildings = () => {
           <directionalLight args={["#a9ceff", 15]} position={[-4, 2, 5]} />
           <Building
             scale={0.05}
-            position={[0, -1.3, 0]}
+            position={[0, -2, 0]}
             rotation={[angleToRadiants(60), -angleToRadiants(10), 0]}
           />
         </Suspense>
