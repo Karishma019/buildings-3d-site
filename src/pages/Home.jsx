@@ -5,7 +5,7 @@ import SitesCard from "../components/SitesCard";
 const Home = () => {
   return (
     <section
-      className="relative h-screen bg-cover bg-center bg-no-repeat"
+      className="relative h-screen bg-cover bg-center bg-fixed bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bgImage})` }} // Using the local image
     >
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>

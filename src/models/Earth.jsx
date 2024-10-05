@@ -7,10 +7,16 @@ Title: Earth
 */
 
 import React, { useEffect, useLayoutEffect, useRef } from "react";
-import { useGLTF, useAnimations, useScroll } from "@react-three/drei";
+import {
+  useGLTF,
+  useAnimations,
+  useScroll,
+  OrbitControls,
+} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { angleToRadiants } from "../utils/angleToRadiants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +24,15 @@ const Earth = (props) => {
   const group = useRef();
   const tl = useRef();
   const { nodes, materials, animations } = useGLTF("/models/earth.glb");
+  const orbitControlRef = useRef(null);
+
+  useFrame((state) => {
+    const { x, y } = state.pointer;
+    if (orbitControlRef.current) {
+      orbitControlRef.current.setAzimuthalAngle(-x * angleToRadiants(45));
+      orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
+    }
+  });
 
   useLayoutEffect(() => {
     tl.current = gsap.timeline({
@@ -31,68 +46,72 @@ const Earth = (props) => {
         pin: true,
       },
     });
-    tl.current
-      .to(group.current.position, {
-        z: 3,
-        duration: 3,
-        ease: "power1.out",
-      })
-      .to(group.current.rotation, {
-        x: -0.1,
-        duration: 3,
-        ease: "power1.out",
-      });
+    tl.current.to(group.current.position, {
+      z: 1,
+      y: 0.1,
+      duration: 3,
+      ease: "power1.out",
+    });
   });
 
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group name="Sketchfab_Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-          <group name="Earth_animationfbx" rotation={[Math.PI / 2, 0, 0]}>
-            <group name="Object_2">
-              <group name="RootNode">
-                <group
-                  name="Camera"
-                  position={[3157.233, 104.211, 2142.973]}
-                  rotation={[-Math.PI, 0.822, -3.123]}
-                  scale={100}
-                >
-                  <group name="Object_5" />
-                </group>
-                <group
-                  name="Earth"
-                  rotation={[-Math.PI / 2, 0, -1.544]}
-                  scale={99.307}
-                >
-                  <mesh
-                    name="Earth_Earth_0"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Earth_Earth_0.geometry}
-                    material={materials.Earth}
-                  />
-                </group>
-                <group
-                  name="Clouds"
-                  rotation={[-Math.PI / 2, 0, 0]}
-                  scale={100}
-                >
-                  <mesh
-                    name="Clouds_Clouds_0"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Clouds_Clouds_0.geometry}
-                    material={materials.Clouds}
-                  />
-                </group>
-                <group
-                  name="Sun"
-                  position={[-436.269, -41.999, -2270.238]}
-                  rotation={[-0.714, 0.683, -0.717]}
-                  scale={100}
-                >
-                  <group name="Object_11" rotation={[Math.PI / 2, 0, 0]}>
-                    <group name="Object_12" />
+    <>
+      <OrbitControls
+        enableZoom={false}
+        ref={orbitControlRef}
+        minPolarAngle={angleToRadiants(68)}
+        maxPolarAngle={angleToRadiants(74)}
+      />
+
+      <group ref={group} {...props} dispose={null}>
+        <group name="Sketchfab_Scene">
+          <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+            <group name="Earth_animationfbx" rotation={[Math.PI / 2, 0, 0]}>
+              <group name="Object_2">
+                <group name="RootNode">
+                  <group
+                    name="Camera"
+                    position={[3157.233, 104.211, 2142.973]}
+                    rotation={[-Math.PI, 0.822, -3.123]}
+                    scale={100}
+                  >
+                    <group name="Object_5" />
+                  </group>
+                  <group
+                    name="Earth"
+                    rotation={[-Math.PI / 2, 0, -1.544]}
+                    scale={99.307}
+                  >
+                    <mesh
+                      name="Earth_Earth_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes.Earth_Earth_0.geometry}
+                      material={materials.Earth}
+                    />
+                  </group>
+                  <group
+                    name="Clouds"
+                    rotation={[-Math.PI / 2, 0, 0]}
+                    scale={100}
+                  >
+                    <mesh
+                      name="Clouds_Clouds_0"
+                      castShadow
+                      receiveShadow
+                      geometry={nodes.Clouds_Clouds_0.geometry}
+                      material={materials.Clouds}
+                    />
+                  </group>
+                  <group
+                    name="Sun"
+                    position={[-436.269, -41.999, -2270.238]}
+                    rotation={[-0.714, 0.683, -0.717]}
+                    scale={100}
+                  >
+                    <group name="Object_11" rotation={[Math.PI / 2, 0, 0]}>
+                      <group name="Object_12" />
+                    </group>
                   </group>
                 </group>
               </group>
@@ -100,7 +119,7 @@ const Earth = (props) => {
           </group>
         </group>
       </group>
-    </group>
+    </>
   );
 };
 

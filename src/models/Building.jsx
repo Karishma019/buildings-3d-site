@@ -20,7 +20,15 @@ const Building = (props) => {
 
   const buildingRef = useRef();
   const tl = useRef();
-  const orbitControlRef = useRef();
+  const orbitControlRef = useRef(null);
+
+  useFrame((state) => {
+    const { x, y } = state.pointer;
+    if (orbitControlRef.current) {
+      orbitControlRef.current.setAzimuthalAngle(-x * angleToRadiants(45));
+      orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
+    }
+  });
 
   console.log(nodes);
 
@@ -70,7 +78,12 @@ const Building = (props) => {
 
   return (
     <>
-      <OrbitControls enableZoom={false} ref={orbitControlRef} />
+      <OrbitControls
+        enableZoom={false}
+        ref={orbitControlRef}
+        minPolarAngle={angleToRadiants(66)}
+        maxPolarAngle={angleToRadiants(76)}
+      />
       <group {...props} dispose={null} ref={buildingRef}>
         <mesh
           castShadow
