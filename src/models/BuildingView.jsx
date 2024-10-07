@@ -12,22 +12,19 @@ const BuildingView = () => {
   const envMap = useEnvironment({
     files: "/models/brown_photostudio_02_4k.exr",
   });
-  const [rotationSpeed] = useState(0.01);
 
   const orbitControlRef = useRef(null);
 
-  useFrame(() => {
-    if (orbitControlRef.current) {
-      const autoAzimuthalAngle = orbitControlRef.current.getAzimuthalAngle();
-      orbitControlRef.current.setAzimuthalAngle(
-        autoAzimuthalAngle + rotationSpeed
-      );
-    }
-  });
-
   return (
     <>
-      <OrbitControls enableZoom={true} ref={orbitControlRef} />
+      <OrbitControls
+        enableZoom={true}
+        ref={orbitControlRef}
+        autoRotate
+        autoRotateSpeed={-0.75}
+        enablePan={false}
+        enableRotate={true}
+      />
       <Environment map={envMap} background />
     </>
   );
