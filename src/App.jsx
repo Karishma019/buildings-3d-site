@@ -6,6 +6,7 @@ import Location from "./pages/Location";
 import Buildings from "./pages/Buildings";
 import { useEffect } from "react";
 import { ScrollProvider } from "./components/ScrollProvider";
+import Building360View from "./pages/Building360View";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Info />
       <Location />
       <Buildings />
+      <Building360View />
     </>
   );
 }
