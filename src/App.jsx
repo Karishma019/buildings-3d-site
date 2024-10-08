@@ -13,7 +13,7 @@ function App() {
     <>
       <Home />
       <Info />
-      <Location />
+      {/* <Location /> */}
       <Buildings />
       <Building360View />
     </>
