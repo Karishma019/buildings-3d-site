@@ -89,14 +89,14 @@ const Building = (props) => {
       },
     });
     tl.current
-      .to(buildingRef.current.rotation, {
-        x: 0,
-        duration: 3,
-        ease: "power1.out",
-      })
+      // .to(buildingRef.current.rotation, {
+      //   x: 0,
+      //   duration: 3,
+      //   ease: "power1.out",
+      // })
       .to(buildingRef.current.position, {
-        x: 2,
-        y: 0,
+        x: 0,
+        y: -5,
         duration: 1,
         ease: "power1.out",
       })
@@ -112,12 +112,12 @@ const Building = (props) => {
       //   duration: 3,
       //   ease: "power1.out",
       // })
-      .to(buildingRef.current.position, {
-        x: 0,
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      });
+      // .to(buildingRef.current.position, {
+      //   x: 0,
+      //   y: 0,
+      //   duration: 1,
+      //   ease: "power1.out",
+      // });
   }, []);
 
   return (
