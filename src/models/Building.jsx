@@ -37,8 +37,52 @@ const Building = (props) => {
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-container",
+        start: "10% top",
+        end: "bottom 50%",
+        markers: true,
+        scrub: false,
+        pin: true,
+      },
+    });
+    tl.current
+      .to(buildingRef.current.rotation, {
+        x: 0,
+        duration: 3,
+        ease: "power1.out",
+      })
+      .to(buildingRef.current.position, {
+        x: 2,
+        y: 0,
+        duration: 1,
+        ease: "power1.out",
+      })
+      // .to(buildingRef.current.rotation, {
+      //   x: 0,
+      //   y: angleToRadiants(90),
+      //   duration: 3,
+      //   ease: "power1.out",
+      // })
+      // .to(buildingRef.current.rotation, {
+      //   x: 0,
+      //   y: angleToRadiants(180),
+      //   duration: 3,
+      //   ease: "power1.out",
+      // })
+      .to(buildingRef.current.position, {
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: "power1.out",
+      });
+  }, []);
+
+  useLayoutEffect(() => {
+    new ScrollTrigger({});
+    tl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".building-container",
         start: "top top",
-        end: "bottom bottom",
+        end: "bottom 50%",
         markers: true,
         scrub: false,
         pin: true,
@@ -74,50 +118,6 @@ const Building = (props) => {
     //   duration: 1,
     //   ease: "power1.out",
     // });
-  }, []);
-
-  useLayoutEffect(() => {
-    new ScrollTrigger({});
-    tl.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".building-container",
-        start: "10% top",
-        end: "bottom bottom",
-        markers: true,
-        scrub: false,
-        pin: true,
-      },
-    });
-    tl.current
-      // .to(buildingRef.current.rotation, {
-      //   x: 0,
-      //   duration: 3,
-      //   ease: "power1.out",
-      // })
-      .to(buildingRef.current.position, {
-        x: 0,
-        y: -5,
-        duration: 1,
-        ease: "power1.out",
-      })
-      // .to(buildingRef.current.rotation, {
-      //   x: 0,
-      //   y: angleToRadiants(90),
-      //   duration: 3,
-      //   ease: "power1.out",
-      // })
-      // .to(buildingRef.current.rotation, {
-      //   x: 0,
-      //   y: angleToRadiants(180),
-      //   duration: 3,
-      //   ease: "power1.out",
-      // })
-      // .to(buildingRef.current.position, {
-      //   x: 0,
-      //   y: 0,
-      //   duration: 1,
-      //   ease: "power1.out",
-      // });
   }, []);
 
   return (
