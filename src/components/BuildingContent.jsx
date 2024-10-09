@@ -50,19 +50,13 @@ const BuildingContent = () => {
 
   return (
     <div className="building-section z-10 absolute h-screen w-screen">
-      <div className="content text-center absolute top-2 text-black left-96 max-w-[750px]">
+      <div className="content text-center text-white absolute top-2  left-[40%] max-w-[750px]">
         <h1 className="text-3xl uppercase flex flex-col">
           The <span className="text-4xl">Loremipsum dolor</span>
           <span className="text-6xl">Loremipsum</span>
         </h1>
-        <p className="text-xl">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, optio?
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-          corrupti qui voluptate cupiditate quam neque nemo itaque cumque iste
-          iure.
-        </p>
       </div>
-      <div className=" content text-center absolute top-1/2 left-10 mt-10 text-black max-w-[510px]">
+      <div className=" content text-center text-white absolute top-1/2 left-10 mt-10  max-w-[510px]">
         <p className="text-xl">
           Explore the extraordinary feats of engineering that have shaped our
           world. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -70,7 +64,7 @@ const BuildingContent = () => {
           exercitationem voluptas at ea.
         </p>
       </div>
-      <div className=" content text-center absolute top-1/2 left-10 mt-10 text-black max-w-[510px]">
+      <div className=" content text-center text-white absolute top-1/2 left-10 mt-10  max-w-[510px]">
         <p className="text-xl">
           Step back in time and discover the historical landmarks that tell the
           story of our past. Lorem ipsum dolor sit, amet consectetur adipisicing
@@ -78,7 +72,7 @@ const BuildingContent = () => {
           inventore eum dolorum.
         </p>
       </div>
-      <div className=" content text-center absolute top-1/2 left-10 mt-10 text-black max-w-[510px]">
+      <div className=" content text-center absolute top-1/2 left-10 mt-10 te max-w-[510px]">
         <p className="text-xl">
           discover the historical landmarks that tell the story of our past.
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse magnam

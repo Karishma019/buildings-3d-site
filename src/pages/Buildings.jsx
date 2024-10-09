@@ -15,7 +15,7 @@ import BuildingContent from "../components/BuildingContent";
 const Buildings = () => {
   return (
     <div className="building-container h-screen relative w-full bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500 overflow-hidden">
-      {/* <BuildingContent /> */}
+      <BuildingContent />
       <Canvas>
         <Suspense fallback={<CanvasLoader />}>
           <PerspectiveCamera makeDefault position={[0, 1, 9]} />
