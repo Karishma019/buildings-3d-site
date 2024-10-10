@@ -2,6 +2,7 @@ import React from "react";
 import bgImage from "../img/building-background.jpg";
 import logo from "../img/innoVRative logo.png";
 import SitesCard from "../components/SitesCard";
+import mainImg from "../img/main.png";
 const Home = () => {
   return (
     <>
@@ -13,7 +14,7 @@ const Home = () => {
           </span>{" "}
           <span className="font-bold">Explorer</span>
         </h1>
-        <div className="flex w-full mt-10 justify-between lg:h-[284px]">
+        <div className="flex w-full mt-10 justify-between lg:h-[350px]">
           <div className="lg:w-1/2 w-full font-semibold">
             <h1 className="text-3xl md:text-5xl lg:text-6xl">
               Explore Properties in Immersive 3D
@@ -27,7 +28,9 @@ const Home = () => {
               without leaving home.
             </p>
           </div>
-          <div className="bg-zinc-300 w-1/2 rounded w-[528px] hidden lg:block"></div>
+          <div className="bg-zinc-300 w-1/2 rounded w-[528px] hidden lg:block overflow-hidden">
+            <img src={mainImg} className="object-cover w-full object-top" />
+          </div>
         </div>
         <div className="bg-white p-4 rounded-2xl shadow-2xl text-center">
           <p className="font-semibold">{`<Try it Yourself>`}</p>
