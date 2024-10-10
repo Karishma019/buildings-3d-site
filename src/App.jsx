@@ -7,15 +7,17 @@ import Buildings from "./pages/Buildings";
 import { useEffect } from "react";
 import { ScrollProvider } from "./components/ScrollProvider";
 import Building360View from "./pages/Building360View";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
     <>
       <Home />
       <Info />
+      <Footer />
       {/* <Location /> */}
-      <Buildings />
-      <Building360View />
+      {/* <Buildings /> */}
+      {/* <Building360View /> */}
     </>
   );
 }

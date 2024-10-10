@@ -1,10 +1,17 @@
 import React from "react";
+import SitesCard from "../components/SitesCard";
 
 const Info = () => {
   return (
-    <section className="h-screen bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500 flex justify-center items-center  text-white">
-      <div className="max-w-[1200px]  text-center flex flex-col gap-10">
-        <h1 className="text-6xl">DETAILS OF PROJECT</h1>
+    <section className="padding">
+      <h2 className="pt-10 text-2xl font-semibold">Explore Sites</h2>
+      <div className="flex gap-5 flex-wrap justify-center lg:justify-start mt-10 w-full pb-10">
+        <SitesCard />
+        <SitesCard />
+        <SitesCard />
+        <SitesCard />
+        <SitesCard />
+        <SitesCard />
       </div>
     </section>
   );
