@@ -3,7 +3,7 @@ import site1Img from "../img/card.jpeg";
 const SitesCard = () => {
   return (
     <>
-      <div className="w-[350px] lg:w-[440px] rounded-xl flex-shrink-0 flex flex-col border-primary_light overflow-hidden shadow">
+      <div className="md:w-[350px] w-full lg:w-[440px] rounded-xl flex-shrink-0 flex flex-col border-primary_light overflow-hidden shadow">
         <div className="h-60 overflow-hidden">
           <img src={site1Img} className="h-80 object-cover w-full" />
         </div>
