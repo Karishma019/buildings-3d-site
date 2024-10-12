@@ -3,17 +3,19 @@ import bgImage from "../img/building-background.jpg";
 import logo from "../img/innoVRative logo.png";
 import SitesCard from "../components/SitesCard";
 import mainImg from "../img/main.png";
+import Info from "../components/Info";
+import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute lg:h-[900px] md:h-[700px] h-[550px] w-full"></div>
+      <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute lg:h-[1000px] md:h-[700px] h-[580px] w-full"></div>
+      <h1 className="uppercase md:text-4xl text-3xl text-center pt-4 h-20 w-full bg-white sticky top-0">
+        <span className="bg-black text-white md:text-3xl text-2xl py-2 tracking-widest">
+          Estate
+        </span>{" "}
+        <span className="font-bold">Explorer</span>
+      </h1>
       <div className=" flex-col flex gap-3 md:gap-10 padding">
-        <h1 className="uppercase text-4xl text-center pt-10">
-          <span className="bg-black text-white text-3xl py-2 tracking-widest">
-            Estate
-          </span>{" "}
-          <span className="font-bold">Explorer</span>
-        </h1>
         <div className="flex w-full mt-10 justify-between lg:h-[350px]">
           <div className="lg:w-1/2 w-full font-semibold">
             <h1 className="text-3xl md:text-5xl lg:text-6xl">
@@ -40,6 +42,8 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <Info />
+      <Footer />
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import site1Img from "../img/card.jpeg";
 
 const SitesCard = () => {
@@ -10,9 +11,12 @@ const SitesCard = () => {
         <div className=" text-black py-2 px-2 mt-2">
           <div className="flex justify-between items-center">
             <h3 className="font-semibold">Arcadia 111</h3>
-            <button className="bg-white rounded border-primary border px-4 py-1 text-sm text-primary">
+            <Link
+              to={`/view-site`}
+              className="bg-white rounded border-primary border px-4 py-1 text-sm text-primary"
+            >
               View Site
-            </button>
+            </Link>
           </div>
           <p className="text-sm font-light mb-2">Ahmedabad</p>
           <p className="text-sm font-light">
