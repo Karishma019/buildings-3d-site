@@ -3,7 +3,7 @@ import { IoCallOutline } from "react-icons/io5";
 
 const ConnectWithUs = () => {
   return (
-    <section className="relative h-[500px]">
+    <section className="relative h-[500px]" id="ConnectWithUs">
       <h2 className="flex items-center gap-4  pt-10 text-2xl px-8">
         <IoCallOutline className="text-primary_500" />
         Connect With Us

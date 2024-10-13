@@ -10,6 +10,15 @@ import { BiHomeAlt } from "react-icons/bi";
 
 const Header = () => {
   const [isOpen, setisOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    console.log(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="bg-black bg-opacity-35 flex z-10 justify-between items-center sticky top-8 p-4 rounded mx-8 ">
       <div className="flex text-white items-center gap-16">
@@ -37,20 +46,32 @@ const Header = () => {
           <IoCloseSharp className="text-neutral_0 bg-neutral_200 p-2 text-4xl rounded" />
         </div>
         <ul className="text-white flex flex-col gap-2 text-sm md:text-lg my-4">
-          <li className="hover:bg-black hover:bg-opacity-30 flex items-center gap-2 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 flex items-center gap-2 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("projectDetails")}
+          >
             <TfiMenuAlt /> Project Details
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3"
+            onClick={() => scrollToSection("locationDetails")}
+          >
             <IoLocationOutline />
             Location
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3"
+            onClick={() => scrollToSection("arExperience")}
+          >
             <TbScanEye /> AR Experience
           </li>
           <li className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3">
             <BiHomeAlt /> Sample House Tour
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3"
+            onClick={() => scrollToSection("ConnectWithUs")}
+          >
             <IoCallOutline /> Connect With Us{" "}
           </li>
         </ul>
@@ -58,19 +79,31 @@ const Header = () => {
 
       <nav className="hidden lg:block">
         <ul className="text-white flex gap-2">
-          <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("projectDetails")}
+          >
             Project Details
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("locationDetails")}
+          >
             Location
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("arExperience")}
+          >
             AR Experience
           </li>
           <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
             Sample House Tour
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("ConnectWithUs")}
+          >
             Connect With Us{" "}
           </li>
         </ul>

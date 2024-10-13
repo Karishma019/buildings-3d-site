@@ -35,7 +35,7 @@ const LocationDetails = () => {
   }, []);
 
   return (
-    <section className="relative h-screen">
+    <section className="relative h-screen" id="locationDetails">
       <h2 className="flex items-center gap-4 text-2xl py-16 px-8">
         <IoLocationOutline className="text-primary_500" />
         Location

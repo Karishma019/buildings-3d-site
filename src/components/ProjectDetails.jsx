@@ -4,7 +4,7 @@ import { BiHomeAlt } from "react-icons/bi";
 
 const ProjectDetails = () => {
   return (
-    <section className="py-10 ">
+    <section className="py-10" id="projectDetails">
       <h2 className="flex items-center gap-4 text-2xl pb-10 px-8">
         <TfiMenuAlt className="text-primary_500" />
         Project Details

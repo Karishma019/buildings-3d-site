@@ -15,7 +15,10 @@ import { TbScanEye } from "react-icons/tb";
 
 const Buildings = () => {
   return (
-    <div className="building-container h-screen relative w-full overflow-hidden">
+    <div
+      className="building-container h-screen relative w-full overflow-hidden"
+      id="arExperience"
+    >
       <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
         <TbScanEye className="text-primary_500" />
         AR Experience
