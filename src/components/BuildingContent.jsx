@@ -48,7 +48,7 @@ const BuildingContent = () => {
 
   return (
     <div className="building-section z-10 absolute h-full w-full">
-      <div className="bg-neutral_0 p-6 text-center w-1/2 rounded-3xl shadow-2xl content -translate-x-1/2 absolute top-40 left-1/2">
+      <div className="bg-neutral_0 p-6 text-center lg:w-1/2 w-2/3 rounded-3xl shadow-2xl content -translate-x-1/2 absolute top-40 left-1/2">
         <h1 className="text-primary_500 font-semibold text-lg">
           Explore the Site in your space with Augmented Reality{" "}
         </h1>

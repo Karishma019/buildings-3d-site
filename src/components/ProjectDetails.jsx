@@ -10,8 +10,8 @@ const ProjectDetails = () => {
         Project Details
       </h2>
       <div className="bg-[#D4D4D4] p-8 flex flex-col gap-8 w-full">
-        <div className="flex gap-8">
-          <div className="bg-neutral_0 w-1/2 rounded-xl py-4 shadow-xl  px-10">
+        <div className="flex lg:flex-row flex-col gap-8">
+          <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl py-4 shadow-xl  px-10">
             <h3 className="text-primary font-semibold">A Block</h3>
             <div className="flex items-center gap-5 text-sm py-2">
               <p className=" flex items-center gap-3">
@@ -24,7 +24,7 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          <div className="bg-neutral_0 w-1/2 rounded-xl py-4 shadow-xl   px-10">
+          <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl py-4 shadow-xl   px-10">
             <h3 className="text-primary font-semibold">A Block</h3>
             <div className="flex items-center gap-5 text-sm py-2">
               <p className=" flex items-center gap-3">
@@ -37,8 +37,8 @@ const ProjectDetails = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-8">
-          <div className="bg-neutral_0 w-1/2 rounded-xl py-4 shadow-xl  px-10">
+        <div className="flex lg:flex-row flex-col gap-8">
+          <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl py-4 shadow-xl  px-10">
             <h3 className="text-primary font-semibold">Penthouse</h3>
             <div className="text-sm pt-4">
               <p className="flex items-center gap-2">
@@ -52,7 +52,7 @@ const ProjectDetails = () => {
               </p>
             </div>
           </div>
-          <div className="w-1/2 flex flex-col gap-8 font-semibold">
+          <div className="lg:w-1/2  w-full flex flex-col gap-8 font-semibold">
             <h3 className="bg-neutral_0 rounded-xl py-4 shadow-xl text-primary px-10">
               35+ Amenities
             </h3>

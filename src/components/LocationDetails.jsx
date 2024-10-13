@@ -1,7 +1,39 @@
 import { IoLocationOutline } from "react-icons/io5";
 import bgLocation from "../img/bgLocation.mp4";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const LocationDetails = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // If the video is in view, play it
+            videoRef.current.play();
+          } else {
+            // If the video is out of view, pause it
+            videoRef.current.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Adjust this value (0-1) based on when you want the video to start playing
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    // Cleanup the observer when the component unmounts
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="relative h-screen">
       <h2 className="flex items-center gap-4 text-2xl py-16 px-8">
@@ -12,7 +44,8 @@ const LocationDetails = () => {
         skip
       </button>
       <video
-        className=" w-full object-cover"
+        className=" w-full object-cover h-full"
+        ref={videoRef}
         src={bgLocation}
         autoPlay
         loop
