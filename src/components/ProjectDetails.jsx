@@ -1,12 +1,11 @@
 import { TfiMenuAlt } from "react-icons/tfi";
 import { BsGrid1X2 } from "react-icons/bs";
 import { BiHomeAlt } from "react-icons/bi";
-import { IoLocationOutline } from "react-icons/io5";
 
 const ProjectDetails = () => {
   return (
-    <section>
-      <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
+    <section className="py-10 ">
+      <h2 className="flex items-center gap-4 text-2xl pb-10 px-8">
         <TfiMenuAlt className="text-primary_500" />
         Project Details
       </h2>
@@ -42,8 +41,15 @@ const ProjectDetails = () => {
           <div className="bg-neutral_0 w-1/2 rounded-xl py-4 shadow-xl  px-10">
             <h3 className="text-primary font-semibold">Penthouse</h3>
             <div className="text-sm pt-4">
-              <p>4 Duplex Penthouses (21st & 22nd floor)</p>
-              <p className="pt-2">4 Side by Side Penthouses (22nd floor)</p>
+              <p className="flex items-center gap-2">
+                <div className="h-5 w-5 bg-neutral_100 rounded"></div>4 Duplex
+                Penthouses (21st & 22nd floor)
+              </p>
+              <p className="pt-2 flex items-center gap-2">
+                {" "}
+                <div className="h-5 w-5 bg-neutral_100 rounded"></div>4 Side by
+                Side Penthouses (22nd floor)
+              </p>
             </div>
           </div>
           <div className="w-1/2 flex flex-col gap-8 font-semibold">
@@ -56,10 +62,6 @@ const ProjectDetails = () => {
           </div>
         </div>
       </div>
-      <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
-        <IoLocationOutline className="text-primary_500" />
-        Location
-      </h2>
     </section>
   );
 };
