@@ -20,6 +20,7 @@ export default {
         neutral_100: "#F2F2F2",
         neutral_200: "#CCCCCC",
         neutral_400: "#666666",
+        neutral_500: "#4D4D4D",
         error: "#CC0909",
         blackish: "#1e1e1e",
         primary_light: "#1765C9",

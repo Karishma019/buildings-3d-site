@@ -9,7 +9,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary_50 ">
+    <footer className="bg-primary_50 mt-10">
       <h1 className="uppercase text-4xl text-center pt-10">
         <span className="bg-primary text-white text-3xl py-2 tracking-widest">
           Estate
@@ -31,7 +31,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
-          <p className="font-semibold text-black">Get in touch with us</p>
+          {/* <p className="font-semibold text-black">Get in touch with us</p>
           <label
             htmlFor="email"
             className="bg-white flex w-80 justify-between items-center p-1 rounded-lg"
@@ -45,7 +45,7 @@ const Footer = () => {
             <button className="bg-primary text-white text-xl p-3 rounded">
               <FaArrowRightLong />
             </button>
-          </label>
+          </label> */}
           <p className="font-semibold text-black">Follow Us on</p>
           <div className="text-primary flex gap-7 text-3xl">
             <p>

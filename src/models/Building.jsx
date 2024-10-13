@@ -39,41 +39,41 @@ const Building = (props) => {
         trigger: ".building-container",
         start: "10% top",
         end: "bottom 50%",
-        markers: true,
+        // markers: true,
         scrub: false,
         pin: true,
       },
     });
-    tl.current
-      .to(buildingRef.current.rotation, {
-        x: 0,
-        duration: 3,
-        ease: "power1.out",
-      })
-      .to(buildingRef.current.position, {
-        x: 2,
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      })
-      // .to(buildingRef.current.rotation, {
-      //   x: 0,
-      //   y: angleToRadiants(90),
-      //   duration: 3,
-      //   ease: "power1.out",
-      // })
-      // .to(buildingRef.current.rotation, {
-      //   x: 0,
-      //   y: angleToRadiants(180),
-      //   duration: 3,
-      //   ease: "power1.out",
-      // })
-      .to(buildingRef.current.position, {
-        x: 0,
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      });
+
+    tl.current.to(buildingRef.current.rotation, {
+      y: -2,
+      duration: 3,
+      ease: "power1.out",
+    });
+    tl.current.to(buildingRef.current.rotation, {
+      y: -3,
+      duration: 3,
+      ease: "power1.out",
+    });
+
+    // .to(buildingRef.current.rotation, {
+    //   x: 0,
+    //   y: angleToRadiants(90),
+    //   duration: 3,
+    //   ease: "power1.out",
+    // })
+    // .to(buildingRef.current.rotation, {
+    //   x: 0,
+    //   y: angleToRadiants(180),
+    //   duration: 3,
+    //   ease: "power1.out",
+    // })
+    // .to(buildingRef.current.position, {
+    //   x: 0,
+    //   y: 0,
+    //   duration: 1,
+    //   ease: "power1.out",
+    // });
   }, []);
 
   useLayoutEffect(() => {
@@ -83,23 +83,28 @@ const Building = (props) => {
         trigger: ".building-container",
         start: "top top",
         end: "bottom 50%",
-        markers: true,
+        // markers: true,
         scrub: false,
         pin: true,
       },
     });
+
     tl.current
       .to(buildingRef.current.rotation, {
-        x: 0,
+        y: -1,
         duration: 3,
         ease: "power1.out",
       })
       .to(buildingRef.current.position, {
-        x: 5,
         y: 0,
         duration: 1,
         ease: "power1.out",
       });
+    // .to(buildingRef.current.position, {
+    //   y: 0,
+    //   duration: 1,
+    //   ease: "power1.out",
+    // });
     // .to(buildingRef.current.rotation, {
     //   x: 0,
     //   y: angleToRadiants(90),

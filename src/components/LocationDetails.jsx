@@ -3,8 +3,8 @@ import bgLocation from "../img/bgLocation.mp4";
 
 const LocationDetails = () => {
   return (
-    <section className="relative">
-      <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
+    <section className="relative h-screen">
+      <h2 className="flex items-center gap-4 text-2xl py-16 px-8">
         <IoLocationOutline className="text-primary_500" />
         Location
       </h2>
@@ -12,7 +12,7 @@ const LocationDetails = () => {
         skip
       </button>
       <video
-        className=" w-full h-[550px] object-cover"
+        className=" w-full object-cover"
         src={bgLocation}
         autoPlay
         loop

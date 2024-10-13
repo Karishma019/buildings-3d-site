@@ -8,18 +8,16 @@ const BuildingContent = () => {
   useEffect(() => {
     const sections = gsap.utils.toArray(".building-section .content");
 
-    // Create a GSAP timeline
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-section",
-        // markers: true,
+        markers: true,
         pin: true,
         // end: `bottom top`, // Adjust based on the number of sections
         scrub: true, // Smooth scrubbing
       },
     });
 
-    // Loop through each section and add to the timeline
     sections.forEach((section, index) => {
       timeline
         .fromTo(
@@ -49,36 +47,23 @@ const BuildingContent = () => {
   }, []);
 
   return (
-    <div className="building-section z-10 absolute h-screen w-screen">
-      <div className="content text-center text-white absolute top-2  left-[40%] max-w-[750px]">
-        <h1 className="text-3xl uppercase flex flex-col">
-          The <span className="text-4xl">Loremipsum dolor</span>
-          <span className="text-6xl">Loremipsum</span>
+    <div className="building-section z-10 absolute h-full w-full">
+      <div className="bg-neutral_0 p-6 text-center w-1/2 rounded-3xl shadow-2xl content -translate-x-1/2 absolute top-40 left-1/2">
+        <h1 className="text-primary_500 font-semibold text-lg">
+          Explore the Site in your space with Augmented Reality{" "}
         </h1>
+        <button className="bg-primary_50 mt-4 border-primary_500 text-sm font-semibold py-1 px-3 border-2 rounded text-primary_500">
+          Start AR Experience{" "}
+        </button>
       </div>
-      <div className=" content text-center text-white absolute top-1/2 left-10 mt-10  max-w-[510px]">
-        <p className="text-xl">
-          Explore the extraordinary feats of engineering that have shaped our
-          world. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Consequuntur mollitia ullam officiis obcaecati ipsam natus, amet
-          exercitationem voluptas at ea.
-        </p>
+      <div className="content text-center text-white absolute top-40 -translate-x-1/2 left-1/2 max-w-[510px]">
+        <p className="text-5xl font-bold">Explore the extraordinary</p>
       </div>
-      <div className=" content text-center text-white absolute top-1/2 left-10 mt-10  max-w-[510px]">
-        <p className="text-xl">
-          Step back in time and discover the historical landmarks that tell the
-          story of our past. Lorem ipsum dolor sit, amet consectetur adipisicing
-          elit. Esse magnam quaerat distinctio sint, nemo fuga omnis repellat
-          inventore eum dolorum.
-        </p>
+      <div className="content text-center text-white absolute top-40 left-1/2 max-w-[510px]">
+        <p className="text-xl">feats of engineering</p>
       </div>
-      <div className=" content text-center absolute top-1/2 left-10 mt-10 te max-w-[510px]">
-        <p className="text-xl">
-          discover the historical landmarks that tell the story of our past.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse magnam
-          quaerat distinctio sint, nemo fuga omnis repellat inventore eum
-          dolorum.
-        </p>
+      <div className="content text-center text-white absolute top-40 left-1/2 max-w-[510px]">
+        <p className="text-xl">that have shaped our world. </p>
       </div>
     </div>
   );
