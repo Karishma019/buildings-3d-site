@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BuildingContent = () => {
+const BuildingContent = ({ store }) => {
   useEffect(() => {
     const sections = gsap.utils.toArray(".building-section .content");
 
@@ -52,7 +52,10 @@ const BuildingContent = () => {
         <h1 className="text-primary_500 font-semibold text-lg">
           Explore the Site in your space with Augmented Reality{" "}
         </h1>
-        <button className="bg-primary_50 mt-4 border-primary_500 text-sm font-semibold py-1 px-3 border-2 rounded text-primary_500">
+        <button
+          className="bg-primary_50 mt-4 border-primary_500 text-sm font-semibold py-1 px-3 border-2 rounded text-primary_500"
+          onClick={() => store.enterAR()}
+        >
           Start AR Experience{" "}
         </button>
       </div>
