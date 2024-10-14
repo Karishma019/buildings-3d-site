@@ -7,21 +7,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleReadyStateChange = () => {
-      if (document.readyState === "complete") {
-        setLoading(false);
-      } else {
-        setLoading(true);
-      }
-    };
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
 
-    handleReadyStateChange();
-
-    document.addEventListener("readystatechange", handleReadyStateChange);
-
-    return () => {
-      document.removeEventListener("readystatechange", handleReadyStateChange);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
