@@ -19,7 +19,7 @@ const SitesCard = () => {
             </Link>
           </div>
           <p className="text-sm font-light mb-2">Ahmedabad</p>
-          <p className="text-sm font-light">
+          <p className="sm:text-sm text-[12px] font-light">
             This is a basic description about the site and how this can be the
             best choice by the clients because of the facilities it provides and
             the price range that is affordable.

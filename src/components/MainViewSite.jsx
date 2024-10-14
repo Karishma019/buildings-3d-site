@@ -17,7 +17,7 @@ const MainViewSite = () => {
 
       <div className="text-white absolute top-0 w-full flex gap-2 flex-col h-full justify-center items-center">
         <h1 className="text-4xl md:text-6xl font-semibold">Arcadia 111</h1>
-        <p className="font-normal text-xl md:text-2xl">
+        <p className="font-normal text-lg md:text-2xl">
           3 BHK PEACEFUL LIVINGS & SHOPS
         </p>
         <button className="bg-neutral_200 bg-opacity-30 border rounded text-sm flex items-center px-3 py-1 mt-4">

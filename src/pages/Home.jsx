@@ -18,13 +18,13 @@ const Home = () => {
       <div className=" flex-col flex gap-3 md:gap-10 padding">
         <div className="flex w-full mt-10 justify-between lg:h-[350px]">
           <div className="lg:w-1/2 w-full font-semibold">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl">
+            <h1 className="text-2xl text-center sm:text-start md:text-5xl lg:text-6xl">
               Explore Properties in Immersive 3D
             </h1>
             <p className="text-primary lg:text-2xl md:text-xl mt-3">
               Real Estate made #SIMPLE
             </p>
-            <p className="mt-6 lg:text-xl md:text-lg font-normal">
+            <p className="mt-6 lg:text-xl md:text-lg text-sm text-center font-normal">
               Discover properties in stunning 3D from any device, anytime. Tour
               every detail virtually and make confident real estate decisions
               without leaving home.

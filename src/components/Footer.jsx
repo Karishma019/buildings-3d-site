@@ -17,7 +17,7 @@ const Footer = () => {
         <span className="font-bold text-primary">Explorer</span>
       </h1>
       <div className="flex flex-col items-center gap-5 py-10 text-neutral_400">
-        <div>
+        <div className="px-4 sm:p-0">
           <p className="flex items-center gap-2 ">
             <IoLocationOutline />
             12, Times Square, C.G. Road, 380018, Ahmedabad

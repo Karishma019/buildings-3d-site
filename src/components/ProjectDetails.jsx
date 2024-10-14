@@ -13,7 +13,7 @@ const ProjectDetails = () => {
         <div className="flex lg:flex-row flex-col gap-8">
           <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl py-4 shadow-xl  px-10">
             <h3 className="text-primary font-semibold">A Block</h3>
-            <div className="flex items-center gap-5 text-sm py-2">
+            <div className="flex items-start sm:items-center flex-col sm:flex-row gap-2 sm:gap-5 text-sm py-2">
               <p className=" flex items-center gap-3">
                 <BsGrid1X2 /> 280 sqyd / 2520 sqft
               </p>
@@ -25,8 +25,8 @@ const ProjectDetails = () => {
           </div>
 
           <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl py-4 shadow-xl   px-10">
-            <h3 className="text-primary font-semibold">A Block</h3>
-            <div className="flex items-center gap-5 text-sm py-2">
+            <h3 className="text-primary font-semibold">B Block</h3>
+            <div className="flex items-start sm:items-center flex-col sm:flex-row gap-2 sm:gap-5 text-sm py-2">
               <p className=" flex items-center gap-3">
                 <BsGrid1X2 /> 256 sqyd / 2304 sqft
               </p>

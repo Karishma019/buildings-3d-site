@@ -38,3 +38,13 @@ body {
 .padding {
   padding: 0rem 4rem;
 }
+
+@media screen and (max-width: 500px) {
+  .padding {
+    padding: 2rem;
+  }
+
+  .clipPath {
+    clip-path: ellipse(61% 70% at 50% 20%);
+  }
+}

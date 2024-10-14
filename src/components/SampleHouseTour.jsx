@@ -9,17 +9,20 @@ const SampleHouseTour = () => {
 
   const scrollLeft = () => {
     if (scrollRef.current) {
+      const containerWidth = scrollRef.current.clientWidth;
       scrollRef.current.scrollBy({
-        left: -335,
+        left: -containerWidth,
         behavior: "smooth",
       });
     }
   };
 
+  // Function to handle right scroll
   const scrollRight = () => {
     if (scrollRef.current) {
+      const containerWidth = scrollRef.current.clientWidth;
       scrollRef.current.scrollBy({
-        left: 335,
+        left: containerWidth,
         behavior: "smooth",
       });
     }
@@ -31,8 +34,8 @@ const SampleHouseTour = () => {
       className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat"
       style={{ background: `url(${bgHouse})` }}
     >
-      <div className="absolute top-40 left-10">
-        <p className="text-white bg-black bg-opacity-35 text-2xl flex items-center gap-2 px-4 py-1 rounded">
+      <div className="absolute sm:top-40 top-32 sm:left-10 left-5">
+        <p className="text-white bg-black bg-opacity-35 sm:text-2xl text-xl flex items-center gap-2 px-4 py-1 rounded">
           <TbScanEye className="text-3xl" /> Sample House Tour
         </p>
       </div>
@@ -45,21 +48,21 @@ const SampleHouseTour = () => {
         </div>
         <div
           ref={scrollRef}
-          className="flex gap-5 w-full overflow-x-auto scroll-hidden"
+          className="flex lg:gap-5 w-full overflow-x-auto scroll-hidden"
         >
-          <button className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 border-zinc-600 border flex-shrink-0 py-2 text-center lg:w-[17.1rem] w-full rounded">
+          <button className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 py-2 text-center lg:w-1/5 w-full rounded">
             Living Area
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 border-zinc-600 border flex-shrink-0 text-center lg:w-[17.1rem] w-full  rounded">
+          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
             Kitchen{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 border-zinc-600 border flex-shrink-0 text-center lg:w-[17.1rem] w-full  rounded">
+          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
             Bedroom 1{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 border-zinc-600 border flex-shrink-0 text-center lg:w-[17.1rem] w-full  rounded">
+          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
             Bedroom 2{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 border-zinc-600 border flex-shrink-0 text-center lg:w-[17.1rem] w-full  rounded">
+          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
             Master Bedroom{" "}
           </button>
         </div>

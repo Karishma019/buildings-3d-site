@@ -15,17 +15,17 @@ const ConnectWithUs = () => {
           <input
             type="text"
             placeholder="Enter your name"
-            className="bg-[#D4D4D433] outline-none text-lg w-full rounded-lg py-2 px-4"
+            className="bg-[#D4D4D433] outline-none sm:text-lg text-sm w-full rounded-lg py-2 px-4"
           />
           <input
             type="text"
             placeholder="Enter your number"
-            className="bg-[#D4D4D433] outline-none text-lg w-full rounded-lg py-2 px-4"
+            className="bg-[#D4D4D433] outline-none sm:text-lg text-sm w-full rounded-lg py-2 px-4"
           />
           <input
             type="email"
             placeholder="Enter your email address"
-            className="bg-[#D4D4D433] outline-none text-lg  w-full rounded-lg py-2 px-4"
+            className="bg-[#D4D4D433] outline-none sm:text-lg text-sm  w-full rounded-lg py-2 px-4"
           />
           <button className="bg-primary text-white w-32 py-1 rounded-lg">
             Submit
