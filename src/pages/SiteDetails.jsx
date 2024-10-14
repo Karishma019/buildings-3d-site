@@ -7,6 +7,7 @@ import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
 import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
+import SampleHouseTour from "../components/SampleHouseTour";
 
 const SiteDetails = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const SiteDetails = () => {
       <LocationDetails />
       <LocationMap />
       <Buildings />
+      <SampleHouseTour />
       <ConnectWithUs />
       <Footer />
     </div>

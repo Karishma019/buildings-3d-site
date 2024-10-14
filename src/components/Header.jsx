@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { TfiMenuAlt } from "react-icons/tfi";
@@ -65,7 +65,10 @@ const Header = () => {
           >
             <TbScanEye /> AR Experience
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2  cursor-pointer px-3"
+            onClick={() => scrollToSection("sampleHouseTour")}
+          >
             <BiHomeAlt /> Sample House Tour
           </li>
           <li
@@ -97,7 +100,10 @@ const Header = () => {
           >
             AR Experience
           </li>
-          <li className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3">
+          <li
+            className="hover:bg-black hover:bg-opacity-30 rounded cursor-pointer px-3"
+            onClick={() => scrollToSection("sampleHouseTour")}
+          >
             Sample House Tour
           </li>
           <li
