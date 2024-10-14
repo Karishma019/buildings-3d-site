@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -8,8 +9,12 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 
 const SiteDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <>
+    <div>
       <Header />
       <MainViewSite />
       <ProjectDetails />
@@ -18,7 +23,7 @@ const SiteDetails = () => {
       <Buildings />
       <ConnectWithUs />
       <Footer />
-    </>
+    </div>
   );
 };
 

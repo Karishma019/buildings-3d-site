@@ -42,13 +42,13 @@ const ProjectDetails = () => {
             <h3 className="text-primary font-semibold">Penthouse</h3>
             <div className="text-sm pt-4">
               <p className="flex items-center gap-2">
-                <div className="h-5 w-5 bg-neutral_100 rounded"></div>4 Duplex
+                <span className="h-5 w-5 bg-neutral_100 rounded"></span>4 Duplex
                 Penthouses (21st & 22nd floor)
               </p>
               <p className="pt-2 flex items-center gap-2">
                 {" "}
-                <div className="h-5 w-5 bg-neutral_100 rounded"></div>4 Side by
-                Side Penthouses (22nd floor)
+                <span className="h-5 w-5 bg-neutral_100 rounded"></span>4 Side
+                by Side Penthouses (22nd floor)
               </p>
             </div>
           </div>
