@@ -22,7 +22,7 @@ const BuildingView = () => {
         ref={orbitControlRef}
         autoRotate
         autoRotateSpeed={-0.75}
-        enablePan={false}
+        enablePan={true}
         enableRotate={true}
       />
       <Environment map={envMap} background />
