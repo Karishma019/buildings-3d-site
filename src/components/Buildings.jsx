@@ -23,7 +23,7 @@ const Buildings = () => {
       className="building-container h-screen relative w-full overflow-hidden"
       id="arExperience"
     >
-      <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
+      <h2 className="flex items-center gap-4 text-2xl py-10 px-8 lg:hidden block">
         <TbScanEye className="text-primary_500" />
         AR Experience
       </h2>
