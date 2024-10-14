@@ -3,7 +3,6 @@ import { TbScanEye } from "react-icons/tb";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 import { useRef } from "react";
-import Building360View from "./Building360View";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 
@@ -36,7 +35,7 @@ const SampleHouseTour = () => {
       id="sampleHouseTour"
       className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden"
     >
-      <div className="w-full h-full absolute ">
+      <div className="w-full h-full absolute">
         <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
           <BuildingView />
         </Canvas>
