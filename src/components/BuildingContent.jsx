@@ -53,7 +53,7 @@ const BuildingContent = ({ store }) => {
           Explore the Site in your space with Augmented Reality{" "}
         </h1>
         <button
-          className="bg-primary_50 mt-4 border-primary_500 text-sm font-semibold py-1 px-3 border-2 rounded text-primary_500"
+          className="bg-primary_50 mt-4 border-primary_500 text-sm font-semibold py-1 px-3 border-2 rounded text-primary_500 lg:hidden block"
           onClick={() => store.enterAR()}
         >
           Start AR Experience{" "}
