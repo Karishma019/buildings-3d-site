@@ -3,6 +3,7 @@ import { TbScanEye } from "react-icons/tb";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 import { useRef } from "react";
+import Building360View from "./Building360View";
 
 const SampleHouseTour = () => {
   const scrollRef = useRef(null);
@@ -31,9 +32,9 @@ const SampleHouseTour = () => {
   return (
     <section
       id="sampleHouseTour"
-      className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat"
-      style={{ background: `url(${bgHouse})` }}
+      className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden"
     >
+      <Building360View />
       <div className="absolute sm:top-40 top-32 sm:left-10 left-5">
         <p className="text-white bg-black bg-opacity-35 sm:text-2xl text-xl flex items-center gap-2 px-4 py-1 rounded">
           <TbScanEye className="text-3xl" /> Sample House Tour
