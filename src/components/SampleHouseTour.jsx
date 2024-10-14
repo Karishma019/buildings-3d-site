@@ -10,7 +10,7 @@ const SampleHouseTour = () => {
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left: -350, // Adjust the value to scroll more or less
+        left: -335,
         behavior: "smooth",
       });
     }
@@ -19,7 +19,7 @@ const SampleHouseTour = () => {
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left: 350, // Adjust the value to scroll more or less
+        left: 335,
         behavior: "smooth",
       });
     }
