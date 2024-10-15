@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect ,useRef, useState} from "react";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -9,21 +9,137 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 
+
+
 const SiteDetails = () => {
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [sectionHeights, setSectionHeights] = useState([])
+
+
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
+  const sections = useRef({});
+  const [activeSection, setActiveSection] = useState(0);
+
+  const scrollToSection = (index) => {
+    sections.current[index].scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(index);
+  };
+
+  const storeInputRef = (el, index) => {
+    sections.current[index] = el
+  }
+
+  const handleScroll = (e) => {
+    const deltaY = e.deltaY;
+    let newActive = activeSection;
+    console.log("yaysay", activeSection, window.scrollY)
+    if (window.scrollY > 250 && activeSection == 0) {
+      console.log('scrolled', newActive)
+      scrollToSection(1)
+      
+    }
+  };
+
+  const handleWheel = () => {
+    setScrollPosition(window.scrollY);
+  };
+
+  function incrementalSum(arr) {
+    let result = [];
+    let sum = 0;
+  
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+      result.push(sum);
+    }
+  
+    return result;
+  }
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.addEventListener('wheel', handleWheel);
+
+    let dummy_heights = []
+
+    for (let dummy_sec in sections.current){
+      dummy_heights.push(sections.current[dummy_sec].offsetHeight)
+    }
+
+    setSectionHeights(incrementalSum(dummy_heights))
+
+    console.log("hima", dummy_heights)
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
   }, []);
+
+  // Trigger scrollIntoView based on wheel scroll position
+  useEffect(() => {
+    console.log("ssssd", scrollPosition)
+    if (scrollPosition > 100 && scrollPosition <= 900) {
+      scrollToSection(1)
+    }
+    else if (scrollPosition > 900) {
+      scrollToSection(2)
+    }
+
+    for (let i=0; i < sectionHeights.length ; i++){
+      if (scrollPosition < 150){
+        break;
+      }
+      else if (i == 0 && scrollPosition < sectionHeights[i]){
+        scrollToSection(i + 1)
+        break;
+      }
+      else if (scrollPosition > sectionHeights[i-1]+100 && scrollPosition < sectionHeights[i]){
+        if (i == sectionHeights.length -1){
+          break;
+        }
+        scrollToSection(i + 1)
+        break;
+      }
+    }
+
+  }, [scrollPosition]);
 
   return (
     <div>
       <Header />
-      <MainViewSite />
-      <ProjectDetails />
-      <LocationDetails />
-      <LocationMap />
-      <Buildings />
-      <SampleHouseTour />
-      <ConnectWithUs />
+      <MainViewSite 
+      scrollToSection={scrollToSection}
+      storeInputRef={storeInputRef}
+      />
+      <ProjectDetails
+        scrollToSection={scrollToSection}
+        storeInputRef={storeInputRef}
+       />
+      <LocationDetails 
+      scrollToSection={scrollToSection}
+      storeInputRef={storeInputRef}
+      />
+      <LocationMap 
+            scrollToSection={scrollToSection}
+            storeInputRef={storeInputRef}
+      />
+      <Buildings
+                  scrollToSection={scrollToSection}
+                  storeInputRef={storeInputRef}
+       />
+      <SampleHouseTour 
+                        scrollToSection={scrollToSection}
+                        storeInputRef={storeInputRef}
+      />
+      <ConnectWithUs 
+                        scrollToSection={scrollToSection}
+                        storeInputRef={storeInputRef}
+      />
       <Footer />
     </div>
   );

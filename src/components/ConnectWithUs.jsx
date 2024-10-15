@@ -2,9 +2,11 @@ import React from "react";
 import { IoCallOutline } from "react-icons/io5";
 import Footer from "./Footer";
 
-const ConnectWithUs = () => {
+const ConnectWithUs = (props) => {
   return (
-    <section className="relative" id="ConnectWithUs">
+    <section className="relative" id="ConnectWithUs"
+    ref={(el) => props.storeInputRef(el,6)}
+    >
       <h2 className="flex items-center gap-4  pt-10 text-2xl px-8">
         <IoCallOutline className="text-primary_500" />
         Connect With Us

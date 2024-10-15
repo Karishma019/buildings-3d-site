@@ -6,7 +6,7 @@ import { useRef } from "react";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 
-const SampleHouseTour = () => {
+const SampleHouseTour = (props) => {
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
@@ -34,6 +34,7 @@ const SampleHouseTour = () => {
     <section
       id="sampleHouseTour"
       className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden"
+      ref={(el) => props.storeInputRef(el,5)}
     >
       <div className="w-full h-full absolute">
         <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>

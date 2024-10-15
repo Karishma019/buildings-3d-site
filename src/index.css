@@ -46,7 +46,6 @@
 }
 
 body {
-  scroll-behavior: smooth;
   font-family: "Poppins";
 }
 
@@ -58,9 +57,9 @@ body {
   display: none;
 }
 
-.slides-container {
-  scroll-behavior: smooth;
-}
+/* .slides-container {
+
+} */
 
 .clipPath {
   clip-path: ellipse(51% 70% at 50% 20%);

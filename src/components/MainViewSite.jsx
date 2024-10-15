@@ -2,9 +2,11 @@ import Header from "../components/Header";
 import bgVideo from "../img/bgMain.mp4";
 import { TiLocationArrowOutline } from "react-icons/ti";
 
-const MainViewSite = () => {
+const MainViewSite = (props) => {
   return (
-    <section className="h-screen">
+    <section className="h-screen"
+    ref={(el) => props.storeInputRef(el,0)}
+    >
       <video
         className="absolute inset-0 w-full h-full object-cover"
         src={bgVideo}

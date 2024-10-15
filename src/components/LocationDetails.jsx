@@ -8,7 +8,7 @@ import { FaRegHospital } from "react-icons/fa";
 import { CiAirportSign1 } from "react-icons/ci";
 import { GiRoad } from "react-icons/gi";
 
-const LocationDetails = () => {
+const LocationDetails = (props) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -40,8 +40,12 @@ const LocationDetails = () => {
   }, []);
 
   return (
-    <section className="relative h-screen" id="locationDetails">
-      <h2 className="flex items-center gap-4 text-2xl pt-16 px-8">
+    <section className="relative h-screen" id="locationDetails"
+    ref={(el) => props.storeInputRef(el,2)}
+    >
+      <h2 className="flex items-center gap-4 text-2xl pt-16 px-8"
+      onClick={()=>props.scrollToSection(2)}
+      >
         <IoLocationOutline className="text-primary_500" />
         Location
       </h2>
@@ -107,7 +111,9 @@ const LocationDetails = () => {
           </div>
         </div>
       </div>
-      <button className="bg-neutral_200 absolute bottom-20 cursor-pointer right-20 text-neutral_0 bg-opacity-30 border rounded text-sm flex items-center px-3 py-1 mt-4">
+      <button className="bg-neutral_200 absolute bottom-20 cursor-pointer right-20 text-neutral_0 bg-opacity-30 border rounded text-sm flex items-center px-3 py-1 mt-4"
+      
+      >
         skip
       </button>
       <video
