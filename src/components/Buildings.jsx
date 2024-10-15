@@ -37,8 +37,8 @@ const Buildings = () => {
               <ambientLight args={["#ffffff", 1]} />
               <directionalLight args={["#a9ceff", 15]} position={[-4, 2, 35]} />
               <Building
-                scale={0.05}
-                position={[0, -2, 0]}
+                scale={0.04}
+                position={[0, 0, 0]}
                 rotation={[0, 0, 0]}
               />
             </Suspense>
