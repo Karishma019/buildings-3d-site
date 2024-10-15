@@ -2,6 +2,8 @@ import { RouterProvider } from "react-router-dom";
 import routes from "./routes/routes";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,6 +23,7 @@ function App() {
   return (
     <div>
       <RouterProvider router={routes} />
+      <ToastContainer />
     </div>
   );
 }

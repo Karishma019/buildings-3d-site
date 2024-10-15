@@ -11,7 +11,7 @@ const ConnectWithUs = () => {
       </h2>
 
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
-      <div className=" flex justify-center items-center">
+      <div className=" flex items-center px-8">
         <div className="bg-white flex rounded-xl flex-col items-center p-8 w-2/3 lg:w-1/2  gap-4 shadow-lg">
           <input
             type="text"

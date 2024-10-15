@@ -5,11 +5,12 @@ import SitesCard from "../components/SitesCard";
 import mainImg from "../img/main.png";
 import Info from "../components/Info";
 import Footer from "../components/Footer";
+import FormDetails from "../components/FormDetails";
 const Home = () => {
   return (
     <>
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute lg:h-[1000px] md:h-[700px] h-[580px] w-full"></div>
-      <h1 className="uppercase md:text-4xl text-3xl text-center pt-4 h-20 w-full bg-white sticky top-0">
+      <h1 className="uppercase md:text-4xl text-3xl text-center pt-4 h-20 w-full bg-white sticky z-10 top-0">
         <span className="bg-black text-white md:text-3xl text-2xl py-2 tracking-widest">
           Estate
         </span>{" "}
@@ -43,6 +44,7 @@ const Home = () => {
         </div>
       </div>
       <Info />
+      <FormDetails />
       <Footer />
     </>
   );
