@@ -1,16 +1,17 @@
 import React from "react";
 import { IoCallOutline } from "react-icons/io5";
+import Footer from "./Footer";
 
 const ConnectWithUs = () => {
   return (
-    <section className="relative h-[500px]" id="ConnectWithUs">
+    <section className="relative" id="ConnectWithUs">
       <h2 className="flex items-center gap-4  pt-10 text-2xl px-8">
         <IoCallOutline className="text-primary_500" />
         Connect With Us
       </h2>
 
-      <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full"></div>
-      <div className=" flex justify-center items-center h-full">
+      <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
+      <div className=" flex justify-center items-center">
         <div className="bg-white flex rounded-xl flex-col items-center p-8 w-2/3 lg:w-1/2  gap-4 shadow-lg">
           <input
             type="text"
@@ -32,6 +33,7 @@ const ConnectWithUs = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </section>
   );
 };

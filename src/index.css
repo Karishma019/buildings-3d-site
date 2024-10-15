@@ -74,6 +74,20 @@ body {
   padding: 0rem 4rem;
 }
 
+.scrollsnap {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.scrollsnap section {
+  scroll-snap-align: start;
+}
+
+.scrollsnap div {
+  scroll-snap-align: start;
+}
+
 @media screen and (max-width: 500px) {
   .padding {
     padding: 2rem;
