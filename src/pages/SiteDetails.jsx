@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
@@ -16,15 +17,14 @@ const SiteDetails = () => {
   return (
     <div>
       <Header />
-      <div className="scrollsnap scroll-hidden">
-        <MainViewSite />
-        <ProjectDetails />
-        <LocationDetails />
-        <LocationMap />
-        <Buildings />
-        <SampleHouseTour />
-        <ConnectWithUs />
-      </div>
+      <MainViewSite />
+      <ProjectDetails />
+      <LocationDetails />
+      <LocationMap />
+      <Buildings />
+      <SampleHouseTour />
+      <ConnectWithUs />
+      <Footer />
     </div>
   );
 };

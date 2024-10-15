@@ -4,7 +4,7 @@ import { TiLocationArrowOutline } from "react-icons/ti";
 
 const MainViewSite = () => {
   return (
-    <section className="h-screen relative">
+    <section className="h-screen">
       <video
         className="absolute inset-0 w-full h-full object-cover"
         src={bgVideo}

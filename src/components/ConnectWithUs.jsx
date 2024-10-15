@@ -33,7 +33,6 @@ const ConnectWithUs = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </section>
   );
 };

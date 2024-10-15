@@ -84,6 +84,10 @@ body {
   scroll-snap-align: start;
 }
 
+#arExperience {
+  scroll-snap-type: none;
+}
+
 .scrollsnap div {
   scroll-snap-align: start;
 }
