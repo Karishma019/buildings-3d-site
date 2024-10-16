@@ -1,4 +1,5 @@
 import { useEffect ,useRef, useState} from "react";
+import { Element, scroller } from 'react-scroll';
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -11,45 +12,53 @@ import SampleHouseTour from "../components/SampleHouseTour";
 
 
 
+
 const SiteDetails = () => {
+  const sections = ["section1", "section2", "section3", "section4"];
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [deltaY, setDeltaY] = useState(0);
-  const [sectionHeights, setSectionHeights] = useState([])
+  // const [currentSection, setCurrentSection] = useState(0); // Track current section
+  const currentSectionRef = useRef(0);
+  const isThrottling = useRef(false); // Prevent rapid firing of scroll events
 
-
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
-  const sections = useRef({});
-  const [activeSection, setActiveSection] = useState(0);
-
+  // Scroll to a section by index
   const scrollToSection = (index) => {
-    sections.current[index].scrollIntoView({ behavior: 'smooth' });
-    setActiveSection(index);
+    console.log("yash");
+    scroller.scrollTo(sections[index], {
+      duration: 800,
+      smooth: "easeInOutQuart",
+    });
   };
+
+  // Handle scroll events
+  const handleScroll = (e) => {
+    if (isThrottling.current) return; // Throttle scroll to avoid jitter
+    console.log('asaas', currentSectionRef.current)
+    const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
+    let newSection = currentSectionRef.current;
+
+    if (scrollDirection === "down" && newSection < sections.length - 1) {
+      newSection += 1; // Go to next section
+    } else if (scrollDirection === "up" && newSection > 0) {
+      newSection -= 1; // Go to previous section
+    }
+    console.log('bsbsbs', newSection)
+    if (newSection !== currentSectionRef.current) {
+      console.log('cscscsc', newSection)
+      currentSectionRef.current = newSection;
+      scrollToSection(newSection);
+    }
+
+    // Throttle the scroll event to avoid rapid triggering
+    isThrottling.current = true;
+    setTimeout(() => (isThrottling.current = false), 1000);
+  };
+
+
 
   const storeInputRef = (el, index) => {
-    sections.current[index] = el
+    // sections.current[index] = el
   }
 
-  const handleScroll = (e) => {
-    let newActive = activeSection;
-    console.log("yaysay", activeSection, window.scrollY)
-    if (window.scrollY > 250 && activeSection == 0) {
-      console.log('scrolled', newActive)
-      scrollToSection(1)
-      
-    }
-  };
-
-  const handleWheel = (el) => {
-    setScrollPosition(window.scrollY);
-    const deltaY = el.deltaY;
-    setDeltaY(deltaY);
-  };
 
   function incrementalSum(arr) {
     let result = [];
@@ -64,80 +73,72 @@ const SiteDetails = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('wheel', handleWheel);
+    window.addEventListener('wheel', handleScroll);
 
-    let dummy_heights = []
+    // let dummy_heights = []
 
-    for (let dummy_sec in sections.current){
-      dummy_heights.push(sections.current[dummy_sec].offsetHeight)
-    }
+    // for (let dummy_sec in sections.current){
+    //   dummy_heights.push(sections.current[dummy_sec].offsetHeight)
+    // }
 
-    setSectionHeights(incrementalSum(dummy_heights))
+    // setSectionHeights(incrementalSum(dummy_heights))
 
 
     // Cleanup on unmount
     return () => {
-      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('wheel', handleScroll);
     };
   }, []);
 
-  // Trigger scrollIntoView based on wheel scroll position
-  useEffect(() => {
-    let building_section_index = 3;
-
-
-    for (let i=0; i < sectionHeights.length ; i++){
-      if (scrollPosition < 150){
-        break;
-      }
-      else if (scrollPosition > sectionHeights[building_section_index] && scrollPosition < sectionHeights[building_section_index+1]){
-        break;
-      }
-      else if (i == 0 && scrollPosition < sectionHeights[i]){
-        if (deltaY > 0){
-          scrollToSection(i + 1)
-        }
-        else{
-          scrollToSection(i)
-        }
-        
-        break;
-      }
-      else if (scrollPosition > sectionHeights[i-1]+100 && scrollPosition < sectionHeights[i]){
-        if (i == sectionHeights.length -1){
-          break;
-        }
-        if (deltaY > 0){
-          scrollToSection(i + 1)
-        }
-        else{
-          scrollToSection(i)
-        }
-        break;
-      }
-    }
-
-  }, [scrollPosition]);
 
   return (
     <div>
       <Header />
-      <MainViewSite 
-      scrollToSection={scrollToSection}
-      storeInputRef={storeInputRef}
-      />
-      <ProjectDetails
+      <Element
+          key="section1"
+          name="section1"
+          className="section"
+      >
+          <MainViewSite 
+            scrollToSection={scrollToSection}
+            storeInputRef={storeInputRef}
+          />
+      </Element>
+      <Element
+          key="section2"
+          name="section2"
+          className="section"
+      >
+        <ProjectDetails
         scrollToSection={scrollToSection}
         storeInputRef={storeInputRef}
        />
-      <LocationDetails 
-      scrollToSection={scrollToSection}
-      storeInputRef={storeInputRef}
-      />
-      <LocationMap 
+      </Element>
+      <Element
+          key="section3"
+          name="section3"
+          className="section"
+      >
+        <LocationDetails 
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
+      <Element
+          key="section4"
+          name="section4"
+          className="section"
+      >
+          <LocationMap 
             scrollToSection={scrollToSection}
             storeInputRef={storeInputRef}
-      />
+          />
+      </Element>
+      
+
+
+
+
       <Buildings
                   scrollToSection={scrollToSection}
                   storeInputRef={storeInputRef}
