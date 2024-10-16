@@ -24,7 +24,7 @@ const Buildings = (props) => {
       id="arExperience"
       ref={(el) => props.storeInputRef(el, 4)}
     >
-      <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
+      <h2 className="flex items-center gap-4 text-2xl pt-32 pb-10 px-8">
         <TbScanEye className="text-primary_500" />
         AR Experience
       </h2>

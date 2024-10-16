@@ -4,10 +4,12 @@ import Footer from "./Footer";
 
 const ConnectWithUs = (props) => {
   return (
-    <section className="relative" id="ConnectWithUs"
-    ref={(el) => props.storeInputRef(el,6)}
+    <section
+      className="relative"
+      id="ConnectWithUs"
+      ref={(el) => props.storeInputRef(el, 6)}
     >
-      <h2 className="flex items-center gap-4  pt-10 text-2xl px-8">
+      <h2 className="flex items-center gap-4  pt-32 text-2xl px-8">
         <IoCallOutline className="text-primary_500" />
         Connect With Us
       </h2>

@@ -47,24 +47,22 @@ const SampleHouseTour = (props) => {
           <BuildingView />
         </Canvas>
       </div>
-      <div className="absolute h-3/4 top-24 pt-4 flex justify-between items-center flex-col w-full">
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() => scrollToSection("arExperience")}
-        >
-          <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
-            <MdKeyboardDoubleArrowUp className="text-2xl rounded  cursor-pointer animate-bounce" />
-          </div>
-          <p className="text-white text-sm font-semibold">Scroll Up</p>
+      <div
+        className="flex absolute top-24 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer"
+        onClick={() => scrollToSection("arExperience")}
+      >
+        <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
+          <MdKeyboardDoubleArrowUp className="text-2xl rounded  cursor-pointer animate-bounce" />
         </div>
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() => scrollToSection("ConnectWithUs")}
-        >
-          <p className="text-white text-sm font-semibold ">Scroll to Explore</p>
-          <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
-            <MdKeyboardDoubleArrowDown className="text-2xl rounded  cursor-pointer animate-bounce" />
-          </div>
+        <p className="text-white text-sm font-semibold">Scroll Up</p>
+      </div>
+      <div
+        className="flex flex-col items-center cursor-pointer absolute bottom-24 left-1/2 -translate-x-1/2"
+        onClick={() => scrollToSection("ConnectWithUs")}
+      >
+        <p className="text-white text-sm font-semibold ">Scroll to Explore</p>
+        <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
+          <MdKeyboardDoubleArrowDown className="text-2xl rounded  cursor-pointer animate-bounce" />
         </div>
       </div>
 
