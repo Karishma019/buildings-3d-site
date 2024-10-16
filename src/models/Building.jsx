@@ -92,7 +92,7 @@ const Building = (props) => {
       })
       .to(buildingRef.current.rotation, {
         y: 1,
-        duration: 1,
+        duration: 3,
         ease: "power1.out",
       });
   }, []);
