@@ -30,7 +30,7 @@ const Buildings = (props) => {
       </h2>
 
       <div className="bg-primary_50 h-full relative">
-        <BuildingContent store={store} />
+        {/* <BuildingContent store={store} /> */}
         <Canvas>
           <XR store={store}>
             <Suspense fallback={<CanvasLoader />}>
@@ -39,8 +39,8 @@ const Buildings = (props) => {
               <directionalLight args={["#a9ceff", 15]} position={[-4, 2, 35]} />
               <Building
                 scale={0.04}
-                position={[0, 0, 0]}
-                rotation={[0, 0, 0]}
+                position={[0, 1, -2]}
+                rotation={[0, -1, 0]}
               />
             </Suspense>
           </XR>
