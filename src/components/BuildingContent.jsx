@@ -37,7 +37,7 @@ const BuildingContent = () => {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-section",
-        markers: true,
+        // markers: true,
         pin: true,
         // end: `bottom bottom`, // Adjust based on the number of sections
         scrub: true, // Smooth scrubbing

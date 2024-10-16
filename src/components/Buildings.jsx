@@ -20,7 +20,7 @@ const store = createXRStore();
 const Buildings = (props) => {
   return (
     <div
-      className="building-container h-screen relative w-full overflow-hidden"
+      className="building-container h-[1100px] w-full overflow-hidden"
       id="arExperience"
       ref={(el) => props.storeInputRef(el, 4)}
     >
@@ -41,8 +41,8 @@ const Buildings = (props) => {
                 position={[-4, 50, 95]}
               />
               <Building
-                scale={0.04}
-                position={[0, 1, -2]}
+                scale={0.03}
+                position={[0, 2, -2]}
                 rotation={[0, -1, 0]}
               />
             </Suspense>

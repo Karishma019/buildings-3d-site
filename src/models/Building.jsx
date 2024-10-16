@@ -35,9 +35,49 @@ const Building = (props) => {
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-container",
+        start: "30% top",
+        end: "bottom 100%",
+        markers: true,
+        scrub: false,
+        pin: true,
+      },
+    });
+
+    tl.current.to(buildingRef.current.rotation, {
+      y: 3,
+      duration: 3,
+      ease: "power1.out",
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    new ScrollTrigger({});
+    tl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".building-container",
+        start: "20% top",
+        end: "bottom 100%",
+        markers: true,
+        scrub: false,
+        pin: true,
+      },
+    });
+
+    tl.current.to(buildingRef.current.rotation, {
+      y: 2,
+      duration: 3,
+      ease: "power1.out",
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    new ScrollTrigger({});
+    tl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".building-container",
         start: "10% top",
-        end: "bottom 50%",
-        // markers: true,
+        end: "bottom 100%",
+        markers: true,
         scrub: false,
         pin: true,
       },
@@ -46,43 +86,15 @@ const Building = (props) => {
     tl.current
       .to(buildingRef.current.position, {
         x: 0,
-        duration: 3,
+        y: 1,
+        duration: 1,
         ease: "power1.out",
       })
       .to(buildingRef.current.rotation, {
         y: 1,
-        duration: 3,
-        ease: "power1.out",
-      })
-      .to(buildingRef.current.rotation, {
-        y: 2,
-        duration: 3,
-        ease: "power1.out",
-      })
-      .to(buildingRef.current.rotation, {
-        y: 3,
-        duration: 3,
+        duration: 1,
         ease: "power1.out",
       });
-
-    // .to(buildingRef.current.rotation, {
-    //   x: 0,
-    //   y: angleToRadiants(90),
-    //   duration: 3,
-    //   ease: "power1.out",
-    // })
-    // .to(buildingRef.current.rotation, {
-    //   x: 0,
-    //   y: angleToRadiants(180),
-    //   duration: 3,
-    //   ease: "power1.out",
-    // })
-    // .to(buildingRef.current.position, {
-    //   x: 0,
-    //   y: 0,
-    //   duration: 1,
-    //   ease: "power1.out",
-    // });
   }, []);
 
   useLayoutEffect(() => {
@@ -93,28 +105,22 @@ const Building = (props) => {
       scrollTrigger: {
         trigger: ".building-container",
         start: "top top",
-        end: "bottom 50%",
-        // markers: true,
+        end: "bottom 100%",
+        markers: true,
         scrub: false,
         pin: true,
       },
     });
 
     tl.current
-      .to(buildingRef.current.position, {
-        x: -0.3,
-        duration: 3,
-        ease: "power1.out",
-      })
-
       .to(buildingRef.current.rotation, {
         y: 0,
-        duration: 3,
+        duration: 1,
         ease: "power1.out",
       })
       .to(buildingRef.current.position, {
-        z: 1,
-        duration: 3,
+        z: 0.3,
+        duration: 1,
         ease: "power1.out",
       })
       .to(buildingRef.current.rotation, {
@@ -122,19 +128,6 @@ const Building = (props) => {
         duration: 3,
         ease: "power1.out",
       });
-
-    // .to(buildingRef.current.rotation, {
-    //   x: 0,
-    //   y: angleToRadiants(180),
-    //   duration: 3,
-    //   ease: "power1.out",
-    // })
-    // .to(buildingRef.current.position, {
-    //   x: 0,
-    //   y: 0,
-    //   duration: 1,
-    //   ease: "power1.out",
-    // });
   }, []);
 
   return (
