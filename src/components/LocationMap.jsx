@@ -5,7 +5,8 @@ const LocationMap = (props) => {
     <section
       style={{ background: `url(${bgImage})` }}
       className="h-screen bg-center bg-no-repeat bg-cover relative"
-      ref={(el) => props.storeInputRef(el,3)}
+      id="locationMap"
+      ref={(el) => props.storeInputRef(el, 3)}
     >
       <div className="bg-neutral_0 gap-3 lg:gap-0 sm:w-80 w-72 flex lg:flex-row flex-col items-start p-6 md:w-1/2 lg:w-1/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-40 left-1/2">
         <div className="lg:w-1/2 w-full lg:text-start text-center">

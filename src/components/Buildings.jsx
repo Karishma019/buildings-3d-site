@@ -22,7 +22,7 @@ const Buildings = (props) => {
     <div
       className="building-container h-screen relative w-full overflow-hidden"
       id="arExperience"
-      ref={(el) => props.storeInputRef(el,4)}
+      ref={(el) => props.storeInputRef(el, 4)}
     >
       <h2 className="flex items-center gap-4 text-2xl py-10 px-8">
         <TbScanEye className="text-primary_500" />

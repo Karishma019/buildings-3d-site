@@ -7,17 +7,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { TbScanEye } from "react-icons/tb";
 import { IoCallOutline } from "react-icons/io5";
 import { BiHomeAlt } from "react-icons/bi";
+import { scrollToSection } from "../utils/scrollToSection";
 
 const Header = () => {
   const [isOpen, setisOpen] = useState(false);
-
-  const scrollToSection = (id) => {
-    console.log(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <header className="bg-black bg-opacity-35 flex z-10 justify-between items-center sticky top-8 p-4 rounded mx-8 ">
