@@ -2,7 +2,7 @@ import bgHouse from "../img/housetour.jpeg";
 import { TbScanEye } from "react-icons/tb";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
-import { useRef } from "react";
+import { Suspense, useRef, useState } from "react";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
@@ -11,8 +11,11 @@ import {
   MdKeyboardDoubleArrowDown,
   MdKeyboardDoubleArrowUp,
 } from "react-icons/md";
+import Loader from "./Loader";
 
 const SampleHouseTour = (props) => {
+  const [houseTour, setHouseTour] = useState("leavingRoom.jpg");
+
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
@@ -44,7 +47,9 @@ const SampleHouseTour = (props) => {
     >
       <div className="w-full h-full absolute">
         <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
-          <BuildingView />
+          <Suspense fallback={<Loader />}>
+            <BuildingView model={houseTour} />
+          </Suspense>
         </Canvas>
       </div>
       <div
@@ -82,19 +87,34 @@ const SampleHouseTour = (props) => {
           ref={scrollRef}
           className="flex lg:gap-5 w-full overflow-x-auto scroll-hidden"
         >
-          <button className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 py-2 text-center lg:w-1/5 w-full rounded">
+          <button
+            className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 py-2 text-center lg:w-1/5 w-full rounded"
+            onClick={() => setHouseTour("leavingRoom.jpg")}
+          >
             Living Area
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => setHouseTour("Kitchen.jpg")}
+          >
             Kitchen{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => setHouseTour("Bedroom 1.jpg")}
+          >
             Bedroom 1{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => setHouseTour("Bedroom 2.jpg")}
+          >
             Bedroom 2{" "}
           </button>
-          <button className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded">
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => setHouseTour("Master.jpg")}
+          >
             Master Bedroom{" "}
           </button>
         </div>
