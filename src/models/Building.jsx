@@ -22,13 +22,13 @@ const Building = (props) => {
   const tl = useRef();
   const orbitControlRef = useRef(null);
 
-  useFrame((state) => {
-    const { x, y } = state.pointer;
-    if (orbitControlRef.current) {
-      orbitControlRef.current.setAzimuthalAngle(-x * angleToRadiants(45));
-      orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
-    }
-  });
+  // useFrame((state) => {
+  //   const { x, y } = state.pointer;
+  //   if (orbitControlRef.current) {
+  //     orbitControlRef.current.setAzimuthalAngle(-x * angleToRadiants(45));
+  //     orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
+  //   }
+  // });
 
   useLayoutEffect(() => {
     new ScrollTrigger({});
@@ -113,21 +113,18 @@ const Building = (props) => {
     });
 
     tl.current
-      .to(buildingRef.current.rotation, {
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      })
       .to(buildingRef.current.position, {
+        x:0,
+        y:2,
         z: 0.3,
         duration: 1,
         ease: "power1.out",
       })
       .to(buildingRef.current.rotation, {
-        y: 0.5,
-        duration: 3,
+        y: 0.10,
+        duration: 1,
         ease: "power1.out",
-      });
+      }, "<");
   }, []);
 
   return (
