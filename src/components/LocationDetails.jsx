@@ -47,7 +47,7 @@ const LocationDetails = (props) => {
       ref={(el) => props.storeInputRef(el, 2)}
     >
       <h2
-        className="flex items-center gap-4 text-2xl pt-16 px-8"
+        className="flex items-center gap-4 text-2xl pt-32 px-8"
         onClick={() => props.scrollToSection(2)}
       >
         <IoLocationOutline className="text-primary_500" />
