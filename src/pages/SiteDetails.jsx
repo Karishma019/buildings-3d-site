@@ -14,6 +14,7 @@ import SampleHouseTour from "../components/SampleHouseTour";
 const SiteDetails = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [deltaY, setDeltaY] = useState(0);
   const [sectionHeights, setSectionHeights] = useState([])
 
 
@@ -35,7 +36,6 @@ const SiteDetails = () => {
   }
 
   const handleScroll = (e) => {
-    const deltaY = e.deltaY;
     let newActive = activeSection;
     console.log("yaysay", activeSection, window.scrollY)
     if (window.scrollY > 250 && activeSection == 0) {
@@ -45,8 +45,10 @@ const SiteDetails = () => {
     }
   };
 
-  const handleWheel = () => {
+  const handleWheel = (el) => {
     setScrollPosition(window.scrollY);
+    const deltaY = el.deltaY;
+    setDeltaY(deltaY);
   };
 
   function incrementalSum(arr) {
@@ -72,7 +74,6 @@ const SiteDetails = () => {
 
     setSectionHeights(incrementalSum(dummy_heights))
 
-    console.log("hima", dummy_heights)
 
     // Cleanup on unmount
     return () => {
@@ -82,21 +83,36 @@ const SiteDetails = () => {
 
   // Trigger scrollIntoView based on wheel scroll position
   useEffect(() => {
+    let building_section_index = 3;
 
 
     for (let i=0; i < sectionHeights.length ; i++){
       if (scrollPosition < 150){
         break;
       }
+      else if (scrollPosition > sectionHeights[building_section_index] && scrollPosition < sectionHeights[building_section_index+1]){
+        break;
+      }
       else if (i == 0 && scrollPosition < sectionHeights[i]){
-        scrollToSection(i + 1)
+        if (deltaY > 0){
+          scrollToSection(i + 1)
+        }
+        else{
+          scrollToSection(i)
+        }
+        
         break;
       }
       else if (scrollPosition > sectionHeights[i-1]+100 && scrollPosition < sectionHeights[i]){
         if (i == sectionHeights.length -1){
           break;
         }
-        scrollToSection(i + 1)
+        if (deltaY > 0){
+          scrollToSection(i + 1)
+        }
+        else{
+          scrollToSection(i)
+        }
         break;
       }
     }

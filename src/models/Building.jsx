@@ -30,7 +30,6 @@ const Building = (props) => {
     }
   });
 
-  console.log(nodes);
 
   useLayoutEffect(() => {
     new ScrollTrigger({});
