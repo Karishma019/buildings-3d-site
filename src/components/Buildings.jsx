@@ -30,13 +30,16 @@ const Buildings = (props) => {
       </h2>
 
       <div className="bg-primary_50 h-full relative">
-        {/* <BuildingContent store={store} /> */}
+        <BuildingContent store={store} />
         <Canvas>
           <XR store={store}>
             <Suspense fallback={<CanvasLoader />}>
               <PerspectiveCamera makeDefault position={[0, 1, 9]} />
               <ambientLight args={["#ffffff", 1]} />
-              <directionalLight args={["#a9ceff", 15]} position={[-4, 2, 35]} />
+              <directionalLight
+                args={["#ffffff", 15]}
+                position={[-4, 50, 95]}
+              />
               <Building
                 scale={0.04}
                 position={[0, 1, -2]}

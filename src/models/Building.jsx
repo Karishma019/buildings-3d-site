@@ -44,18 +44,18 @@ const Building = (props) => {
     });
 
     tl.current
+      .to(buildingRef.current.position, {
+        x: 0,
+        duration: 3,
+        ease: "power1.out",
+      })
       .to(buildingRef.current.rotation, {
         y: 1,
         duration: 3,
         ease: "power1.out",
       })
       .to(buildingRef.current.rotation, {
-        y: 1.5,
-        duration: 3,
-        ease: "power1.out",
-      })
-      .to(buildingRef.current.rotation, {
-        y: 2.5,
+        y: 2,
         duration: 3,
         ease: "power1.out",
       })
@@ -87,6 +87,8 @@ const Building = (props) => {
 
   useLayoutEffect(() => {
     new ScrollTrigger({});
+
+    console.log(buildingRef.current);
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-container",
@@ -99,6 +101,11 @@ const Building = (props) => {
     });
 
     tl.current
+      .to(buildingRef.current.position, {
+        x: -0.3,
+        duration: 3,
+        ease: "power1.out",
+      })
 
       .to(buildingRef.current.rotation, {
         y: 0,
