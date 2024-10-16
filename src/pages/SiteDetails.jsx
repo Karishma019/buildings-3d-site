@@ -19,6 +19,7 @@ const SiteDetails = () => {
   // const [currentSection, setCurrentSection] = useState(0); // Track current section
   const currentSectionRef = useRef(0);
   const isThrottling = useRef(false); // Prevent rapid firing of scroll events
+  const touchStartY = useRef(0); // Track where the touch started
 
   // Scroll to a section by index
   const scrollToSection = (index) => {
@@ -29,28 +30,51 @@ const SiteDetails = () => {
     });
   };
 
+    // Move to the next or previous section based on direction
+    const moveToSection = (direction) => {
+      let newSection = currentSectionRef.current;
+  
+      if (direction === "down" && newSection < sections.length - 1) {
+        newSection += 1; // Move to the next section
+      } else if (direction === "up" && newSection > 0) {
+        newSection -= 1; // Move to the previous section
+      }
+  
+      if (newSection !== currentSectionRef.current) {
+        currentSectionRef.current = newSection; // Update the ref value
+        scrollToSection(newSection); // Smooth scroll to the new section
+      }
+  
+      // Throttle the events to avoid jitter
+      isThrottling.current = true;
+      setTimeout(() => (isThrottling.current = false), 1000);
+    };
+
   // Handle scroll events
   const handleScroll = (e) => {
     if (isThrottling.current) return; // Throttle scroll to avoid jitter
     console.log('asaas', currentSectionRef.current)
     const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
-    let newSection = currentSectionRef.current;
+    moveToSection(scrollDirection)
 
-    if (scrollDirection === "down" && newSection < sections.length - 1) {
-      newSection += 1; // Go to next section
-    } else if (scrollDirection === "up" && newSection > 0) {
-      newSection -= 1; // Go to previous section
-    }
-    console.log('bsbsbs', newSection)
-    if (newSection !== currentSectionRef.current) {
-      console.log('cscscsc', newSection)
-      currentSectionRef.current = newSection;
-      scrollToSection(newSection);
-    }
+  };
 
-    // Throttle the scroll event to avoid rapid triggering
-    isThrottling.current = true;
-    setTimeout(() => (isThrottling.current = false), 1000);
+  // Handle Touch Start (for Mobile)
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY; // Record the Y position of the touch start
+  };
+
+  // Handle Touch Move (for Mobile)
+  const handleTouchMove = (e) => {
+    if (isThrottling.current) return; // Throttle to prevent rapid triggers
+
+    const touchEndY = e.touches[0].clientY; // Y position where the touch ended
+    const direction = touchEndY < touchStartY.current ? "down" : "up"; // Determine swipe direction
+
+    // Only trigger section scroll if the swipe is significant
+    if (Math.abs(touchEndY - touchStartY.current) > 50) {
+      moveToSection(direction);
+    }
   };
 
 
@@ -73,20 +97,16 @@ const SiteDetails = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('wheel', handleScroll);
+    // Add event listeners for both wheel and touch events
+    window.addEventListener("wheel", handleScroll); // Desktop
+    window.addEventListener("touchstart", handleTouchStart); // Mobile (touch start)
+    window.addEventListener("touchmove", handleTouchMove); // Mobile (touch move)
 
-    // let dummy_heights = []
-
-    // for (let dummy_sec in sections.current){
-    //   dummy_heights.push(sections.current[dummy_sec].offsetHeight)
-    // }
-
-    // setSectionHeights(incrementalSum(dummy_heights))
-
-
-    // Cleanup on unmount
+    // Cleanup event listeners on unmount
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
