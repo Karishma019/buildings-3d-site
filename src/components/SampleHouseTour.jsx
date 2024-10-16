@@ -12,6 +12,7 @@ import {
   MdKeyboardDoubleArrowUp,
 } from "react-icons/md";
 import Loader from "./Loader";
+import CanvasLoader from "./CanvasLoader";
 
 const SampleHouseTour = (props) => {
   const [houseTour, setHouseTour] = useState("leavingRoom.jpg");
@@ -47,7 +48,7 @@ const SampleHouseTour = (props) => {
     >
       <div className="w-full h-full absolute">
         <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<CanvasLoader />}>
             <BuildingView model={houseTour} />
           </Suspense>
         </Canvas>
