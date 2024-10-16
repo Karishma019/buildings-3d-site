@@ -82,13 +82,7 @@ const SiteDetails = () => {
 
   // Trigger scrollIntoView based on wheel scroll position
   useEffect(() => {
-    console.log("ssssd", scrollPosition)
-    if (scrollPosition > 100 && scrollPosition <= 900) {
-      scrollToSection(1)
-    }
-    else if (scrollPosition > 900) {
-      scrollToSection(2)
-    }
+
 
     for (let i=0; i < sectionHeights.length ; i++){
       if (scrollPosition < 150){
