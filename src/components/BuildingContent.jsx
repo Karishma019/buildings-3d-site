@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,6 +7,9 @@ gsap.registerPlugin(ScrollTrigger);
 const BuildingContent = () => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const content1 = useRef(null);
+  const content2 = useRef(null);
 
   const scrollToIndex = (index) => {
     if (scrollRef.current) {
@@ -31,50 +34,94 @@ const BuildingContent = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const sections = gsap.utils.toArray(".building-section .content");
+    console.log(content1, content2);
+    // const timeline = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".building-section",
+    //     markers: true,
+    //     start: "top top",
+    //     end: "40% top",
+    //     pin: true,
+    //     // end: `bottom bottom`, // Adjust based on the number of sections
+    //     scrub: true, // Smooth scrubbing
+    //   },
+    // });
 
-    const timeline = gsap.timeline({
+    // sections.forEach((section, index) => {
+    //   timeline
+    //     .fromTo(
+    //       section,
+    //       { opacity: 0 },
+    //       {
+    //         opacity: 1,
+    //         duration: 0.5,
+    //         ease: "power1.inOut",
+    //       },
+    //       index
+    //     )
+    //     .to(
+    //       section,
+    //       {
+    //         opacity: 0,
+    //         duration: 0.5,
+    //         ease: "power1.inOut",
+    //       },
+    //       index + 1
+    //     );
+    // });
+
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-section",
-        // markers: true,
+        start: "top top",
+        end: "10% top",
+        markers: true,
+        scrub: false,
         pin: true,
-        // end: `bottom bottom`, // Adjust based on the number of sections
-        scrub: true, // Smooth scrubbing
+        toggleActions: "play none reverse none",
+      },
+    });
+    tl.to(
+      content1.current,
+      {
+        opacity: 0,
+        duration: 2,
+        ease: "power1.out",
+      },
+      "<"
+    );
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".building-section",
+        start: "15% top",
+        end: "25% 100%",
+        markers: true,
+        scrub: false,
+        pin: true,
+        toggleActions: "play none reverse none",
       },
     });
 
-    sections.forEach((section, index) => {
-      timeline
-        .fromTo(
-          section,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 0.5,
-            ease: "power1.inOut",
-          },
-          index
-        )
-        .to(
-          section,
-          {
-            opacity: 0,
-            duration: 0.5,
-            ease: "power1.inOut",
-          },
-          index + 1
-        );
-    });
-
-    return () => {
-      timeline.kill();
-    };
+    tl2.to(
+      content2.current,
+      {
+        opacity: 1,
+        duration: 2,
+        ease: "power1.out",
+      },
+      "<"
+    );
   }, []);
 
   return (
     <div className="building-section z-10 absolute h-full w-full">
-      <div className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl shadow-2xl content -translate-x-1/2 absolute top-32 left-1/2">
+      <div
+        ref={content1}
+        className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-16 left-1/2"
+      >
         <h1 className="text-primary_500 font-semibold text-normal">
           Explore the Site in your space with Augmented Reality{" "}
         </h1>
@@ -92,7 +139,10 @@ const BuildingContent = () => {
         </button>
       </div>
 
-      <div className="bg-neutral_0 p-6 flex flex-col overflow-hidden gap-3 lg:w-1/3 w-2/3 rounded-3xl shadow-2xl content -translate-x-1/2 absolute top-32 left-1/2">
+      <div
+        ref={content2}
+        className="bg-neutral_0  p-6 flex flex-col overflow-hidden gap-3 opacity-0 lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-48 left-1/2"
+      >
         <h1 className="text-primary_500 font-semibold text-normal">
           Serenity Clubhouse{" "}
         </h1>

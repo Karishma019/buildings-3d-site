@@ -20,7 +20,7 @@ const store = createXRStore();
 const Buildings = (props) => {
   return (
     <div
-      className="building-container-whole h-[900px] w-full overflow-hidden"
+      className="building-container-whole relative h-[1200px] w-full overflow-hidden"
       id="arExperience"
       ref={(el) => props.storeInputRef(el, 4)}
     >
@@ -28,9 +28,8 @@ const Buildings = (props) => {
         <TbScanEye className="text-primary_500" />
         AR Experience
       </h2>
-
+      <BuildingContent store={store} />
       <div className="building-container bg-primary_50 h-full relative">
-        {/* <BuildingContent store={store} /> */}
         <Canvas>
           {/* <XR store={store}> */}
           <Suspense fallback={<CanvasLoader />}>

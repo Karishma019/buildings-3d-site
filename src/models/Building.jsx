@@ -38,169 +38,170 @@ const Building = (props) => {
   //       trigger: ".building-container",
   //       start: "30% top",
   //       end: "bottom 100%",
-  //       markers: true,
-  //       scrub: false,
-  //       pin: true,
-  //     },
-  //   });
+  markers: true,
+    //       scrub: false,
+    //       pin: true,
+    //     },
+    //   });
 
-  //   tl.current.to(buildingRef.current.rotation, {
-  //     y: 3,
-  //     duration: 3,
-  //     ease: "power1.out",
-  //   });
-  // }, []);
+    //   tl.current.to(buildingRef.current.rotation, {
+    //     y: 3,
+    //     duration: 3,
+    //     ease: "power1.out",
+    //   });
+    // }, []);
 
-  // useLayoutEffect(() => {
-  //   // new ScrollTrigger({});
-  //   tl.current = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: ".building-container",
-  //       start: "20% top",
-  //       end: "bottom 100%",
-  //       markers: true,
-  //       scrub: false,
-  //       pin: true,
-  //     },
-  //   });
+    // useLayoutEffect(() => {
+    //   // new ScrollTrigger({});
+    //   tl.current = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: ".building-container",
+    //       start: "20% top",
+    //       end: "bottom 100%",
+    //       markers: true,
+    //       scrub: false,
+    //       pin: true,
+    //     },
+    //   });
 
-  //   tl.current.to(buildingRef.current.rotation, {
-  //     y: 2,
-  //     duration: 3,
-  //     ease: "power1.out",
-  //   });
-  // }, []);
+    //   tl.current.to(buildingRef.current.rotation, {
+    //     y: 2,
+    //     duration: 3,
+    //     ease: "power1.out",
+    //   });
+    // }, []);
 
-  useLayoutEffect(() => {
-    // new ScrollTrigger({});
+    useLayoutEffect(() => {
+      // new ScrollTrigger({});
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".building-container-whole",
-        start: "5% top",
-        end: "10% top",
-        markers: true,
-        scrub: false,
-        pin: true,
-        toggleActions: "play none reverse none",
-      },
-    });
-    tl.to(buildingRef.current.position, {
-      x: 0,
-      y: 1,
-      z: 1,
-      duration: 1,
-      ease: "power1.out",
-    }).to(
-      buildingRef.current.rotation,
-      {
-        y: 0.1,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".building-container-whole",
+          start: "5% top",
+          end: "10% top",
+          // markers: true,
+          scrub: false,
+          pin: true,
+          toggleActions: "play none reverse none",
+        },
+      });
+      tl.to(buildingRef.current.position, {
+        x: 0,
+        y: 1.5,
+        z: 1,
         duration: 1,
         ease: "power1.out",
-      },
-      "<"
-    );
-
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".building-container-whole",
-        start: "15% top",
-        end: "25% 100%",
-        markers: true,
-        scrub: false,
-        pin: true,
-        toggleActions: "play none reverse none",
-      },
-    });
-
-    tl2
-      .to(buildingRef.current.position, {
-        // x: 0,
-        y: 1,
-        duration: 1,
-        ease: "power1.out",
-      })
-      .to(
-        buildingRef.current.position,
-        {
-          // x: 0,
-          // z: -2,
-          duration: 1,
-          ease: "power1.out",
-        },
-        "<"
-      )
-      .to(
+      }).to(
         buildingRef.current.rotation,
         {
-          y: 1.5,
-          duration: 1,
-          ease: "power1.out",
-        },
-        "<"
-      )
-      .to(
-        buildingRef.current.rotation,
-        {
-          x: 0.2,
+          y: 0.1,
           duration: 1,
           ease: "power1.out",
         },
         "<"
       );
 
-    const tl3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".building-container-whole",
-        start: "35% top",
-        end: "45% 100%",
-        markers: true,
-        scrub: false,
-        pin: true,
-        toggleActions: "play none reverse none",
-      },
-    });
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".building-container-whole",
+          start: "15% top",
+          end: "25% 100%",
+          // markers: true,
+          scrub: false,
+          pin: true,
+          toggleActions: "play none reverse none",
+        },
+      });
 
-    tl3
-      .to(
-        buildingRef.current.rotation,
-        {
+      tl2
+        .to(buildingRef.current.position, {
           // x: 0,
-          y: 2,
-          // z: -0.75,
+          y: 1,
           duration: 1,
           ease: "power1.out",
+        })
+        .to(
+          buildingRef.current.rotation,
+          {
+            y: 1.5,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        )
+        .to(
+          buildingRef.current.rotation,
+          {
+            x: 0.2,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        );
+
+      const tl3 = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".building-container-whole",
+          start: "30% top",
+          end: "45% 100%",
+          // markers: true,
+          scrub: false,
+          pin: true,
+          toggleActions: "play none reverse none",
         },
-        "<"
-      )
-      .to(
-        buildingRef.current.rotation,
-        {
-          // x: 0,
-          y: 3,
-          // z: -0.75,
-          duration: 1,
-          ease: "power1.out",
-        },
-        "<"
-      );
-    // .to(buildingRef.current.position, {
-    //   // x: 0,
-    //   z: -2,
-    //   duration: 1,
-    //   ease: "power1.out",
-    // }, "<")
-    // .to(buildingRef.current.rotation, {
-    //   y: 1.5,
-    //   duration: 1,
-    //   ease: "power1.out",
-    // }, "<")
-    // .to(buildingRef.current.rotation, {
-    //   x: 0.75,
-    //   duration: 1,
-    //   ease: "power1.out",
-    // }, "<");
-  }, []);
+      });
+
+      tl3
+        .to(
+          buildingRef.current.position,
+          {
+            // x: 0,
+            y: 0,
+            // z: -0.75,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        )
+        .to(
+          buildingRef.current.rotation,
+          {
+            // x: 0,
+            y: 2,
+            // z: -0.75,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        )
+        .to(
+          buildingRef.current.rotation,
+          {
+            // x: 0,
+            y: 3,
+            // z: -0.75,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        );
+      // .to(buildingRef.current.position, {
+      //   // x: 0,
+      //   z: -2,
+      //   duration: 1,
+      //   ease: "power1.out",
+      // }, "<")
+      // .to(buildingRef.current.rotation, {
+      //   y: 1.5,
+      //   duration: 1,
+      //   ease: "power1.out",
+      // }, "<")
+      // .to(buildingRef.current.rotation, {
+      //   x: 0.75,
+      //   duration: 1,
+      //   ease: "power1.out",
+      // }, "<");
+    }, []);
 
   return (
     <>
