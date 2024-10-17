@@ -25,6 +25,11 @@ const SiteDetails = () => {
   const sections_obj = useRef({});
 
   const sectionHeights = useRef([]);
+  
+  const [buildingStage,setBuildingStage] = useState(0);
+
+  const tempBuild = useRef(0);
+
 
   // const [currentSection, setCurrentSection] = useState(0); // Track current section
   const currentSectionRef = useRef(0);
@@ -50,19 +55,32 @@ const SiteDetails = () => {
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
-    console.log("1", scrollPosition.current, sectionHeights.current);
+    console.log("1", scrollPosition.current, sectionHeights.current, isThrottling.current);
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
 
     if (
       scrollPosition.current > sectionHeights.current[building_section_index] &&
       scrollPosition.current <
-        sectionHeights.current[building_section_index + 1]
+        sectionHeights.current[building_section_index + 1] && tempBuild.current < 4 && tempBuild.current > -1
     ) {
-      // Throttle the events to avoid jitter
       isThrottling.current = true;
-      setTimeout(() => (isThrottling.current = false), 1000);
+      setTimeout(() => (isThrottling.current = false), 1500);
+      // Throttle the events to avoid jitter
+      if (direction === "down"){
+        setBuildingStage((prevValue) => (prevValue < 4 ? prevValue + 1 : prevValue));
+        tempBuild.current < 4 ? tempBuild.current += 1 : tempBuild.current;
+      }
+      else{
+        setBuildingStage((prevValue) => (prevValue > 0 ? prevValue - 1 : prevValue))
+        tempBuild.current > 0 ? tempBuild.current -= 1 : tempBuild.current;
+
+      }
+      
+
       return;
+    }else{
+      setBuildingStage((prevValue) => 0)
     }
 
     if (direction === "down" && newSection < sections.length - 1) {
@@ -74,24 +92,28 @@ const SiteDetails = () => {
     console.log("2", newSection, currentSectionRef.current);
 
     if (newSection !== currentSectionRef.current) {
-      // currentSectionRef.current = newSection; // Update the ref value
+      currentSectionRef.current = newSection; // Update the ref value
       scrollToSection(newSection); // Smooth scroll to the new section
     }
 
     // Throttle the events to avoid jitter
     isThrottling.current = true;
-    setTimeout(() => (isThrottling.current = false), 1000);
+    setTimeout(() => (isThrottling.current = false), 2000);
   };
 
   // Handle scroll events
   const handleScroll = (e) => {
+    // console.log("yash", e.deltaY)
+    e.preventDefault();
     scrollPosition.current = window.scrollY;
-    for (let i = 0; i < sectionHeights.current.length; i++) {
-      if (window.scrollY < sectionHeights.current[i]) {
-        currentSectionRef.current = i;
-        break;
-      }
-    }
+
+    // Uncomment this portion to decide current section based on scroll position
+    // for (let i = 0; i < sectionHeights.current.length; i++) {
+    //   if (window.scrollY < sectionHeights.current[i]) {
+    //     currentSectionRef.current = i;
+    //     break;
+    //   }
+    // }
     if (isThrottling.current) return; // Throttle scroll to avoid jitter)
     const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
     moveToSection(scrollDirection);
@@ -105,13 +127,17 @@ const SiteDetails = () => {
 
   // Handle Touch Move (for Mobile)
   const handleTouchMove = (e) => {
+    e.preventDefault();
     scrollPosition.current = window.scrollY;
-    for (let i=0; i < sectionHeights.current.length ; i++){
-      if (window.scrollY < sectionHeights.current[i]){
-        currentSectionRef.current = i
-        break
-      }
-    }
+
+    // Uncomment this portion to decide current section based on scroll position
+    // for (let i=0; i < sectionHeights.current.length ; i++){
+    //   if (window.scrollY < sectionHeights.current[i]){
+    //     currentSectionRef.current = i
+    //     break
+    //   }
+    // }
+
     if (isThrottling.current) return; // Throttle to prevent rapid triggers
 
     const touchEndY = e.touches[0].clientY; // Y position where the touch ended
@@ -141,9 +167,9 @@ const SiteDetails = () => {
 
   useEffect(() => {
     // Add event listeners for both wheel and touch events
-    window.addEventListener("wheel", handleScroll); // Desktop
-    window.addEventListener("touchstart", handleTouchStart); // Mobile (touch start)
-    window.addEventListener("touchmove", handleTouchMove); // Mobile (touch move)
+    window.addEventListener("wheel", handleScroll, { passive: false }); // Desktop
+    window.addEventListener("touchstart", handleTouchStart, { passive: false }); // Mobile (touch start)
+    window.addEventListener("touchmove", handleTouchMove, { passive: false }); // Mobile (touch move)
     console.log("yasshashash");
 
     let dummy_heights = [];
@@ -198,6 +224,7 @@ const SiteDetails = () => {
         <Buildings
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
+          buildingStage={buildingStage}
         />
       </Element>
 

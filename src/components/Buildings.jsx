@@ -46,6 +46,7 @@ const Buildings = (props) => {
               scale={0.02}
               position={[5, -1, -15]}
               rotation={[0, -1, 0]}
+              buildingStage={props.buildingStage}
             />
           </Suspense>
           {/* </XR> */}
