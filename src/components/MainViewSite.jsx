@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 
 const MainViewSite = (props) => {
   const [showMessage, setShowMessage] = useState(false);
-  const currentUrl = window.location.href;
 
   const copyToClipboard = useCallback(() => {
+    const currentUrl = window.location.href;
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(currentUrl)
