@@ -14,6 +14,7 @@ import CanvasLoader from "./CanvasLoader";
 import BuildingContent from "./BuildingContent";
 import { TbScanEye } from "react-icons/tb";
 import { createXRStore, XR } from "@react-three/xr";
+import NewBuilding from "../models/NewBuilding";
 
 const store = createXRStore();
 
@@ -35,10 +36,15 @@ const Buildings = (props) => {
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 1, 9]} />
             <ambientLight args={["#ffffff", 1]} />
-            <directionalLight args={["#ffffff", 15]} position={[-4, 50, 95]} />
-            <Building
+            <directionalLight args={["#ffffff0", 5]} position={[-1, 1, 1]} />
+            {/* <Building
               scale={0.02}
               position={[5, -2, -15]}
+              rotation={[0, -1, 0]}
+            /> */}
+            <NewBuilding
+              scale={0.02}
+              position={[5, -1, -15]}
               rotation={[0, -1, 0]}
             />
           </Suspense>

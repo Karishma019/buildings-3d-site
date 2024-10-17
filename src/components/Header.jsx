@@ -29,7 +29,7 @@ const Header = () => {
       />
       <nav
         className={`absolute right-0 ${
-          isOpen ? "top-0" : "-top-[350px]"
+          isOpen ? "top-0" : "-top-[500px]"
         }  bg-black bg-opacity-40 p-4 rounded-lg lg:hidden transition-all duration-300`}
       >
         <div

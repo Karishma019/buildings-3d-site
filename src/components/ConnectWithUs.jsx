@@ -1,6 +1,7 @@
 import React from "react";
 import { IoCallOutline } from "react-icons/io5";
 import Footer from "./Footer";
+import img from "../img/image.png";
 
 const ConnectWithUs = (props) => {
   return (
@@ -15,8 +16,8 @@ const ConnectWithUs = (props) => {
       </h2>
 
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
-      <div className=" flex items-center px-8">
-        <div className="bg-white flex rounded-xl flex-col items-center p-8 w-2/3 lg:w-1/2  gap-4 shadow-lg">
+      <div className=" flex items-center px-8 lg:justify-between justify-center">
+        <div className="bg-white flex rounded-xl flex-col items-center p-8 w-2/3 lg:w-1/4  gap-4 shadow-2xl lg:mt-0 mt-10">
           <input
             type="text"
             placeholder="Enter your name"
@@ -35,6 +36,13 @@ const ConnectWithUs = (props) => {
           <button className="bg-primary text-white w-32 py-1 rounded-lg">
             Submit
           </button>
+        </div>
+        <div className="lg:w-1/2 hidden lg:block pl-32">
+          <img
+            src={img}
+            alt="building"
+            className="w-[490px] h-[331px] object-cover"
+          />
         </div>
       </div>
     </section>

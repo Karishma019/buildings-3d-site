@@ -35,48 +35,12 @@ const BuildingContent = () => {
   };
 
   useLayoutEffect(() => {
-    const sections = gsap.utils.toArray(".building-section .content");
     console.log(content1, content2);
-    // const timeline = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".building-section",
-    //     markers: true,
-    //     start: "top top",
-    //     end: "40% top",
-    //     pin: true,
-    //     // end: `bottom bottom`, // Adjust based on the number of sections
-    //     scrub: true, // Smooth scrubbing
-    //   },
-    // });
-
-    // sections.forEach((section, index) => {
-    //   timeline
-    //     .fromTo(
-    //       section,
-    //       { opacity: 0 },
-    //       {
-    //         opacity: 1,
-    //         duration: 0.5,
-    //         ease: "power1.inOut",
-    //       },
-    //       index
-    //     )
-    //     .to(
-    //       section,
-    //       {
-    //         opacity: 0,
-    //         duration: 0.5,
-    //         ease: "power1.inOut",
-    //       },
-    //       index + 1
-    //     );
-    // });
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-section",
         start: "top top",
-        end: "10% top",
+        end: "10% bottom",
         markers: true,
         scrub: false,
         pin: true,
@@ -96,8 +60,8 @@ const BuildingContent = () => {
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: ".building-section",
-        start: "15% top",
-        end: "25% 100%",
+        start: "28% top",
+        end: "40% bottom",
         markers: true,
         scrub: false,
         pin: true,
@@ -114,13 +78,22 @@ const BuildingContent = () => {
       },
       "<"
     );
+    // .to(
+    //   content2.current,
+    //   {
+    //     top: "6rem",
+    //     duration: 2,
+    //     ease: "power1.out",
+    //   },
+    //   "<"
+    // );
   }, []);
 
   return (
     <div className="building-section z-10 absolute h-full w-full">
       <div
         ref={content1}
-        className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-16 left-1/2"
+        className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-12 left-1/2"
       >
         <h1 className="text-primary_500 font-semibold text-normal">
           Explore the Site in your space with Augmented Reality{" "}
@@ -141,7 +114,7 @@ const BuildingContent = () => {
 
       <div
         ref={content2}
-        className="bg-neutral_0  p-6 flex flex-col overflow-hidden gap-3 opacity-0 lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-48 left-1/2"
+        className="bg-neutral_0  p-6 flex flex-col overflow-hidden gap-3 opacity-0 lg:w-1/3 w-2/3 rounded-3xl shadow-2xl -translate-x-1/2 absolute top-[30%] left-1/2"
       >
         <h1 className="text-primary_500 font-semibold text-normal">
           Serenity Clubhouse{" "}
