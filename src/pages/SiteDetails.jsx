@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect ,useRef, useState} from "react";
+import { Element, scroller } from 'react-scroll';
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -9,139 +10,238 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 
+
+
+
 const SiteDetails = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [deltaY, setDeltaY] = useState(0);
-  const [sectionHeights, setSectionHeights] = useState([]);
+  const scrollPosition = useRef(0);
+  const sections = ["section1", "section2", "section3", "section4", "section5", "section6", "section7"];
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  const sections_obj = useRef({});
 
-  const sections = useRef({});
-  const [activeSection, setActiveSection] = useState(0);
+  const sectionHeights = useRef([]);
 
+  // const [currentSection, setCurrentSection] = useState(0); // Track current section
+  const currentSectionRef = useRef(0);
+  const isThrottling = useRef(false); // Prevent rapid firing of scroll events
+  const touchStartY = useRef(0); // Track where the touch started
+
+  // Scroll to a section by index
   const scrollToSection = (index) => {
-    sections.current[index].scrollIntoView({ behavior: "smooth" });
-    setActiveSection(index);
+    console.log("yash",index);
+    scroller.scrollTo(sections[index], {
+      duration: 800,
+      smooth: "easeInOutQuart",
+    });
   };
 
-  const storeInputRef = (el, index) => {
-    sections.current[index] = el;
-  };
+    // Move to the next or previous section based on direction
+    const moveToSection = (direction) => {
 
+      console.log("1", scrollPosition.current, sectionHeights.current)
+      let newSection = currentSectionRef.current;
+      let building_section_index = 3;
+
+      if (
+        scrollPosition.current > sectionHeights.current[building_section_index] &&
+        scrollPosition.current < sectionHeights.current[building_section_index + 1]
+      ){
+              // Throttle the events to avoid jitter
+        isThrottling.current = true;
+        setTimeout(() => (isThrottling.current = false), 1000);
+        return;
+      }
+
+  
+      if (direction === "down" && newSection < sections.length - 1) {
+        newSection += 1; // Move to the next section
+      } else if (direction === "up" && newSection > 0) {
+        newSection -= 1; // Move to the previous section
+      }
+
+      console.log("2", newSection, currentSectionRef.current)
+  
+      if (newSection !== currentSectionRef.current) {
+        // currentSectionRef.current = newSection; // Update the ref value
+        scrollToSection(newSection); // Smooth scroll to the new section
+      }
+  
+      // Throttle the events to avoid jitter
+      isThrottling.current = true;
+      setTimeout(() => (isThrottling.current = false), 1000);
+    };
+
+  // Handle scroll events
   const handleScroll = (e) => {
-    let newActive = activeSection;
-    console.log("yaysay", activeSection, window.scrollY);
-    if (window.scrollY > 250 && activeSection == 0) {
-      console.log("scrolled", newActive);
-      scrollToSection(1);
+    scrollPosition.current = window.scrollY;
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
+      }
+
+    }
+    if (isThrottling.current) return; // Throttle scroll to avoid jitter)
+    const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
+    moveToSection(scrollDirection)
+
+  };
+
+  // Handle Touch Start (for Mobile)
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY; // Record the Y position of the touch start
+    scrollPosition.current = e.touches[0].pageY;
+  };
+
+  // Handle Touch Move (for Mobile)
+  const handleTouchMove = (e) => {
+    scrollPosition.current = e.touches[0].pageY;
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
+      }
+
+    }
+    if (isThrottling.current) return; // Throttle to prevent rapid triggers
+
+
+    const touchEndY = e.touches[0].clientY; // Y position where the touch ended
+    const direction = touchEndY < touchStartY.current ? "down" : "up"; // Determine swipe direction
+
+    // Only trigger section scroll if the swipe is significant
+    if (Math.abs(touchEndY - touchStartY.current) > 50) {
+      moveToSection(direction);
     }
   };
 
-  const handleWheel = (el) => {
-    setScrollPosition(window.scrollY);
-    const deltaY = el.deltaY;
-    setDeltaY(deltaY);
-  };
+
+
+  const storeInputRef = (el, index) => {
+    sections_obj.current[index] = el
+  }
+
 
   function incrementalSum(arr) {
     let result = [];
     let sum = 0;
-
+  
     for (let i = 0; i < arr.length; i++) {
       sum += arr[i];
       result.push(sum);
     }
-
+  
     return result;
   }
 
   useEffect(() => {
-    window.addEventListener("wheel", handleWheel);
+    // Add event listeners for both wheel and touch events
+    window.addEventListener("wheel", handleScroll); // Desktop
+    window.addEventListener("touchstart", handleTouchStart); // Mobile (touch start)
+    window.addEventListener("touchmove", handleTouchMove); // Mobile (touch move)
+    console.log("yasshashash")
 
     let dummy_heights = [];
 
-    for (let dummy_sec in sections.current) {
-      dummy_heights.push(sections.current[dummy_sec].offsetHeight);
+    for (let dummy_sec in sections_obj.current) {
+      dummy_heights.push(sections_obj.current[dummy_sec].offsetHeight);
     }
 
-    setSectionHeights(incrementalSum(dummy_heights));
+    sectionHeights.current = incrementalSum(dummy_heights);
 
-    // Cleanup on unmount
+    // Cleanup event listeners on unmount
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
-  // Trigger scrollIntoView based on wheel scroll position
-  useEffect(() => {
-    let building_section_index = 3;
-
-    for (let i = 0; i < sectionHeights.length; i++) {
-      if (scrollPosition < 150) {
-        break;
-      } else if (
-        scrollPosition > sectionHeights[building_section_index] &&
-        scrollPosition < sectionHeights[building_section_index + 1]
-      ) {
-        break;
-      } else if (i == 0 && scrollPosition < sectionHeights[i]) {
-        if (deltaY > 0) {
-          scrollToSection(i + 1);
-        } else {
-          scrollToSection(i);
-        }
-
-        break;
-      } else if (
-        scrollPosition > sectionHeights[i - 1] + 100 &&
-        scrollPosition < sectionHeights[i]
-      ) {
-        if (i == sectionHeights.length - 1) {
-          break;
-        }
-        if (deltaY > 0) {
-          scrollToSection(i + 1);
-        } else {
-          scrollToSection(i);
-        }
-        break;
-      }
-    }
-  }, [scrollPosition]);
 
   return (
     <div>
       <Header />
-      <MainViewSite
+      <Element
+          key="section1"
+          name="section1"
+          className="section"
+      >
+          <MainViewSite 
+            scrollToSection={scrollToSection}
+            storeInputRef={storeInputRef}
+          />
+      </Element>
+      <Element
+          key="section2"
+          name="section2"
+          className="section"
+      >
+        <ProjectDetails
         scrollToSection={scrollToSection}
         storeInputRef={storeInputRef}
+       />
+      </Element>
+      <Element
+          key="section3"
+          name="section3"
+          className="section"
+      >
+        <LocationDetails 
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
+      <Element
+          key="section4"
+          name="section4"
+          className="section"
+      >
+          <LocationMap 
+            scrollToSection={scrollToSection}
+            storeInputRef={storeInputRef}
+          />
+      </Element>
+
+      <Element
+          key="section5"
+          name="section5"
+          className="section"
+      >
+          <Buildings
+                      scrollToSection={scrollToSection}
+                      storeInputRef={storeInputRef}
+          />
+      </Element>
+
+      <Element
+          key="section6"
+          name="section6"
+          className="section"
+      >
+          <SampleHouseTour 
+                            scrollToSection={scrollToSection}
+                            storeInputRef={storeInputRef}
+          />
+      </Element>
+
+      <Element
+          key="section7"
+          name="section7"
+          className="section"
+      >
+              <ConnectWithUs 
+                        scrollToSection={scrollToSection}
+                        storeInputRef={storeInputRef}
       />
-      <ProjectDetails
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
-      <LocationDetails
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
-      <LocationMap
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
-      <Buildings
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
-      <SampleHouseTour
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
-      <ConnectWithUs
-        scrollToSection={scrollToSection}
-        storeInputRef={storeInputRef}
-      />
+      </Element>
+      
+
+
+
+
+
+
+
       <Footer />
     </div>
   );
