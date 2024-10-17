@@ -38,7 +38,7 @@ const Building = (props) => {
   //       trigger: ".building-container",
   //       start: "30% top",
   //       end: "bottom 100%",
-  markers: true,
+  // markers: true,
     //       scrub: false,
     //       pin: true,
     //     },

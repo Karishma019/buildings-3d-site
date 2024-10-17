@@ -98,7 +98,7 @@ const SiteDetails = () => {
 
     // Throttle the events to avoid jitter
     isThrottling.current = true;
-    setTimeout(() => (isThrottling.current = false), 2000);
+    setTimeout(() => (isThrottling.current = false), 1300);
   };
 
   // Handle scroll events
