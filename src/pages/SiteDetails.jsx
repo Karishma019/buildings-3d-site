@@ -15,7 +15,7 @@ import SampleHouseTour from "../components/SampleHouseTour";
 
 const SiteDetails = () => {
   const scrollPosition = useRef(0);
-  const sections = ["section1", "section2", "section3", "section4"];
+  const sections = ["section1", "section2", "section3", "section4", "section5", "section6", "section7"];
 
   const sections_obj = useRef({});
 
@@ -28,7 +28,7 @@ const SiteDetails = () => {
 
   // Scroll to a section by index
   const scrollToSection = (index) => {
-    console.log("yash");
+    console.log("yash",index);
     scroller.scrollTo(sections[index], {
       duration: 800,
       smooth: "easeInOutQuart",
@@ -38,7 +38,7 @@ const SiteDetails = () => {
     // Move to the next or previous section based on direction
     const moveToSection = (direction) => {
 
-      console.log("asasaasa", scrollPosition.current, sectionHeights.current)
+      console.log("1", scrollPosition.current, sectionHeights.current)
       let newSection = currentSectionRef.current;
       let building_section_index = 3;
 
@@ -58,9 +58,11 @@ const SiteDetails = () => {
       } else if (direction === "up" && newSection > 0) {
         newSection -= 1; // Move to the previous section
       }
+
+      console.log("2", newSection, currentSectionRef.current)
   
       if (newSection !== currentSectionRef.current) {
-        currentSectionRef.current = newSection; // Update the ref value
+        // currentSectionRef.current = newSection; // Update the ref value
         scrollToSection(newSection); // Smooth scroll to the new section
       }
   
@@ -72,6 +74,13 @@ const SiteDetails = () => {
   // Handle scroll events
   const handleScroll = (e) => {
     scrollPosition.current = window.scrollY;
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
+      }
+
+    }
     if (isThrottling.current) return; // Throttle scroll to avoid jitter)
     const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
     moveToSection(scrollDirection)
@@ -86,8 +95,16 @@ const SiteDetails = () => {
 
   // Handle Touch Move (for Mobile)
   const handleTouchMove = (e) => {
-    console.log("yaysayssy");
+    scrollPosition.current = e.touches[0].pageY;
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
+      }
+
+    }
     if (isThrottling.current) return; // Throttle to prevent rapid triggers
+
 
     const touchEndY = e.touches[0].clientY; // Y position where the touch ended
     const direction = touchEndY < touchStartY.current ? "down" : "up"; // Determine swipe direction
@@ -184,23 +201,47 @@ const SiteDetails = () => {
             storeInputRef={storeInputRef}
           />
       </Element>
+
+      <Element
+          key="section5"
+          name="section5"
+          className="section"
+      >
+          <Buildings
+                      scrollToSection={scrollToSection}
+                      storeInputRef={storeInputRef}
+          />
+      </Element>
+
+      <Element
+          key="section6"
+          name="section6"
+          className="section"
+      >
+          <SampleHouseTour 
+                            scrollToSection={scrollToSection}
+                            storeInputRef={storeInputRef}
+          />
+      </Element>
+
+      <Element
+          key="section7"
+          name="section7"
+          className="section"
+      >
+              <ConnectWithUs 
+                        scrollToSection={scrollToSection}
+                        storeInputRef={storeInputRef}
+      />
+      </Element>
       
 
 
 
 
-      <Buildings
-                  scrollToSection={scrollToSection}
-                  storeInputRef={storeInputRef}
-       />
-      <SampleHouseTour 
-                        scrollToSection={scrollToSection}
-                        storeInputRef={storeInputRef}
-      />
-      <ConnectWithUs 
-                        scrollToSection={scrollToSection}
-                        storeInputRef={storeInputRef}
-      />
+
+
+
       <Footer />
     </div>
   );
