@@ -1,7 +1,6 @@
 import { IoLocationOutline } from "react-icons/io5";
 import bgLocation from "../img/bgLocation.mp4";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FaGasPump, FaSchool } from "react-icons/fa6";
 import { LiaUniversitySolid } from "react-icons/lia";
 import { FaRegHospital } from "react-icons/fa";
@@ -11,28 +10,31 @@ import { scrollToSection } from "../utils/scrollToSection";
 
 const LocationDetails = (props) => {
   const videoRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Function to handle entering and exiting fullscreen mode
+  const handleFullscreenToggle = () => {
+    setIsFullscreen((prev) => !prev);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // If the video is in view, play it
             videoRef.current.play();
           } else {
-            // If the video is out of view, pause it
             videoRef.current.pause();
           }
         });
       },
-      { threshold: 0.5 } // Adjust this value (0-1) based on when you want the video to start playing
+      { threshold: 0.5 }
     );
 
     if (videoRef.current) {
       observer.observe(videoRef.current);
     }
 
-    // Cleanup the observer when the component unmounts
     return () => {
       if (videoRef.current) {
         observer.unobserve(videoRef.current);
@@ -55,8 +57,7 @@ const LocationDetails = (props) => {
       </h2>
       <div className="flex md:flex-row flex-col gap-8 px-8 my-5">
         <div className="bg-neutral_100 p-4 lg:w-1/4 md:w-1/3 w-full text-sm flex items-center text-center rounded-lg">
-          Add exact address hereAdd exact address hereAdd exact address hereAdd
-          exact address here
+          Add exact address here
         </div>
         <div className="bg-neutral_100 lg:w-3/4 md:w-2/3 w-full rounded-lg p-4">
           <p className="font-semibold text-primary lg:text-lg mb-1">
@@ -115,14 +116,42 @@ const LocationDetails = (props) => {
           </div>
         </div>
       </div>
+
       <button
-        className="bg-neutral_200 absolute bottom-20 cursor-pointer z-10 right-20 text-neutral_0 bg-opacity-30 border rounded text-sm flex items-center px-3 py-1 mt-4"
+        className="bg-neutral_200 absolute bottom-20 cursor-pointer z-10 right-20 text-neutral_0 bg-opacity-30 hidden lg:block border rounded text-sm flex items-center px-3 py-1 mt-4"
         onClick={() => scrollToSection("locationMap")}
       >
         skip
       </button>
+
+      <button
+        className="bg-neutral_200 absolute bottom-20 cursor-pointer z-10 left-1/2 -translate-x-1/2 text-neutral_0 bg-opacity-30 border-primary_500 border-2 text-primary_500 font-semibold rounded text-sm flex items-center px-3 py-1 mt-4 lg:hidden"
+        onClick={handleFullscreenToggle}
+      >
+        Watch Video
+      </button>
+
+      {isFullscreen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center z-50">
+          <button
+            className="absolute top-4 right-4 text-white text-lg"
+            onClick={handleFullscreenToggle}
+          >
+            X
+          </button>
+          <video
+            className="w-auto h-auto max-w-full max-h-full"
+            ref={videoRef}
+            src={bgLocation}
+            autoPlay
+            loop
+            muted
+          />
+        </div>
+      )}
+
       <video
-        className=" w-full object-cover h-full"
+        className="w-full object-cover h-full"
         ref={videoRef}
         src={bgLocation}
         autoPlay

@@ -91,6 +91,12 @@ body {
   scroll-snap-align: start;
 }
 
+video {
+  transform-origin: center center;
+  /* Prevent rotation when in fullscreen */
+  aspect-ratio: 16/9; /* or your desired ratio */
+}
+
 @media screen and (max-width: 500px) {
   .padding {
     padding: 2rem;
