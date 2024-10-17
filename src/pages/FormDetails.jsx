@@ -63,6 +63,10 @@ const FormDetails = () => {
     toast("Form Submitted", { theme: "dark" });
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="relative mt-10">
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full"></div>
@@ -75,7 +79,7 @@ const FormDetails = () => {
           Simply fill out the form to get AR App for your project
         </p>
       </div>
-      <div className="w-full flex justify-center mt-5 px-8">
+      <div className="w-full flex justify-center my-5 px-8">
         <form
           className="bg-white lg:w-2/3 w-full rounded-lg shadow-xl p-8"
           onSubmit={handleSubmit}

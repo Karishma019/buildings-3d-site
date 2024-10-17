@@ -5,10 +5,10 @@ import SitesCard from "../components/SitesCard";
 import mainImg from "../img/main.png";
 import Info from "../components/Info";
 import Footer from "../components/Footer";
-import FormDetails from "../components/FormDetails";
 import img1 from "../img/main.png";
 import img2 from "../img/site1.png";
 import img3 from "../img/housetour.jpeg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const images = [img1, img2, img3];
@@ -43,14 +43,16 @@ const Home = () => {
         </div>
         <div className="bg-white p-4 rounded-2xl shadow-2xl text-center">
           <p className="font-semibold">{`<Try it Yourself>`}</p>
-          <p className="text-sm mt-2">{`<Install out AR App and need copy for this description message>`}</p>
-          <button className="bg-primary text-white px-4 py-2 rounded text-sm mt-5">
+          <p className="text-sm mt-2 mb-4">{`<Install out AR App and need copy for this description message>`}</p>
+          <Link
+            to={`/form-details`}
+            className="bg-primary text-white px-4 py-2 rounded text-sm"
+          >
             Get AR App
-          </button>
+          </Link>
         </div>
       </div>
       <Info />
-      <FormDetails />
       <Footer />
     </>
   );
