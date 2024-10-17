@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import site1Img from "../img/card.jpeg";
 
-const SitesCard = () => {
+const SitesCard = ({ data }) => {
   return (
     <>
       <div className="md:w-[350px] w-full lg:w-[440px] rounded-xl flex-shrink-0 flex flex-col border-primary_light overflow-hidden shadow">
@@ -10,19 +10,17 @@ const SitesCard = () => {
         </div>
         <div className=" text-black py-2 px-2 mt-2">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold">Arcadia 111</h3>
+            <h3 className="font-semibold">{data.title}</h3>
             <Link
-              to={`/view-site`}
+              to={`/view-site/${data.id}`}
               className="bg-white rounded border-primary border px-4 py-1 text-sm text-primary"
             >
               View Site
             </Link>
           </div>
-          <p className="text-sm font-light mb-2">Ahmedabad</p>
+          <p className="text-sm font-light mb-2">{data.location}</p>
           <p className="sm:text-sm text-[12px] font-light">
-            This is a basic description about the site and how this can be the
-            best choice by the clients because of the facilities it provides and
-            the price range that is affordable.
+            {data.description}
           </p>
         </div>
       </div>
