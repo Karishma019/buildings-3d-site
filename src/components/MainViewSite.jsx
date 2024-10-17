@@ -9,17 +9,19 @@ const MainViewSite = (props) => {
   const currentUrl = window.location.href;
 
   const copyToClipboard = useCallback(() => {
-    navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        setShowMessage(true);
-        setTimeout(() => {
-          setShowMessage(false);
-        }, 1000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(currentUrl)
+        .then(() => {
+          setShowMessage(true);
+          setTimeout(() => {
+            setShowMessage(false);
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
   }, []);
 
   return (
