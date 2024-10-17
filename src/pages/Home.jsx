@@ -6,7 +6,13 @@ import mainImg from "../img/main.png";
 import Info from "../components/Info";
 import Footer from "../components/Footer";
 import FormDetails from "../components/FormDetails";
+import img1 from "../img/main.png";
+import img2 from "../img/site1.png";
+import img3 from "../img/housetour.jpeg";
+
 const Home = () => {
+  const images = [img1, img2, img3];
+
   return (
     <>
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute lg:h-[1000px] md:h-[700px] h-[580px] w-full"></div>

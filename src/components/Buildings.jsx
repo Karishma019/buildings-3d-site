@@ -20,7 +20,7 @@ const store = createXRStore();
 const Buildings = (props) => {
   return (
     <div
-      className="building-container-whole h-[2500px] w-full overflow-hidden"
+      className="building-container-whole h-[900px] w-full overflow-hidden"
       id="arExperience"
       ref={(el) => props.storeInputRef(el, 4)}
     >
@@ -33,19 +33,16 @@ const Buildings = (props) => {
         {/* <BuildingContent store={store} /> */}
         <Canvas>
           {/* <XR store={store}> */}
-            <Suspense fallback={<CanvasLoader />}>
-              <PerspectiveCamera makeDefault position={[0, 1, 9]} />
-              <ambientLight args={["#ffffff", 1]} />
-              <directionalLight
-                args={["#ffffff", 15]}
-                position={[-4, 50, 95]}
-              />
-              <Building
-                scale={0.02}
-                position={[5, -2, -15]}
-                rotation={[0, -1, 0]}
-              />
-            </Suspense>
+          <Suspense fallback={<CanvasLoader />}>
+            <PerspectiveCamera makeDefault position={[0, 1, 9]} />
+            <ambientLight args={["#ffffff", 1]} />
+            <directionalLight args={["#ffffff", 15]} position={[-4, 50, 95]} />
+            <Building
+              scale={0.02}
+              position={[5, -2, -15]}
+              rotation={[0, -1, 0]}
+            />
+          </Suspense>
           {/* </XR> */}
         </Canvas>
       </div>
