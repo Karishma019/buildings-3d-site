@@ -16,6 +16,15 @@ import CanvasLoader from "./CanvasLoader";
 
 const SampleHouseTour = (props) => {
   const [houseTour, setHouseTour] = useState("leavingRoom.jpg");
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const handleFullscreenToggle = () => {
+    if (window.innerWidth > 1025) {
+      return;
+    }
+    setIsFullscreen((prev) => !prev);
+  };
+
+  console.log(window.innerWidth);
 
   const scrollRef = useRef(null);
 
@@ -46,15 +55,38 @@ const SampleHouseTour = (props) => {
       className="relative h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden"
       ref={(el) => props.storeInputRef(el, 5)}
     >
-      <div className="w-full h-full absolute">
+      <div className="w-full h-full absolute block lg:hidden">
+        <img
+          src={bgHouse}
+          alt="housetour"
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="w-full h-full absolute hidden lg:block">
         <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
           <Suspense fallback={<CanvasLoader />}>
             <BuildingView model={houseTour} />
           </Suspense>
         </Canvas>
       </div>
+      {isFullscreen && (
+        <div className="fixed top-0 left-0 w-full h-full z-50">
+          <button
+            className="absolute top-20 z-50 px-3 rounded right-20 text-white bg-black bg-opacity-35  text-lg"
+            onClick={handleFullscreenToggle}
+          >
+            X
+          </button>
+          <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
+            <Suspense fallback={<CanvasLoader />}>
+              <BuildingView model={houseTour} />
+            </Suspense>
+          </Canvas>
+        </div>
+      )}
+
       <div
-        className="flex absolute top-24 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer"
+        className="flex absolute top-24 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer hidden lg:flex"
         onClick={() => scrollToSection("arExperience")}
       >
         <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
@@ -63,7 +95,7 @@ const SampleHouseTour = (props) => {
         <p className="text-white text-sm font-semibold">Scroll Up</p>
       </div>
       <div
-        className="flex flex-col items-center cursor-pointer absolute bottom-24 left-1/2 -translate-x-1/2"
+        className="flex flex-col items-center cursor-pointer absolute bottom-24 left-1/2 -translate-x-1/2 hidden lg:flex"
         onClick={() => scrollToSection("ConnectWithUs")}
       >
         <p className="text-white text-sm font-semibold ">Scroll to Explore</p>
@@ -90,31 +122,46 @@ const SampleHouseTour = (props) => {
         >
           <button
             className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 py-2 text-center lg:w-1/5 w-full rounded"
-            onClick={() => setHouseTour("leavingRoom.jpg")}
+            onClick={() => {
+              handleFullscreenToggle();
+              setHouseTour("leavingRoom.jpg");
+            }}
           >
             Living Area
           </button>
           <button
             className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
-            onClick={() => setHouseTour("Kitchen.jpg")}
+            onClick={() => {
+              handleFullscreenToggle();
+              setHouseTour("Kitchen.jpg");
+            }}
           >
             Kitchen{" "}
           </button>
           <button
             className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
-            onClick={() => setHouseTour("Bedroom 1.jpg")}
+            onClick={() => {
+              handleFullscreenToggle();
+              setHouseTour("Bedroom 1.jpg");
+            }}
           >
             Bedroom 1{" "}
           </button>
           <button
             className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
-            onClick={() => setHouseTour("Bedroom 2.jpg")}
+            onClick={() => {
+              handleFullscreenToggle();
+              setHouseTour("Bedroom 2.jpg");
+            }}
           >
             Bedroom 2{" "}
           </button>
           <button
             className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
-            onClick={() => setHouseTour("Master.jpg")}
+            onClick={() => {
+              handleFullscreenToggle();
+              setHouseTour("Master.jpg");
+            }}
           >
             Master Bedroom{" "}
           </button>

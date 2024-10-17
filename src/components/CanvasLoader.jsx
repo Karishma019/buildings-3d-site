@@ -4,7 +4,7 @@ import React from "react";
 const CanvasLoader = () => {
   return (
     <Html>
-      <h1 className="uppercase absolute -left-32 text-4xl">
+      <h1 className="uppercase absolute -left-32 text-4xl z-50">
         <span className="bg-primary text-white text-3xl py-2 tracking-widest">
           Estate
         </span>
