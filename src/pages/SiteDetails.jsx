@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Element, scroller } from "react-scroll";
+import { useEffect ,useRef, useState} from "react";
+import { Element, scroller, animateScroll as scroll  } from 'react-scroll';
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -33,11 +33,19 @@ const SiteDetails = () => {
 
   // Scroll to a section by index
   const scrollToSection = (index) => {
-    console.log("yash", index);
-    scroller.scrollTo(sections[index], {
-      duration: 800,
-      smooth: "easeInOutQuart",
-    });
+    if (index == 0){
+      scroll.scrollTo(0, {
+        duration: 800,
+        smooth: "easeInOutQuart",
+      });
+    }
+    else{
+      scroller.scrollTo(sections[index], {
+        duration: 800,
+        smooth: "easeInOutQuart",
+      });
+    }
+
   };
 
   // Move to the next or previous section based on direction
@@ -92,16 +100,16 @@ const SiteDetails = () => {
   // Handle Touch Start (for Mobile)
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY; // Record the Y position of the touch start
-    scrollPosition.current = e.touches[0].pageY;
+    scrollPosition.current = window.scrollY;
   };
 
   // Handle Touch Move (for Mobile)
   const handleTouchMove = (e) => {
-    scrollPosition.current = e.touches[0].pageY;
-    for (let i = 0; i < sectionHeights.current.length; i++) {
-      if (window.scrollY < sectionHeights.current[i]) {
-        currentSectionRef.current = i;
-        break;
+    scrollPosition.current = window.scrollY;
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
       }
     }
     if (isThrottling.current) return; // Throttle to prevent rapid triggers
