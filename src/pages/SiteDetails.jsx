@@ -92,7 +92,7 @@ const SiteDetails = () => {
     console.log("2", newSection, currentSectionRef.current);
 
     if (newSection !== currentSectionRef.current) {
-      currentSectionRef.current = newSection; // Update the ref value
+      // currentSectionRef.current = newSection; // Update the ref value
       scrollToSection(newSection); // Smooth scroll to the new section
     }
 
@@ -108,12 +108,12 @@ const SiteDetails = () => {
     scrollPosition.current = window.scrollY;
 
     // Uncomment this portion to decide current section based on scroll position
-    // for (let i = 0; i < sectionHeights.current.length; i++) {
-    //   if (window.scrollY < sectionHeights.current[i]) {
-    //     currentSectionRef.current = i;
-    //     break;
-    //   }
-    // }
+    for (let i = 0; i < sectionHeights.current.length; i++) {
+      if (window.scrollY < sectionHeights.current[i]) {
+        currentSectionRef.current = i;
+        break;
+      }
+    }
     if (isThrottling.current) return; // Throttle scroll to avoid jitter)
     const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
     moveToSection(scrollDirection);
@@ -131,12 +131,12 @@ const SiteDetails = () => {
     scrollPosition.current = window.scrollY;
 
     // Uncomment this portion to decide current section based on scroll position
-    // for (let i=0; i < sectionHeights.current.length ; i++){
-    //   if (window.scrollY < sectionHeights.current[i]){
-    //     currentSectionRef.current = i
-    //     break
-    //   }
-    // }
+    for (let i=0; i < sectionHeights.current.length ; i++){
+      if (window.scrollY < sectionHeights.current[i]){
+        currentSectionRef.current = i
+        break
+      }
+    }
 
     if (isThrottling.current) return; // Throttle to prevent rapid triggers
 
