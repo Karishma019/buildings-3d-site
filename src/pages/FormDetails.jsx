@@ -2,21 +2,24 @@ import ReCAPTCHA from "react-google-recaptcha";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Header from "../components/Header";
+import { APIKEY, BACKENDURL } from "../utils/utils";
+import axios from "axios";
+import Loader from "../components/Loader";
 
 const FormDetails = () => {
   const [verified, setVerified] = useState(false);
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [errors, setErrors] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
+    name: "",
+    contact: "",
     email: "",
     projectName: "",
     projectType: "",
-    street: "",
-    city: "",
-    state: "",
+    projectAddress: "",
+    projectCity: "",
+    projectState: "",
   });
 
   const handleChange = (e) => {
@@ -26,17 +29,17 @@ const FormDetails = () => {
   const requiredFields = () => {
     const newErrors = {};
 
-    if (formData.fullName === "") newErrors.fullName = "full name is Required";
-    if (formData.phoneNumber === "")
+    if (formData.name === "") newErrors.fullName = "full name is Required";
+    if (formData.contact === "")
       newErrors.phoneNumber = "Phone Number is Required";
     if (formData.email === "") newErrors.email = "Email is Required";
     if (formData.projectName === "")
       newErrors.projectName = "Project Name is Required";
     if (formData.projectType === "")
       newErrors.projectType = "Project Type is Required";
-    if (formData.street === "") newErrors.street = "Street is Required";
-    if (formData.city === "") newErrors.city = "City is Required";
-    if (formData.state === "") newErrors.state = "State is Required";
+    if (formData.projectAddress === "") newErrors.street = "Street is Required";
+    if (formData.projectCity === "") newErrors.city = "City is Required";
+    if (formData.projectState === "") newErrors.state = "State is Required";
     return newErrors;
   };
 
@@ -53,24 +56,47 @@ const FormDetails = () => {
     setErrors(null);
   };
 
-  const onChange = (value) => {
+  const onChange = async (value) => {
     // console.log("Captcha value:", value);
     if (value) {
       setVerified(true);
       console.log("Submitted");
     }
     setShowCaptcha(false);
-
-    toast("Form Submitted", { theme: "dark" });
+    console.log(formData);
+    setLoading(true);
+    try {
+      const res = await axios.post(`${BACKENDURL}/prod/v1/public/request-app`, {
+        formData,
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setFormData({
+        name: "",
+        contact: "",
+        email: "",
+        projectName: "",
+        projectType: "",
+        projectAddress: "",
+        projectCity: "",
+        projectState: "",
+      });
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      {" "}
       <Header formPage={true} />
       <section className="relative mt-20">
         <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full"></div>
@@ -91,15 +117,16 @@ const FormDetails = () => {
             <p className="lg:text-lg text-sm font-semibold">Your Details</p>
             <div className="flex md:flex-row flex-col gap-5 my-5">
               <label
-                htmlFor="fullName"
+                htmlFor="name"
                 className="flex flex-col gap-2 lg:text-sm text-[12px] md:w-1/3 w-full"
               >
                 Full Name
                 <input
                   type="text"
-                  name="fullName"
+                  name="name"
+                  value={formData.name}
                   placeholder="Enter your name"
-                  id="fullName"
+                  id="name"
                   className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
                   onChange={handleChange}
                 />
@@ -108,15 +135,16 @@ const FormDetails = () => {
                 )}
               </label>
               <label
-                htmlFor="phoneNumber"
+                htmlFor="contact"
                 className="flex flex-col gap-2 lg:text-sm text-[12px] md:w-1/3 w-full"
               >
                 Phone Number
                 <input
                   type="text"
-                  name="phoneNumber"
+                  name="contact"
+                  value={formData.contact}
                   placeholder="Enter your number"
-                  id="phoneNumber"
+                  id="contact"
                   className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
                   onChange={handleChange}
                 />
@@ -132,6 +160,7 @@ const FormDetails = () => {
                 <input
                   type="email"
                   name="email"
+                  value={formData.email}
                   placeholder="Enter email address"
                   id="email"
                   className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
@@ -152,6 +181,7 @@ const FormDetails = () => {
                 <input
                   type="text"
                   name="projectName"
+                  value={formData.projectName}
                   placeholder="Enter Project name"
                   id="projectName"
                   className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
@@ -171,6 +201,7 @@ const FormDetails = () => {
                 <input
                   type="text"
                   name="projectType"
+                  value={formData.projectType}
                   placeholder="Select Project Type"
                   id="projectType"
                   className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
@@ -189,9 +220,10 @@ const FormDetails = () => {
                 <div className="md:w-1/3 w-full">
                   <input
                     type="text"
-                    name="street"
+                    name="projectAddress"
+                    value={formData.projectAddress}
                     placeholder="Enter Street"
-                    id="street"
+                    id="projectAddress"
                     className="outline-none border-b border-b-2  w-full border-neutral_400 lg:text-lg text-sm"
                     onChange={handleChange}
                   />
@@ -205,9 +237,10 @@ const FormDetails = () => {
                   <div className="w-1/2">
                     <input
                       type="text"
-                      name="city"
+                      name="projectCity"
+                      value={formData.projectCity}
                       placeholder="Enter City"
-                      id="city"
+                      id="projectCity"
                       className="outline-none border-b border-b-2 border-neutral_400 w-full lg:text-lg text-sm"
                       onChange={handleChange}
                     />
@@ -220,9 +253,10 @@ const FormDetails = () => {
                   <div className="w-1/2">
                     <input
                       type="text"
-                      name="state"
+                      name="projectState"
+                      value={formData.projectState}
                       placeholder="Enter State"
-                      id="state"
+                      id="projectState"
                       className="outline-none border-b border-b-2 border-neutral_400 w-full lg:text-lg text-sm"
                       onChange={handleChange}
                     />
@@ -239,10 +273,7 @@ const FormDetails = () => {
             <div className="bg-neutral_100 h-56 mt-4 rounded"></div>
             {showCaptcha && (
               <div className="mt-5">
-                <ReCAPTCHA
-                  sitekey="6LcWGmIqAAAAAAlypp4Qzszma3Vctbw2pBfVHL2b" // Replace with your site key
-                  onChange={onChange}
-                />
+                <ReCAPTCHA sitekey={`${APIKEY}`} onChange={onChange} />
               </div>
             )}
 
