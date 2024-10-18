@@ -1,5 +1,5 @@
-import { useEffect ,useRef, useState} from "react";
-import { Element, scroller, animateScroll as scroll  } from 'react-scroll';
+import { useEffect, useRef, useState } from "react";
+import { Element, scroller, animateScroll as scroll } from "react-scroll";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Footer from "../components/Footer";
@@ -25,11 +25,10 @@ const SiteDetails = () => {
   const sections_obj = useRef({});
 
   const sectionHeights = useRef([]);
-  
-  const [buildingStage,setBuildingStage] = useState(0);
+
+  const [buildingStage, setBuildingStage] = useState(0);
 
   const tempBuild = useRef(0);
-
 
   // const [currentSection, setCurrentSection] = useState(0); // Track current section
   const currentSectionRef = useRef(0);
@@ -38,49 +37,55 @@ const SiteDetails = () => {
 
   // Scroll to a section by index
   const scrollToSection = (index) => {
-    if (index == 0){
+    if (index == 0) {
       scroll.scrollTo(0, {
         duration: 800,
         smooth: "easeInOutQuart",
       });
-    }
-    else{
+    } else {
       scroller.scrollTo(sections[index], {
         duration: 800,
         smooth: "easeInOutQuart",
       });
     }
-
   };
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
-    console.log("1", scrollPosition.current, sectionHeights.current, isThrottling.current);
+    console.log(
+      "1",
+      scrollPosition.current,
+      sectionHeights.current,
+      isThrottling.current
+    );
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
 
     if (
       scrollPosition.current > sectionHeights.current[building_section_index] &&
       scrollPosition.current <
-        sectionHeights.current[building_section_index + 1] && tempBuild.current < 4 && tempBuild.current > -1
+        sectionHeights.current[building_section_index + 1] &&
+      tempBuild.current < 4 &&
+      tempBuild.current > -1
     ) {
       isThrottling.current = true;
       setTimeout(() => (isThrottling.current = false), 1500);
       // Throttle the events to avoid jitter
-      if (direction === "down"){
-        setBuildingStage((prevValue) => (prevValue < 4 ? prevValue + 1 : prevValue));
-        tempBuild.current < 4 ? tempBuild.current += 1 : tempBuild.current;
+      if (direction === "down") {
+        setBuildingStage((prevValue) =>
+          prevValue < 4 ? prevValue + 1 : prevValue
+        );
+        tempBuild.current < 4 ? (tempBuild.current += 1) : tempBuild.current;
+      } else {
+        setBuildingStage((prevValue) =>
+          prevValue > 0 ? prevValue - 1 : prevValue
+        );
+        tempBuild.current > 0 ? (tempBuild.current -= 1) : tempBuild.current;
       }
-      else{
-        setBuildingStage((prevValue) => (prevValue > 0 ? prevValue - 1 : prevValue))
-        tempBuild.current > 0 ? tempBuild.current -= 1 : tempBuild.current;
-
-      }
-      
 
       return;
-    }else{
-      setBuildingStage((prevValue) => 0)
+    } else {
+      setBuildingStage((prevValue) => 0);
     }
 
     if (direction === "down" && newSection < sections.length - 1) {
@@ -131,10 +136,10 @@ const SiteDetails = () => {
     scrollPosition.current = window.scrollY;
 
     // Uncomment this portion to decide current section based on scroll position
-    for (let i=0; i < sectionHeights.current.length ; i++){
-      if (window.scrollY < sectionHeights.current[i]){
-        currentSectionRef.current = i
-        break
+    for (let i = 0; i < sectionHeights.current.length; i++) {
+      if (window.scrollY < sectionHeights.current[i]) {
+        currentSectionRef.current = i;
+        break;
       }
     }
 

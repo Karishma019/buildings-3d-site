@@ -1,6 +1,14 @@
 import bgImage from "../img/building-background.jpg";
 
 const LocationMap = (props) => {
+  const handleButtonClick = () => {
+    window.open(
+      "https://maps.app.goo.gl/ybHhbaj3xy9hhG1eA",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   return (
     <section
       style={{ background: `url(${bgImage})` }}
@@ -18,7 +26,10 @@ const LocationMap = (props) => {
           </p>
         </div>
         <div className="lg:w-1/2 w-full lg:text-end text-center">
-          <button className="bg-primary_50 border-primary_500 font-semibold py-1 px-3 border-2 rounded text-primary_500">
+          <button
+            className="bg-primary_50 border-primary_500 font-semibold py-1 px-3 border-2 rounded text-primary_500"
+            onClick={handleButtonClick}
+          >
             Open in Google maps
           </button>
         </div>

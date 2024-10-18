@@ -36,14 +36,14 @@ const Buildings = (props) => {
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 1, 9]} />
             <ambientLight args={["#ffffff", 1]} />
-            <directionalLight args={["#ffffff0", 5]} position={[-1, 1, 1]} />
+            <directionalLight args={["#ffffff0", 3]} position={[-1, 1, 1]} />
             {/* <Building
               scale={0.02}
               position={[5, -2, -15]}
               rotation={[0, -1, 0]}
             /> */}
             <NewBuilding
-              scale={0.02}
+              scale={1}
               position={[5, -1, -15]}
               rotation={[0, -1, 0]}
               buildingStage={props.buildingStage}

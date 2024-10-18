@@ -56,7 +56,7 @@ const LocationDetails = (props) => {
       </h2>
       <div className="flex md:flex-row flex-col md:gap-8 gap-4 px-8 my-5">
         <div className="bg-neutral_100 p-4 lg:w-1/4 md:w-1/3 w-full text-sm flex items-center text-center rounded-lg">
-          Add exact address here
+          ARCADIA 111, behind Fun Blast, Chharodi, Ahmedabad, Gujarat 382481{" "}
         </div>
         <div className="bg-neutral_100 lg:w-3/4 md:w-2/3 w-full rounded-lg p-4">
           <p className="font-semibold text-primary lg:text-lg mb-1">
