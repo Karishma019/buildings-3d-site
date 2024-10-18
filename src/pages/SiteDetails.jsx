@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Element, scroller, animateScroll as scroll } from "react-scroll";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
 import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
+import Footer from "../components/Footer";
 
 const SiteDetails = () => {
   const scrollPosition = useRef(0);
@@ -246,7 +246,6 @@ const SiteDetails = () => {
           storeInputRef={storeInputRef}
         />
       </Element>
-
       <Footer />
     </div>
   );

@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { angleToRadiants } from "../utils/angleToRadiants";
+import { useFrame } from "@react-three/fiber";
 gsap.registerPlugin(ScrollTrigger);
 
 const NewBuilding = (props) => {
@@ -10,6 +11,15 @@ const NewBuilding = (props) => {
   const { nodes, materials } = useGLTF("/models/a.glb");
 
   const buildingRef = useRef();
+  // const orbitControlRef = useRef();
+
+  // useFrame((state) => {
+  //   const { x, y } = state.pointer;
+  //   if (orbitControlRef.current) {
+  //     orbitControlRef.current.setAzimuthalAngle(-x * angleToRadiants(45));
+  //     orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
+  //   }
+  // });
 
   // console.log(fbx);
 
@@ -20,7 +30,7 @@ const NewBuilding = (props) => {
       const tl = gsap.timeline();
       tl.to(buildingRef.current.position, {
         x: 0,
-        y: 2,
+        y: 1.3,
         z: 5,
         duration: 1,
         ease: "power1.out",
@@ -103,9 +113,11 @@ const NewBuilding = (props) => {
   return (
     <>
       <OrbitControls
+        // ref={orbitControlRef}
         enableZoom={false}
-        minPolarAngle={angleToRadiants(66)}
-        maxPolarAngle={angleToRadiants(76)}
+        enablePan={false}
+        // minPolarAngle={angleToRadiants(66)}
+        // maxPolarAngle={angleToRadiants(76)}
       />
       <group {...props} dispose={null} ref={buildingRef}>
         <mesh

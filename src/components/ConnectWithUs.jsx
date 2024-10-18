@@ -6,7 +6,7 @@ import img from "../img/image.png";
 const ConnectWithUs = (props) => {
   return (
     <section
-      className="relative"
+      className="relative lg:h-auto md:h-[690px] h-[570px]"
       id="ConnectWithUs"
       ref={(el) => props.storeInputRef(el, 6)}
     >
@@ -16,7 +16,7 @@ const ConnectWithUs = (props) => {
       </h2>
 
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
-      <div className=" flex items-center px-8 lg:justify-between justify-center">
+      <div className=" flex items-center px-8 lg:justify-between justify-center h-[80%]">
         <div className="bg-white flex rounded-xl flex-col items-center p-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0 mt-10">
           <input
             type="text"

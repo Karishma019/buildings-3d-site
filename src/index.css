@@ -103,6 +103,6 @@ video {
   }
 
   .clipPath {
-    clip-path: ellipse(61% 70% at 50% 20%);
+    clip-path: ellipse(61% 55% at 50% 20%);
   }
 }
