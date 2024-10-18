@@ -22,7 +22,7 @@ const BuildingView = ({ model }) => {
   return (
     <>
       <OrbitControls
-        enableZoom={true}
+        enableZoom={false}
         ref={orbitControlRef}
         autoRotate
         autoRotateSpeed={-0.75}
