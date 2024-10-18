@@ -13,12 +13,12 @@ const NewBuilding = (props) => {
 
   useLayoutEffect(() => {
     // new ScrollTrigger({});
-    console.log("hima", props.buildingStage)
-    if (props.buildingStage == 1){
+    console.log("hima", props.buildingStage);
+    if (props.buildingStage == 1) {
       const tl = gsap.timeline();
       tl.to(buildingRef.current.position, {
-        x: 0,
-        y: 1.5,
+        x: 0.1,
+        y: 1.8,
         z: 1,
         duration: 1,
         ease: "power1.out",
@@ -31,25 +31,25 @@ const NewBuilding = (props) => {
         },
         "<"
       );
-    } else if (props.buildingStage == 2){
+    } else if (props.buildingStage == 2) {
       const tl2 = gsap.timeline();
       tl2
-        .to(buildingRef.current.position, {
-          // x: 0,
-          y: 1,
-          duration: 1,
-          ease: "power1.out",
-        })
-        .to(
-          buildingRef.current.position,
-          {
-            // x: 0,
-            // z: -2,
-            duration: 1,
-            ease: "power1.out",
-          },
-          "<"
-        )
+        // .to(buildingRef.current.position, {
+        //   // x: 0,
+        //   y: 1,
+        //   duration: 1,
+        //   ease: "power1.out",
+        // })
+        // .to(
+        //   buildingRef.current.position,
+        //   {
+        //     // x: 0,
+        //     // z: -2,
+        //     duration: 1,
+        //     ease: "power1.out",
+        //   },
+        //   "<"
+        // )
         .to(
           buildingRef.current.rotation,
           {
@@ -68,20 +68,20 @@ const NewBuilding = (props) => {
           },
           "<"
         );
-    }else if (props.buildingStage == 3){
+    } else if (props.buildingStage == 3) {
       const tl3 = gsap.timeline();
       tl3
-        .to(
-          buildingRef.current.position,
-          {
-            // x: 0,
-            y: -0.2,
-            // z: -0.75,
-            duration: 1,
-            ease: "power1.out",
-          },
-          "<"
-        )
+        // .to(
+        //   buildingRef.current.position,
+        //   {
+        //     // x: 0,
+        //     y: -0.2,
+        //     // z: -0.75,
+        //     duration: 1,
+        //     ease: "power1.out",
+        //   },
+        //   "<"
+        // )
         .to(
           buildingRef.current.rotation,
           {
@@ -105,11 +105,6 @@ const NewBuilding = (props) => {
           "<"
         );
     }
-
-
-
-
-
   }, [props.buildingStage]);
 
   return (

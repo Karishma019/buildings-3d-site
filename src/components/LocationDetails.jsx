@@ -48,13 +48,13 @@ const LocationDetails = (props) => {
       ref={(el) => props.storeInputRef(el, 2)}
     >
       <h2
-        className="flex items-center gap-4 text-2xl pt-32 px-8"
+        className="flex items-center gap-4 text-2xl md:pt-32 pt-24 px-8"
         onClick={() => props.scrollToSection(2)}
       >
         <IoLocationOutline className="text-primary_500" />
         Location
       </h2>
-      <div className="flex md:flex-row flex-col gap-8 px-8 my-5">
+      <div className="flex md:flex-row flex-col md:gap-8 gap-4 px-8 my-5">
         <div className="bg-neutral_100 p-4 lg:w-1/4 md:w-1/3 w-full text-sm flex items-center text-center rounded-lg">
           Add exact address here
         </div>
@@ -141,21 +141,23 @@ const LocationDetails = (props) => {
           />
         </div>
       )}
-      <button
-        className="bg-black absolute bottom-[20%] cursor-pointer z-10 left-1/2 -translate-x-1/2 text-neutral_0 bg-opacity-30 border border-2 font-semibold rounded text-sm flex items-center px-3 py-1 mt-4 md:hidden"
-        onClick={handleFullscreenToggle}
-      >
-        Watch Video
-      </button>
 
-      <video
-        className="w-full object-cover h-full"
-        ref={videoRef}
-        src={bgLocation}
-        autoPlay
-        loop
-        muted
-      ></video>
+      <div className="w-full relative h-full">
+        <video
+          className="w-full object-cover h-full"
+          ref={videoRef}
+          src={bgLocation}
+          autoPlay
+          loop
+          muted
+        ></video>
+        <button
+          className="bg-black absolute top-20 cursor-pointer z-10 left-1/2 -translate-x-1/2 text-neutral_0 bg-opacity-30 border border-2 font-semibold rounded text-sm flex items-center px-3 py-1 mt-4 md:hidden"
+          onClick={handleFullscreenToggle}
+        >
+          Watch Video
+        </button>
+      </div>
     </section>
   );
 };

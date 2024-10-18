@@ -9,7 +9,8 @@ const MainViewSite = (props) => {
 
   const copyToClipboard = useCallback(() => {
     const currentUrl = window.location.href;
-    if (navigator.clipboard) {
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
         .writeText(currentUrl)
         .then(() => {
@@ -21,6 +22,31 @@ const MainViewSite = (props) => {
         .catch((err) => {
           console.error("Failed to copy: ", err);
         });
+    } else {
+      // Fallback for older browsers or specific touch-screen scenarios
+      const textArea = document.createElement("textarea");
+      textArea.value = currentUrl;
+      textArea.style.position = "fixed"; // Prevent scrolling to the bottom of the page in mobile Safari
+      textArea.style.left = "-9999px"; // Hide the textarea off-screen
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand("copy");
+        if (successful) {
+          setShowMessage(true);
+          setTimeout(() => {
+            setShowMessage(false);
+          }, 1000);
+        } else {
+          console.error("Fallback: Copy command was unsuccessful");
+        }
+      } catch (err) {
+        console.error("Fallback: Unable to copy", err);
+      }
+
+      document.body.removeChild(textArea);
     }
   }, []);
 

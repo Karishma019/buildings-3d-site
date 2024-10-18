@@ -13,7 +13,7 @@ const Header = ({ formPage }) => {
   const [isOpen, setisOpen] = useState(false);
   console.log(formPage);
   return (
-    <header className="bg-black bg-opacity-35 flex z-10 justify-between items-center sticky top-8 p-4 rounded mx-8 ">
+    <header className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 ">
       <div
         className={`flex text-white items-center ${
           formPage && "w-full"
@@ -42,7 +42,7 @@ const Header = ({ formPage }) => {
             onClick={() => setisOpen(true)}
           />
           <nav
-            className={`absolute right-0 ${
+            className={`absolute right-0  ${
               isOpen ? "top-0" : "-top-[500px]"
             }  bg-black bg-opacity-40 p-4 rounded-lg lg:hidden transition-all duration-300`}
           >

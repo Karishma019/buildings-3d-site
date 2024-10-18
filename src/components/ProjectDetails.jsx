@@ -9,7 +9,7 @@ const ProjectDetails = (props) => {
       id="projectDetails"
       ref={(el) => props.storeInputRef(el, 1)}
     >
-      <h2 className="flex items-center gap-4 text-2xl pt-20 lg:pb-10 pb-5 px-8">
+      <h2 className="flex items-center gap-4 text-2xl md:pt-20 pt-12 lg:pb-10 mb:pb-5 pb-4 px-8">
         <TfiMenuAlt className="text-primary_500" />
         Project Details
       </h2>
@@ -44,7 +44,7 @@ const ProjectDetails = (props) => {
         <div className="flex lg:flex-row flex-col lg:gap-8 gap-4">
           <div className="bg-neutral_0 lg:w-1/2  w-full rounded-xl md:py-4 py-2 shadow-xl  md:px-10 px-5">
             <h3 className="text-primary font-semibold">Penthouse</h3>
-            <div className="text-sm pt-4">
+            <div className="text-sm md:pt-4 pt-2">
               <p className="flex items-center gap-2">
                 <span className="h-5 w-5 bg-neutral_100 rounded"></span>4 Duplex
                 Penthouses (21st & 22nd floor)
