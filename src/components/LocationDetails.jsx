@@ -12,7 +12,6 @@ const LocationDetails = (props) => {
   const videoRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Function to handle entering and exiting fullscreen mode
   const handleFullscreenToggle = () => {
     setIsFullscreen((prev) => !prev);
   };
@@ -124,13 +123,6 @@ const LocationDetails = (props) => {
         skip
       </button>
 
-      <button
-        className="bg-neutral_200 absolute bottom-20 cursor-pointer z-10 left-1/2 -translate-x-1/2 text-neutral_0 bg-opacity-30 border-primary_500 border-2 text-primary_500 font-semibold rounded text-sm flex items-center px-3 py-1 mt-4 lg:hidden"
-        onClick={handleFullscreenToggle}
-      >
-        Watch Video
-      </button>
-
       {isFullscreen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center z-50">
           <button
@@ -149,6 +141,12 @@ const LocationDetails = (props) => {
           />
         </div>
       )}
+      <button
+        className="bg-black absolute bottom-[20%] cursor-pointer z-10 left-1/2 -translate-x-1/2 text-neutral_0 bg-opacity-30 border border-2 font-semibold rounded text-sm flex items-center px-3 py-1 mt-4 md:hidden"
+        onClick={handleFullscreenToggle}
+      >
+        Watch Video
+      </button>
 
       <video
         className="w-full object-cover h-full"

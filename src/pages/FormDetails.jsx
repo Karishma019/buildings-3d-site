@@ -71,7 +71,7 @@ const FormDetails = () => {
   return (
     <>
       {" "}
-      <Header />
+      <Header formPage={true} />
       <section className="relative mt-20">
         <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full"></div>
 
@@ -223,7 +223,7 @@ const FormDetails = () => {
                       name="state"
                       placeholder="Enter State"
                       id="state"
-                      className="outline-none border-b border-b-2 border-neutral_400  lg:text-lg text-sm"
+                      className="outline-none border-b border-b-2 border-neutral_400 w-full lg:text-lg text-sm"
                       onChange={handleChange}
                     />
                     {errors && (
