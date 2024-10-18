@@ -43,7 +43,7 @@ const BuildingContent = (props) => {
       tl.to(
         content1.current,
         {
-          opacity: 1,
+          opacity: 0,
           duration: 2,
           ease: "power1.out",
         },
@@ -172,7 +172,7 @@ const BuildingContent = (props) => {
       >
         <div
           ref={content1}
-          className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl opacity-0 shadow-lg -translate-x-1/2 absolute top-2 left-1/2"
+          className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl opacity-1 shadow-lg -translate-x-1/2 absolute top-2 left-1/2"
         >
           <h1 className="text-primary_500 font-semibold text-normal">
             Explore the Site in your space with Augmented Reality{" "}

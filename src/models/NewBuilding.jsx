@@ -29,14 +29,13 @@ const NewBuilding = (props) => {
     if (props.buildingStage == 1) {
       const tl = gsap.timeline();
       tl.to(buildingRef.current.position, {
-        x: 0,
-        y: 1.3,
-        z: 5,
+        z: 2,
         duration: 1,
         ease: "power1.out",
       }).to(
         buildingRef.current.rotation,
         {
+          x: 0,
           y: 0.1,
           duration: 1,
           ease: "power1.out",

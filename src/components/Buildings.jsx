@@ -43,9 +43,9 @@ const Buildings = (props) => {
               rotation={[0, -1, 0]}
             /> */}
             <NewBuilding
-              scale={1}
-              position={[5, -1, -15]}
-              rotation={[0, -1, 0]}
+              scale={2}
+              position={[0, 1.5, 0]}
+              rotation={[1, -1, 0]}
               buildingStage={props.buildingStage}
             />
           </Suspense>
