@@ -23,7 +23,12 @@ function App() {
   return (
     <div>
       <RouterProvider router={routes} />
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        theme="colored"
+        autoClose="2000"
+        hideProgressBar={true}
+      />
     </div>
   );
 }

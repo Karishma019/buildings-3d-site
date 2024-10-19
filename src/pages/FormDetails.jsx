@@ -48,7 +48,7 @@ const FormDetails = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const requiredError = requiredFields();
@@ -65,31 +65,34 @@ const FormDetails = () => {
     // console.log("Captcha value:", value);
     if (value) {
       setVerified(true);
-      console.log("Submitted");
+      setLoading(true);
+      try {
+        const res = await axios.post(
+          `${BACKENDURL}/prod/v1/public/request-app`,
+          {
+            formData,
+          }
+        );
+        console.log(res.data);
+        toast("Form Submitted Successfully", { type: "success" });
+      } catch (err) {
+        console.log(err);
+        toast("Error while submitting from", { type: "error" });
+      } finally {
+        setFormData({
+          name: "",
+          contact: "",
+          email: "",
+          projectName: "",
+          projectType: "",
+          projectAddress: "",
+          projectCity: "",
+          projectState: "",
+        });
+        setLoading(false);
+      }
     }
-    setShowCaptcha(false);
     console.log(formData);
-    setLoading(true);
-    try {
-      const res = await axios.post(`${BACKENDURL}/prod/v1/public/request-app`, {
-        formData,
-      });
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setFormData({
-        name: "",
-        contact: "",
-        email: "",
-        projectName: "",
-        projectType: "",
-        projectAddress: "",
-        projectCity: "",
-        projectState: "",
-      });
-      setLoading(false);
-    }
   };
 
   useEffect(() => {

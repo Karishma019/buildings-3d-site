@@ -3,9 +3,13 @@ import Header from "../components/Header";
 import bgVideo from "../img/bgMain.mp4";
 import { TiLocationArrowOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
+import { sitesCardData } from "../utils/data";
 
 const MainViewSite = (props) => {
   const [showMessage, setShowMessage] = useState(false);
+  const { id } = useParams();
+  const data = sitesCardData.find((data) => id == data.id);
 
   const copyToClipboard = useCallback(() => {
     const currentUrl = window.location.href;
@@ -66,7 +70,7 @@ const MainViewSite = (props) => {
       <div className="absolute inset-0 bg-black bg-opacity-50 w-full h-full"></div>
 
       <div className="text-white absolute inset-0 w-full flex gap-2 flex-col h-full justify-center items-center">
-        <h1 className="text-4xl md:text-6xl font-semibold m-0">Arcadia 111</h1>
+        <h1 className="text-4xl md:text-6xl font-semibold m-0">{data.title}</h1>
         <p className="font-normal text-lg md:text-2xl m-0">
           3 BHK PEACEFUL LIVINGS & SHOPS
         </p>
