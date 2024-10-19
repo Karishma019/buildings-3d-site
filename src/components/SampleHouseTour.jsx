@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import Loader from "./Loader";
 import CanvasLoader from "./CanvasLoader";
+import LoaderComponent from "./LoaderComponent";
 
 const SampleHouseTour = (props) => {
   const [houseTour, setHouseTour] = useState("leavingRoom.jpg");
@@ -63,7 +64,7 @@ const SampleHouseTour = (props) => {
 
       <div className="w-full h-full absolute hidden md:block">
         <Canvas camera={{ position: [0, 0, 100] }}>
-          <Suspense fallback={<CanvasLoader />}>
+          <Suspense fallback={<LoaderComponent />}>
             <BuildingView model={houseTour} />
           </Suspense>
         </Canvas>
@@ -72,7 +73,7 @@ const SampleHouseTour = (props) => {
       {/* model  full screen for mobile devices */}
 
       {isFullscreen && (
-        <div className="fixed top-0 left-0 w-full h-full z-50">
+        <div className="fixed top-0 left-0 w-full h-full z-50 md:hidden">
           <button
             className="absolute top-10 z-50 px-3 rounded right-10 text-white bg-black bg-opacity-35  text-lg"
             onClick={handleFullscreenToggle}
@@ -80,7 +81,7 @@ const SampleHouseTour = (props) => {
             X
           </button>
           <Canvas camera={{ position: [0, 0, 100] }}>
-            <Suspense fallback={<CanvasLoader />}>
+            <Suspense fallback={<LoaderComponent />}>
               <BuildingView model={houseTour} />
             </Suspense>
           </Canvas>
