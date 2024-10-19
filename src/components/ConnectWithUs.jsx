@@ -18,6 +18,7 @@ const ConnectWithUs = (props) => {
     name: "",
     contact: "",
     email: "",
+    id: "14asd-asd5-2asd"
   });
 
   const handleChange = (e) => {
@@ -52,16 +53,12 @@ const ConnectWithUs = (props) => {
 
     // setLoading(true);
     try {
-      const res = await axios.post(`${BACKENDURL}/prod/v1/public/contact`, {
-        formData,
-      });
-      console.log(res.data);
+      const res = await axios.post(`${BACKENDURL}/public/contact`, formData);
       toast("Form Submitted Successfully", { type: "success" });
     } catch (err) {
-      console.log(err);
       toast("Error while submitting from", { type: "error" });
     } finally {
-      setFormData({ name: "", contact: "", email: "" });
+      setFormData({ name: "", contact: "", email: "", id: "14asd-asd5-2asd" });
       setLoading(false);
     }
   };
