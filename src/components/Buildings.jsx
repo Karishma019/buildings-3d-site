@@ -30,7 +30,7 @@ const Buildings = (props) => {
         AR Experience
       </h2>
       <BuildingContent store={store} buildingStage={props.buildingStage} />
-      <div className="building-container bg-primary_50 h-full relative">
+      <div className="building-container bg-primary_50 md:h-full h-[87%] relative">
         <Canvas>
           {/* <XR store={store}> */}
           <Suspense fallback={<CanvasLoader />}>
@@ -44,7 +44,7 @@ const Buildings = (props) => {
             /> */}
             <NewBuilding
               scale={2}
-              position={[-0.4, 1.5, 0]}
+              position={[-0.4, 1.3, 0]}
               rotation={[1, -1, 0]}
               buildingStage={props.buildingStage}
             />
