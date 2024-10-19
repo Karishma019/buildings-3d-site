@@ -12,11 +12,12 @@ const ConnectWithUs = (props) => {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  console.log("API URL:", BACKENDURL);
+
   const [formData, setFormData] = useState({
-    name: "smit",
-    contact: "1234567890",
-    email: "smitppatel35@gmail.com",
-    id: "123456789"
+    name: "",
+    contact: "",
+    email: "",
   });
 
   const handleChange = (e) => {
@@ -51,11 +52,8 @@ const ConnectWithUs = (props) => {
 
     // setLoading(true);
     try {
-      const res = await axios.post(`${BACKENDURL}/public/contact`, {
-        name: formData.name,
-        contact: formData.contact,
-        email: formData.email,
-        id: "12345862"
+      const res = await axios.post(`${BACKENDURL}/prod/v1/public/contact`, {
+        formData,
       });
       console.log(res.data);
       toast("Form Submitted Successfully", { type: "success" });

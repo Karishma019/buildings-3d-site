@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Element, scroller, animateScroll as scroll } from "react-scroll";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
@@ -38,96 +38,126 @@ const SiteDetails = () => {
   const touchStartY = useRef(0); // Track where the touch started
 
   // Scroll to a section by index
-  const scrollToSection = useCallback(
-    (index) => {
-      localStorage.setItem("fromInteraction", 0);
-      const scrollOptions = {
+  const scrollToSection = (index) => {
+    localStorage.setItem("fromInteraction", 0);
+    if (index == 0) {
+      scroll.scrollTo(0, {
         duration: 800,
         smooth: "easeInOutQuart",
-      };
-      if (index === 0) {
-        scroll.scrollTo(0, scrollOptions);
-      } else {
-        scroller.scrollTo(sections[index], scrollOptions);
-      }
-    },
-    [sections]
-  );
+      });
+    } else {
+      scroller.scrollTo(sections[index], {
+        duration: 800,
+        smooth: "easeInOutQuart",
+      });
+    }
+  };
 
   // Move to the next or previous section based on direction
-  const moveToSection = useCallback((direction) => {
+  const moveToSection = (direction) => {
+    console.log(
+      "1",
+      scrollPosition.current,
+      sectionHeights.current,
+      isThrottling.current
+    );
     let newSection = currentSectionRef.current;
-    const building_section_index = 3;
+    let building_section_index = 3;
 
     if (
       scrollPosition.current > sectionHeights.current[building_section_index] &&
-      scrollPosition.current < sectionHeights.current[building_section_index + 1] &&
+      scrollPosition.current <
+        sectionHeights.current[building_section_index + 1] &&
       tempBuild.current < animationScrollCount &&
       tempBuild.current > -1
     ) {
       isThrottling.current = true;
       setTimeout(() => (isThrottling.current = false), 1500);
-
+      // Throttle the events to avoid jitter
       if (direction === "down") {
-        setBuildingStage((prevValue) => Math.min(prevValue + 1, animationScrollCount));
-        tempBuild.current = Math.min(tempBuild.current + 1, animationScrollCount);
+        setBuildingStage((prevValue) =>
+          prevValue < animationScrollCount ? prevValue + 1 : prevValue
+        );
+        tempBuild.current < animationScrollCount
+          ? (tempBuild.current += 1)
+          : tempBuild.current;
       } else {
-        setBuildingStage((prevValue) => Math.max(prevValue - 1, 0));
-        tempBuild.current = Math.max(tempBuild.current - 1, 0);
+        setBuildingStage((prevValue) =>
+          prevValue > 0 ? prevValue - 1 : prevValue
+        );
+        tempBuild.current > 0 ? (tempBuild.current -= 1) : tempBuild.current;
       }
+
       return;
     } else {
-      setBuildingStage(0);
+      setBuildingStage((prevValue) => 0);
     }
 
     if (direction === "down" && newSection < sections.length - 1) {
-      newSection += 1;
+      newSection += 1; // Move to the next section
     } else if (direction === "up" && newSection > 0) {
-      newSection -= 1;
+      newSection -= 1; // Move to the previous section
     }
+
+    console.log("2", newSection, currentSectionRef.current);
 
     if (newSection !== currentSectionRef.current) {
-      scrollToSection(newSection);
+      // currentSectionRef.current = newSection; // Update the ref value
+      scrollToSection(newSection); // Smooth scroll to the new section
     }
 
+    // Throttle the events to avoid jitter
     isThrottling.current = true;
     setTimeout(() => (isThrottling.current = false), 1300);
-  }, [scrollToSection, sections]);
-  // Handle scroll events
-  const handleScroll = useCallback((e) => {
-    e.preventDefault();
-    if (isThrottling.current) return;
+  };
 
+  // Handle scroll events
+  const handleScroll = (e) => {
+    // console.log("yash", e.deltaY)
+    e.preventDefault();
     scrollPosition.current = window.scrollY;
-    requestAnimationFrame(() => {
-      for (let i = 0; i < sectionHeights.current.length; i++) {
-        if (scrollPosition.current < sectionHeights.current[i]) {
-          currentSectionRef.current = i;
-          break;
-        }
+
+    // Uncomment this portion to decide current section based on scroll position
+    for (let i = 0; i < sectionHeights.current.length; i++) {
+      if (window.scrollY < sectionHeights.current[i]) {
+        currentSectionRef.current = i;
+        break;
       }
-      const scrollDirection = e.deltaY > 0 ? "down" : "up";
-      moveToSection(scrollDirection);
-    });
-  }, [moveToSection]);
+    }
+    if (isThrottling.current) return; // Throttle scroll to avoid jitter)
+    const scrollDirection = e.deltaY > 0 ? "down" : "up"; // Detect scroll direction
+    moveToSection(scrollDirection);
+  };
 
   // Handle Touch Start (for Mobile)
-  const handleTouchStart = useCallback((e) => {
-    touchStartY.current = e.touches[0].clientY;
-  }, []);
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY; // Record the Y position of the touch start
+    scrollPosition.current = window.scrollY;
+  };
 
   // Handle Touch Move (for Mobile)
-  const handleTouchMove = useCallback((e) => {
+  const handleTouchMove = (e) => {
     e.preventDefault();
-    if (isThrottling.current) return;
+    scrollPosition.current = window.scrollY;
 
-    const touchEndY = e.touches[0].clientY;
-    const direction = touchEndY < touchStartY.current ? "down" : "up";
+    // Uncomment this portion to decide current section based on scroll position
+    for (let i = 0; i < sectionHeights.current.length; i++) {
+      if (window.scrollY < sectionHeights.current[i]) {
+        currentSectionRef.current = i;
+        break;
+      }
+    }
 
+    if (isThrottling.current) return; // Throttle to prevent rapid triggers
+
+    const touchEndY = e.touches[0].clientY; // Y position where the touch ended
+    const direction = touchEndY < touchStartY.current ? "down" : "up"; // Determine swipe direction
+
+    // Only trigger section scroll if the swipe is significant
     if (Math.abs(touchEndY - touchStartY.current) > 50) {
       moveToSection(direction);
     }
-  }, [moveToSection]);
+  };
 
   const storeInputRef = (el, index) => {
     sections_obj.current[index] = el;
