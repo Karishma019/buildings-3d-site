@@ -52,7 +52,7 @@ const ConnectWithUs = (props) => {
 
     // setLoading(true);
     try {
-      const res = await axios.post(`${BACKENDURL}/v1/public/contact`, {
+      const res = await axios.post(`${BACKENDURL}/prod/v1/public/contact`, {
         formData,
       });
       console.log(res.data);

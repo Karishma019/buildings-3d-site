@@ -67,9 +67,12 @@ const FormDetails = () => {
       setVerified(true);
       setLoading(true);
       try {
-        const res = await axios.post(`${BACKENDURL}/v1/public/request-app`, {
-          formData,
-        });
+        const res = await axios.post(
+          `${BACKENDURL}/prod/v1/public/request-app`,
+          {
+            formData,
+          }
+        );
         console.log(res.data);
         toast("Form Submitted Successfully", { type: "success" });
       } catch (err) {
