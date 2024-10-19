@@ -59,6 +59,25 @@ const FormDetails = () => {
     }
     setShowCaptcha(true);
     setErrors(null);
+
+    try {
+      const res = await axios.post(`${BACKENDURL}/public/request-app`, formData);
+      toast("Form Submitted Successfully", { type: "success" });
+    } catch (err) {
+      toast("Error while submitting from", { type: "error" });
+    } finally {
+      setFormData({
+        name: "",
+        contact: "",
+        email: "",
+        projectName: "",
+        projectType: "",
+        projectAddress: "",
+        projectCity: "",
+        projectState: "",
+      });
+      setLoading(false);
+    }
   };
 
   const onChange = async (value) => {
@@ -287,15 +306,16 @@ const FormDetails = () => {
             </div>
             <p className="lg:text-lg text-sm font-semibold mt-10">Payment</p>
             <div className="bg-neutral_100 h-56 mt-4 rounded"></div>
-            {showCaptcha && (
+            {/* {showCaptcha && (
               <div className="mt-5">
                 <ReCAPTCHA sitekey={`${APIKEY}`} onChange={onChange} />
               </div>
-            )}
+            )} */}
 
             <button
               type="submit"
               className="bg-primary_500 text-neutral_0 rounded-lg px-4 py-2 mt-5"
+              onSubmit={(e) => handleSubmit(e)}
             >
               Submit
             </button>

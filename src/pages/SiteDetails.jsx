@@ -210,7 +210,8 @@ const SiteDetails = () => {
       // setBuildingStage((prevValue) => animationScrollCount);
     } else {
       scroll.scrollTo(0, {
-        duration: 800,
+        duration: 0,
+        duration: 0,
         smooth: "easeInOutQuart",
       });
     }
