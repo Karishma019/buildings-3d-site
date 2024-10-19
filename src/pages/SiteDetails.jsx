@@ -39,6 +39,7 @@ const SiteDetails = () => {
 
   // Scroll to a section by index
   const scrollToSection = (index) => {
+    localStorage.setItem("fromInteraction", 0);
     if (index == 0) {
       scroll.scrollTo(0, {
         duration: 800,
@@ -196,10 +197,23 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
-    scroll.scrollTo(0, {
-      duration: 800,
-      smooth: "easeInOutQuart",
-    });
+    const fromInteraction = localStorage.getItem("fromInteraction");
+    if (parseInt(fromInteraction) || 0 == 1){
+      // scroller.scrollTo(sections[5], {
+      //   duration: 0,   // No animation
+      //   delay: 0,      // No delay
+      //   smooth: false, // Disable smooth scrolling
+      //   // offset: -50,   // Optional: Adjust for header offset
+      // });
+      // setBuildingStage((prevValue) => animationScrollCount);
+    }
+    else{
+      scroll.scrollTo(0, {
+        duration: 800,
+        smooth: "easeInOutQuart",
+      });
+    }
+
   }, []);
 
   return (

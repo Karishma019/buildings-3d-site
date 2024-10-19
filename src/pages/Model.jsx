@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 
 import {
   OrbitControls,
@@ -14,6 +14,12 @@ import Header from "../components/Header";
 import { FaHandPointer } from "react-icons/fa6";
 
 const Model = () => {
+
+  useEffect(() => {
+    localStorage.setItem("fromInteraction", 1);
+  }, []);
+
+
   return (
     <div className="h-screen relative">
       <div className="flex flex-col items-center  absolute top-[20%] z-10 left-[50%] -translate-x-1/2">
