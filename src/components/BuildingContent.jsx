@@ -243,12 +243,12 @@ const BuildingContent = (props) => {
           </div>
         </div>
         <div
-          className="flex flex-col items-center  absolute top-[5%] left-[50%] opacity-0 -translate-x-1/2"
           ref={pointerRef}
+          className=" p-6 flex justify-center  lg:w-1/3 w-2/3 rounded-3xl opacity-0 -translate-x-1/2 absolute top-5 left-1/2"
         >
           <Link
             to={`/model`}
-            className="mg:text-sm text-xs flex gap-5 relative bg-black bg-opacity-35 text-white font-semibold rounded p-2 items-center font-semibold mt-2"
+            className="bg-primary_50 border-primary_500 md:text-sm text-xs  text-center font-semibold py-1 px-3 border-2 rounded text-primary_500 "
           >
             Click to interact with the model{" "}
           </Link>
