@@ -194,7 +194,10 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scroll.scrollTo(0, {
+      duration: 800,
+      smooth: "easeInOutQuart",
+    });
   }, []);
 
   return (
