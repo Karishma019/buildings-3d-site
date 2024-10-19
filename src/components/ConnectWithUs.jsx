@@ -68,7 +68,7 @@ const ConnectWithUs = (props) => {
 
   return (
     <section
-      className="relative lg:h-auto md:h-[690px] h-1/2"
+      className="relative lg:h-auto md:h-[690px] h-[570px]"
       id="ConnectWithUs"
       ref={(el) => props.storeInputRef(el, 6)}
     >
