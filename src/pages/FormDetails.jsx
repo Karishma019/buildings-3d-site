@@ -86,7 +86,7 @@ const FormDetails = () => {
       // Trigger the Razorpay payment after successful form submission
       if (res.data) {
         console.log("razorpayyyyyyyyyy");
-        await triggerRazorpay(res.data);
+        await triggerRazorpay(res.data.message);
       }
     } catch (err) {
       toast("Error while submitting form", { type: "error" });
@@ -106,6 +106,7 @@ const FormDetails = () => {
   };
 
   const triggerRazorpay = async (order) => {
+    console.log("yash")
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -115,7 +116,7 @@ const FormDetails = () => {
     }
 
     const options = {
-      key: "YOUR_KEY_ID", // Enter the Key ID from your Razorpay Dashboard
+      key: order.key, // Enter the Key ID from your Razorpay Dashboard
       amount: order.amount, // Amount in the smallest currency unit
       currency: order.currency,
       name: "Your Company Name",
