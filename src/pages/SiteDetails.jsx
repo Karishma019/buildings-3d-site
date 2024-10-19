@@ -10,6 +10,8 @@ import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
 
+const animationScrollCount = 4;
+
 const SiteDetails = () => {
   const scrollPosition = useRef(0);
   const sections = [
@@ -65,7 +67,7 @@ const SiteDetails = () => {
       scrollPosition.current > sectionHeights.current[building_section_index] &&
       scrollPosition.current <
         sectionHeights.current[building_section_index + 1] &&
-      tempBuild.current < 4 &&
+      tempBuild.current < animationScrollCount &&
       tempBuild.current > -1
     ) {
       isThrottling.current = true;
@@ -73,9 +75,9 @@ const SiteDetails = () => {
       // Throttle the events to avoid jitter
       if (direction === "down") {
         setBuildingStage((prevValue) =>
-          prevValue < 4 ? prevValue + 1 : prevValue
+          prevValue < animationScrollCount ? prevValue + 1 : prevValue
         );
-        tempBuild.current < 4 ? (tempBuild.current += 1) : tempBuild.current;
+        tempBuild.current < animationScrollCount ? (tempBuild.current += 1) : tempBuild.current;
       } else {
         setBuildingStage((prevValue) =>
           prevValue > 0 ? prevValue - 1 : prevValue
