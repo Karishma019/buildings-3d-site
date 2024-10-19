@@ -14,11 +14,13 @@ import Header from "../components/Header";
 import { FaHandPointer } from "react-icons/fa6";
 
 const Model = () => {
-
   useEffect(() => {
     localStorage.setItem("fromInteraction", 1);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="h-screen relative">
