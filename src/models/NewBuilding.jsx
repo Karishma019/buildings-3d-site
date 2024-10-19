@@ -30,6 +30,7 @@ const NewBuilding = (props) => {
       const tl = gsap.timeline();
       tl.to(buildingRef.current.position, {
         z: 2,
+        x: 0,
         duration: 1,
         ease: "power1.out",
       }).to(
@@ -48,7 +49,7 @@ const NewBuilding = (props) => {
         .to(
           buildingRef.current.position,
           {
-            x: 0.2,
+            x: 0.5,
             duration: 1,
             ease: "power1.out",
           },
@@ -78,7 +79,7 @@ const NewBuilding = (props) => {
         .to(
           buildingRef.current.position,
           {
-            x: 0.05,
+            x: 0.1,
             duration: 1,
             ease: "power1.out",
           },
