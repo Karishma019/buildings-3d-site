@@ -5,12 +5,32 @@ import Header from "../components/Header";
 import { APIKEY, BACKENDURL } from "../utils/utils";
 import axios from "axios";
 import Loader from "../components/Loader";
+import RazorpayPayment from "../components/RazorpayPayment";
 
 const FormDetails = () => {
   const [verified, setVerified] = useState(false);
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [order, setOrder] = useState(null);
+
+  useEffect(() => {
+    // Fetch the order from your backend
+    const createOrder = async () => {
+      const response = await fetch("http://localhost:3000/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: 500, currency: "INR" }),
+      });
+      const data = await response.json();
+      setOrder(data);
+    };
+
+    createOrder();
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -61,7 +81,10 @@ const FormDetails = () => {
     setErrors(null);
 
     try {
-      const res = await axios.post(`${BACKENDURL}/public/request-app`, formData);
+      const res = await axios.post(
+        `${BACKENDURL}/public/request-app`,
+        formData
+      );
       toast("Form Submitted Successfully", { type: "success" });
     } catch (err) {
       toast("Error while submitting from", { type: "error" });
@@ -319,6 +342,7 @@ const FormDetails = () => {
             >
               Submit
             </button>
+            <RazorpayPayment order={order} />
           </form>
         </div>
       </section>
