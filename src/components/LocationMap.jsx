@@ -38,7 +38,7 @@ const LocationMap = (props) => {
         <img
           src={bgImage}
           alt="map-location"
-          className="w-full lg:h-2/3 h-1/2 object-cover object-top object-right"
+          className="w-full lg:h-2/3 h-1/2 object-cover lg:object-top object-right"
         />
       </div>
     </section>
