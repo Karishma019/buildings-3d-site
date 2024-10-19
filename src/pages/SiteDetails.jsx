@@ -78,7 +78,9 @@ const SiteDetails = () => {
         setBuildingStage((prevValue) =>
           prevValue < animationScrollCount ? prevValue + 1 : prevValue
         );
-        tempBuild.current < animationScrollCount ? (tempBuild.current += 1) : tempBuild.current;
+        tempBuild.current < animationScrollCount
+          ? (tempBuild.current += 1)
+          : tempBuild.current;
       } else {
         setBuildingStage((prevValue) =>
           prevValue > 0 ? prevValue - 1 : prevValue
@@ -198,7 +200,7 @@ const SiteDetails = () => {
 
   useEffect(() => {
     const fromInteraction = localStorage.getItem("fromInteraction");
-    if (parseInt(fromInteraction) || 0 == 1){
+    if (parseInt(fromInteraction) || 0 == 1) {
       // scroller.scrollTo(sections[5], {
       //   duration: 0,   // No animation
       //   delay: 0,      // No delay
@@ -206,14 +208,12 @@ const SiteDetails = () => {
       //   // offset: -50,   // Optional: Adjust for header offset
       // });
       // setBuildingStage((prevValue) => animationScrollCount);
-    }
-    else{
+    } else {
       scroll.scrollTo(0, {
         duration: 800,
         smooth: "easeInOutQuart",
       });
     }
-
   }, []);
 
   return (
