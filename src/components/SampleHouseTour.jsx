@@ -185,7 +185,7 @@ const SampleHouseTour = (props) => {
         </div>{" "}
       </div>
       {/*Button For mobile devices */}
-      <div className="w-full gap-5 absolute sm:bottom-[20%] bottom-[10%] flex flex-col items-center md:hidden">
+      <div className="w-full gap-5 absolute sm:bottom-[20%] bottom-[25%] flex flex-col items-center md:hidden">
         <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
