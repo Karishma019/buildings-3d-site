@@ -4,7 +4,7 @@ export const sitesCardData = [
     title: "Arcadia 111",
     location: "Ahmedabad",
     description:
-      "This is a basic description about the site and how this can be the best choice by the clients because of the facilities it provides and the price range that is affordable.",
+      "Introducing an epitome of fine living, nestled in the graceful area of Gota, this residence offers modern aesthetics and a warm, elegant atmosphere. With impressive living spaces and an alluring natural backdrop, this development elevates lifestyle with personalized designs, high-end amenities, and stunning surroundings.",
   },
   {
     id: "dr2yua2gv8",
