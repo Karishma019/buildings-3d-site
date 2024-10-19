@@ -10,7 +10,7 @@ import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
 
-const animationScrollCount = 4;
+const animationScrollCount = 3;
 
 const SiteDetails = () => {
   const scrollPosition = useRef(0);
