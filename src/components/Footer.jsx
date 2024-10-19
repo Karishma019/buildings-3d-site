@@ -8,6 +8,10 @@ import { FaInstagram } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const Footer = () => {
+  const handleButtonClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <footer className="bg-primary_50 mt-10 w-full">
       <h1 className="uppercase text-4xl text-center pt-10">
@@ -48,13 +52,31 @@ const Footer = () => {
           </label> */}
           <p className="font-semibold text-black">Follow Us on</p>
           <div className="text-primary flex gap-7 text-3xl">
-            <p>
+            <p
+              onClick={() =>
+                handleButtonClick(
+                  "https://www.linkedin.com/company/estate-explorer-in/"
+                )
+              }
+            >
               <FaLinkedin />
             </p>
-            <p>
+            <p
+              onClick={() =>
+                handleButtonClick(
+                  "https://www.facebook.com/profile.php?id=61567265972105&mibextid=ZbWKwL"
+                )
+              }
+            >
               <FaFacebookF />
             </p>
-            <p>
+            <p
+              onClick={() =>
+                handleButtonClick(
+                  "https://www.instagram.com/estate_explorer_india/profilecard/?igsh=MTByenQxbGgydGRrOA=="
+                )
+              }
+            >
               <FaInstagram />
             </p>
           </div>

@@ -26,8 +26,13 @@ const ConnectWithUs = (props) => {
     const newErrors = {};
 
     if (formData.name === "") newErrors.fullName = "full name is Required";
-    if (formData.contact === "")
-      newErrors.phoneNumber = "Phone Number is Required";
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    if (formData.contact === "") {
+      newErrors.phoneNumber = "Phone Number is required";
+    } else if (!phoneNumberPattern.test(formData.contact)) {
+      newErrors.phoneNumber = "Please enter a valid 10-digit phone number";
+    }
+
     if (formData.email === "") newErrors.email = "Email is Required";
     return newErrors;
   };
@@ -76,7 +81,7 @@ const ConnectWithUs = (props) => {
       <div className=" flex items-center px-8 lg:justify-between justify-center h-[80%]">
         <form
           className="bg-white flex rounded-xl flex-col items-center p-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0 mt-10"
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
         >
           <div className="w-full">
             <input
@@ -100,7 +105,9 @@ const ConnectWithUs = (props) => {
               className="bg-[#D4D4D433] outline-none sm:text-lg text-sm w-full rounded-lg py-2 px-4"
               onChange={handleChange}
             />
-            {errors && <p className=" text-xs text-red-500">{errors?.email}</p>}
+            {errors && (
+              <p className=" text-xs text-red-500">{errors?.phoneNumber}</p>
+            )}
           </div>
           <div className="w-full">
             <input
@@ -111,9 +118,7 @@ const ConnectWithUs = (props) => {
               className="bg-[#D4D4D433] outline-none sm:text-lg text-sm  w-full rounded-lg py-2 px-4"
               onChange={handleChange}
             />
-            {errors && (
-              <p className=" text-xs text-red-500">{errors?.phoneNumber}</p>
-            )}
+            {errors && <p className=" text-xs text-red-500">{errors?.email}</p>}
           </div>
           <button
             type="submit"

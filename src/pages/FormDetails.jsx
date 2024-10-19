@@ -30,8 +30,13 @@ const FormDetails = () => {
     const newErrors = {};
 
     if (formData.name === "") newErrors.fullName = "full name is Required";
-    if (formData.contact === "")
-      newErrors.phoneNumber = "Phone Number is Required";
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    if (formData.contact === "") {
+      newErrors.phoneNumber = "Phone Number is required";
+    } else if (!phoneNumberPattern.test(formData.contact)) {
+      newErrors.phoneNumber = "Please enter a valid 10-digit phone number";
+    }
+
     if (formData.email === "") newErrors.email = "Email is Required";
     if (formData.projectName === "")
       newErrors.projectName = "Project Name is Required";
@@ -198,15 +203,23 @@ const FormDetails = () => {
                 className="flex flex-col gap-2 lg:text-sm text-[12px] md:w-1/2 w-full"
               >
                 Project Type
-                <input
-                  type="text"
+                <select
                   name="projectType"
                   value={formData.projectType}
-                  placeholder="Select Project Type"
                   id="projectType"
-                  className="outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm"
+                  className={`outline-none border-b border-b-2 border-neutral_400 lg:text-lg text-sm ${
+                    formData.projectType ? "text-black" : "text-gray-400"
+                  }`}
                   onChange={handleChange}
-                />
+                >
+                  <option value="" disabled>
+                    Select Project Type
+                  </option>
+                  <option value="Residential">Residential</option>
+                  <option value="Industrial">Industrial</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Other">Other</option>
+                </select>
                 {errors && (
                   <p className="w-1/2 text-xs text-red-500">
                     {errors?.projectType}

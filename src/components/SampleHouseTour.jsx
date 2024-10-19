@@ -74,7 +74,7 @@ const SampleHouseTour = (props) => {
       {isFullscreen && (
         <div className="fixed top-0 left-0 w-full h-full z-50">
           <button
-            className="absolute top-20 z-50 px-3 rounded right-20 text-white bg-black bg-opacity-35  text-lg"
+            className="absolute top-10 z-50 px-3 rounded right-10 text-white bg-black bg-opacity-35  text-lg"
             onClick={handleFullscreenToggle}
           >
             X
