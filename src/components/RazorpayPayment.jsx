@@ -21,7 +21,7 @@ const RazorpayPayment = ({ order }) => {
     }
 
     const options = {
-      key: "YOUR_KEY_ID", // Enter the Key ID from your Razorpay Dashboard
+      key: order.key, // Enter the Key ID from your Razorpay Dashboard
       amount: order.amount, // Amount in the smallest currency unit
       currency: order.currency,
       name: "Your Company Name",
