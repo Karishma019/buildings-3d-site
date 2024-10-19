@@ -62,7 +62,7 @@ const SampleHouseTour = (props) => {
       </div>
 
       <div className="w-full h-full absolute hidden md:block">
-        <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
+        <Canvas camera={{ position: [0, 0, 100] }}>
           <Suspense fallback={<CanvasLoader />}>
             <BuildingView model={houseTour} />
           </Suspense>
@@ -79,7 +79,7 @@ const SampleHouseTour = (props) => {
           >
             X
           </button>
-          <Canvas camera={{ position: [0, 0, 2], fov: 60 }}>
+          <Canvas camera={{ position: [0, 0, 100] }}>
             <Suspense fallback={<CanvasLoader />}>
               <BuildingView model={houseTour} />
             </Suspense>
@@ -119,7 +119,7 @@ const SampleHouseTour = (props) => {
       {/* For tabs and laptop devices */}
       <div className="absolute bottom-10 md:flex hidden w-full text-white flex items-center gap-4 overflow-hidden px-8">
         <div
-          className="bg-black bg-opacity-35 p-2 rounded lg:hidden"
+          className="bg-black bg-opacity-35 p-2 rounded lg:block hidden"
           onClick={scrollLeft}
         >
           <FaChevronLeft className="text-xl rounded  cursor-pointer" />
@@ -168,9 +168,17 @@ const SampleHouseTour = (props) => {
           >
             Master Bedroom{" "}
           </button>
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => {
+              setHouseTour("Foyer.jpg");
+            }}
+          >
+            Foyer
+          </button>
         </div>
         <div
-          className="bg-black bg-opacity-35 p-2 rounded lg:hidden"
+          className="bg-black bg-opacity-35 p-2 rounded lg:block hidden"
           onClick={scrollRight}
         >
           <FaChevronRight className="text-xl rounded  cursor-pointer" />
@@ -212,6 +220,12 @@ const SampleHouseTour = (props) => {
             onClick={() => handleFullscreenToggle("Master.jpg")}
           >
             <p>Master Bedroom</p>
+          </div>
+          <div
+            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
+            onClick={() => handleFullscreenToggle("Foyer.jpg")}
+          >
+            <p>Foyer</p>
           </div>
         </div>
       </div>

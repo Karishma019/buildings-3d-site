@@ -43,7 +43,7 @@ const LocationDetails = (props) => {
 
   return (
     <section
-      className="relative h-screen"
+      className="relative h-screen overflow-hidden"
       id="locationDetails"
       ref={(el) => props.storeInputRef(el, 2)}
     >

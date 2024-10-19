@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "custom-gradient":
+          "linear-gradient(to bottom, #54BCE7 20%, #DCE7E3 100%, #2878AE 60%)",
+      },
+
       colors: {
         primary: "#3456DA",
         primary_10: "#eff3ff",
