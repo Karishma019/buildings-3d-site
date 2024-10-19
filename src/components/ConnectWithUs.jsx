@@ -6,6 +6,7 @@ import { BACKENDURL } from "../utils/utils";
 import axios from "axios";
 import Loader from "./Loader";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const ConnectWithUs = (props) => {
   const [errors, setErrors] = useState(null);
@@ -49,14 +50,16 @@ const ConnectWithUs = (props) => {
     console.log(formData);
     setErrors(null);
 
-    setLoading(true);
+    // setLoading(true);
     try {
-      const res = await axios.post(`${BACKENDURL}/prod/v1/public/contact`, {
+      const res = await axios.post(`${BACKENDURL}/v1/public/contact`, {
         formData,
       });
       console.log(res.data);
+      toast("Form Submitted Successfully", { type: "success" });
     } catch (err) {
       console.log(err);
+      toast("Error while submitting from", { type: "error" });
     } finally {
       setFormData({ name: "", contact: "", email: "" });
       setLoading(false);
