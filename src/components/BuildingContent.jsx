@@ -166,12 +166,12 @@ const BuildingContent = (props) => {
               Experience
             </p>
           </div>
-          <button
+          <Link
             className="bg-primary_50 mt-4 border-primary_500 md:text-sm text-xs  text-center font-semibold py-1 px-3 border-2 rounded text-primary_500 lg:hidden block"
-            onClick={() => store.enterAR()}
+            to={`/model`}
           >
             Start AR Experience{" "}
-          </button>
+          </Link>
         </div>
 
         <div
