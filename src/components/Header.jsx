@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { TfiMenuAlt } from "react-icons/tfi";
@@ -11,6 +11,9 @@ import { scrollToSection } from "../utils/scrollToSection";
 
 const Header = ({ formPage }) => {
   const [isOpen, setisOpen] = useState(false);
+
+  const navigate = useNavigate();
+
   console.log(formPage);
   return (
     <header className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 ">
@@ -20,13 +23,15 @@ const Header = ({ formPage }) => {
         } sm:gap-16`}
       >
         <Link
-          to={"/"}
+          to="#"
           className={`text-2xl ${formPage == undefined && "px-4"}`}
+          onClick={() => navigate(-1)}
         >{`<`}</Link>
         <h1
-          className={`uppercase md:text-2xl  ${
+          className={`uppercase md:text-2xl cursor-pointer  ${
             formPage != undefined && "text-center"
           } text-xl w-full`}
+          onClick={() => scrollToSection("mainViewSite")}
         >
           <span className="bg-white text-black md:text-xl text-lg py-1 tracking-widest">
             Estate

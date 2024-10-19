@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaHandPointer } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,15 +84,6 @@ const BuildingContent = (props) => {
           "<"
         )
         .to(
-          contentRef.current,
-          {
-            display: "none",
-            duration: 2,
-            ease: "power1.out",
-          },
-          "<"
-        )
-        .to(
           pointerRef.current,
           {
             opacity: 1,
@@ -156,16 +148,6 @@ const BuildingContent = (props) => {
 
   return (
     <>
-      <div
-        className="flex flex-col items-center  absolute top-[20%] z-10 left-[50%] opacity-0 -translate-x-1/2"
-        ref={pointerRef}
-      >
-        <div className=" rounded-full bg-black bg-opacity-20 absolute h-5 w-5 animate-ping"></div>
-        <FaHandPointer />
-        <p className="mg:text-sm text-xs font-semibold mt-2">
-          Interact with model
-        </p>
-      </div>
       <div
         className="building-section z-10 absolute h-full w-full"
         ref={contentRef}
@@ -259,6 +241,17 @@ const BuildingContent = (props) => {
               {">"}
             </p>
           </div>
+        </div>
+        <div
+          className="flex flex-col items-center  absolute top-[5%] left-[50%] opacity-0 -translate-x-1/2"
+          ref={pointerRef}
+        >
+          <Link
+            to={`/model`}
+            className="mg:text-sm text-xs flex gap-5 relative bg-black bg-opacity-35 text-white font-semibold rounded p-2 items-center font-semibold mt-2"
+          >
+            Click to interact with the model{" "}
+          </Link>
         </div>
       </div>
     </>

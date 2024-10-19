@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import SiteDetails from "../pages/SiteDetails";
 import FormDetails from "../pages/FormDetails";
+import Model from "../pages/Model";
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const routes = createBrowserRouter([
   {
     path: "/form-details",
     element: <FormDetails />,
+  },
+  {
+    path: "/model",
+    element: <Model />,
   },
 ]);
 
