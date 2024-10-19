@@ -14,22 +14,15 @@ const FormDetails = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState(null);
 
-  useEffect(() => {
-    // Fetch the order from your backend
-    const createOrder = async () => {
-      const response = await fetch("http://localhost:3000/create-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: 500, currency: "INR" }),
-      });
-      const data = await response.json();
-      setOrder(data);
-    };
-
-    createOrder();
-  }, []);
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -81,13 +74,22 @@ const FormDetails = () => {
     setErrors(null);
 
     try {
+      // Make the API call to submit the form
+      setLoading(true);
       const res = await axios.post(
         `${BACKENDURL}/public/request-app`,
         formData
       );
+      setOrder(res.data);
       toast("Form Submitted Successfully", { type: "success" });
+
+      // Trigger the Razorpay payment after successful form submission
+      if (res.data) {
+        console.log("razorpayyyyyyyyyy");
+        await triggerRazorpay(res.data);
+      }
     } catch (err) {
-      toast("Error while submitting from", { type: "error" });
+      toast("Error while submitting form", { type: "error" });
     } finally {
       setFormData({
         name: "",
@@ -103,39 +105,74 @@ const FormDetails = () => {
     }
   };
 
-  const onChange = async (value) => {
-    // console.log("Captcha value:", value);
-    if (value) {
-      setVerified(true);
-      setLoading(true);
-      try {
-        const res = await axios.post(
-          `${BACKENDURL}/prod/v1/public/request-app`,
-          {
-            formData,
-          }
-        );
-        console.log(res.data);
-        toast("Form Submitted Successfully", { type: "success" });
-      } catch (err) {
-        console.log(err);
-        toast("Error while submitting from", { type: "error" });
-      } finally {
-        setFormData({
-          name: "",
-          contact: "",
-          email: "",
-          projectName: "",
-          projectType: "",
-          projectAddress: "",
-          projectCity: "",
-          projectState: "",
-        });
-        setLoading(false);
-      }
+  const triggerRazorpay = async (order) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
     }
-    console.log(formData);
+
+    const options = {
+      key: "YOUR_KEY_ID", // Enter the Key ID from your Razorpay Dashboard
+      amount: order.amount, // Amount in the smallest currency unit
+      currency: order.currency,
+      name: "Your Company Name",
+      description: "Test Transaction",
+      order_id: order.id, // This is the order ID from the backend
+      handler: (response) => {
+        alert(`Payment ID: ${response.razorpay_payment_id}`);
+        alert(`Order ID: ${response.razorpay_order_id}`);
+        alert(`Signature: ${response.razorpay_signature}`);
+      },
+      prefill: {
+        name: "John Doe",
+        email: "johndoe@example.com",
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#F37254",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
+
+  // const onChange = async (value) => {
+  //   // console.log("Captcha value:", value);
+  //   if (value) {
+  //     setVerified(true);
+  //     setLoading(true);
+  //     try {
+  //       const res = await axios.post(
+  //         `${BACKENDURL}/prod/v1/public/request-app`,
+  //         {
+  //           formData,
+  //         }
+  //       );
+  //       console.log(res.data);
+  //       toast("Form Submitted Successfully", { type: "success" });
+  //     } catch (err) {
+  //       console.log(err);
+  //       toast("Error while submitting from", { type: "error" });
+  //     } finally {
+  //       setFormData({
+  //         name: "",
+  //         contact: "",
+  //         email: "",
+  //         projectName: "",
+  //         projectType: "",
+  //         projectAddress: "",
+  //         projectCity: "",
+  //         projectState: "",
+  //       });
+  //       setLoading(false);
+  //     }
+  //   }
+  //   console.log(formData);
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -328,7 +365,7 @@ const FormDetails = () => {
               </div>
             </div>
             <p className="lg:text-lg text-sm font-semibold mt-10">Payment</p>
-            <div className="bg-neutral_100 h-56 mt-4 rounded"></div>
+            {/* <div className="bg-neutral_100 h-56 mt-4 rounded"></div> */}
             {/* {showCaptcha && (
               <div className="mt-5">
                 <ReCAPTCHA sitekey={`${APIKEY}`} onChange={onChange} />
@@ -340,9 +377,8 @@ const FormDetails = () => {
               className="bg-primary_500 text-neutral_0 rounded-lg px-4 py-2 mt-5"
               onSubmit={(e) => handleSubmit(e)}
             >
-              Submit
+              Pay now
             </button>
-            <RazorpayPayment order={order} />
           </form>
         </div>
       </section>

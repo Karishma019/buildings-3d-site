@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import Header from "../components/Header";
-import bgVideo from "../img/bgMain.mp4";
+import bgVideo from "../img/main.mp4";
 import { TiLocationArrowOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";

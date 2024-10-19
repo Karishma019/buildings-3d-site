@@ -37,8 +37,8 @@ const Home = () => {
           </div>
         </div>
         <div className="bg-white p-4 rounded-2xl shadow-2xl text-center">
-          <p className="font-semibold">{`<Try it Yourself>`}</p>
-          <p className="text-sm mt-2 mb-4">{`<Install our AR App and need copy for this description message>`}</p>
+          <p className="font-semibold">{`AR App at ₹1`}</p>
+          <p className="text-sm mt-2 mb-4">{`Build an immersive AR experience for your project for only ₹1!`}</p>
           <Link
             to={`/form-details`}
             className="bg-primary text-white px-4 py-2 rounded text-sm"
