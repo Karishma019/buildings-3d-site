@@ -56,7 +56,7 @@ const MainViewSite = (props) => {
 
   return (
     <section
-      className="h-[calc(100vh-74px)] overflow-hidden"
+      className="h-[calc(100vh-64px)] overflow-hidden"
       ref={(el) => props.storeInputRef(el, 0)}
     >
       <video
