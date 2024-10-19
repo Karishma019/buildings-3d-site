@@ -5,7 +5,7 @@ import { BiHomeAlt } from "react-icons/bi";
 const ProjectDetails = (props) => {
   return (
     <section
-      className="py-10"
+      className="py-5 md:py-10"
       id="projectDetails"
       ref={(el) => props.storeInputRef(el, 1)}
     >
