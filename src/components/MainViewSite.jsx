@@ -51,20 +51,23 @@ const MainViewSite = (props) => {
   }, []);
 
   return (
-    <section className="h-screen" ref={(el) => props.storeInputRef(el, 0)}>
+    <section
+      className="h-[calc(100vh-64px)] overflow-hidden"
+      ref={(el) => props.storeInputRef(el, 0)}
+    >
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full top-0 object-cover"
         src={bgVideo}
         autoPlay
         loop
         muted
       ></video>
 
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-50 w-full h-full"></div>
 
-      <div className="text-white absolute top-0 w-full flex gap-2 flex-col h-full justify-center items-center">
-        <h1 className="text-4xl md:text-6xl font-semibold">Arcadia 111</h1>
-        <p className="font-normal text-lg md:text-2xl">
+      <div className="text-white absolute inset-0 w-full flex gap-2 flex-col h-full justify-center items-center">
+        <h1 className="text-4xl md:text-6xl font-semibold m-0">Arcadia 111</h1>
+        <p className="font-normal text-lg md:text-2xl m-0">
           3 BHK PEACEFUL LIVINGS & SHOPS
         </p>
         <button
