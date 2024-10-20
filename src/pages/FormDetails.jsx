@@ -378,7 +378,7 @@ const FormDetails = () => {
               className="bg-primary_500 text-neutral_0 rounded-lg px-4 py-2 mt-5"
               onSubmit={(e) => handleSubmit(e)}
             >
-              Pay now
+              Pay 1₹ 
             </button>
           </form>
         </div>
