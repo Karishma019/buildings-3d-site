@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaHandPointer } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import qrImg from "../img/qr.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,7 +115,9 @@ const BuildingContent = (props) => {
             Explore the Site in your space with Augmented Reality{" "}
           </h1>
           <div className="w-full justify-center gap-5 mt-2 lg:flex hidden">
-            <div className="bg-neutral_100 w-32 h-20"></div>
+            <div className="bg-neutral_100 w-32 h-20">
+              <img src={qrImg} />
+            </div>
             <p className="md:text-sm text-xs  text-start">
               Scan the QR Code with a supported device to launch the AR
               Experience
