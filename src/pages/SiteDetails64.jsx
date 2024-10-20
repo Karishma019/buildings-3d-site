@@ -5,7 +5,7 @@ import ConnectWithUs from "../components/ConnectWithUs";
 import Header from "../components/Header";
 import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
-import MainViewSite from "../components/MainViewSite";
+import MainViewSite64 from "../components/MainViewSite64";
 
 // import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
@@ -214,7 +214,7 @@ const SiteDetails64 = () => {
     <div>
       <Header />
       <Element key="section1" name="section1" className="section">
-        <MainViewSite
+        <MainViewSite64
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
