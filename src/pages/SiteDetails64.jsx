@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Element, scroller, animateScroll as scroll } from "react-scroll";
-import Buildings from "../components/Buildings";
+// import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
 import Header from "../components/Header";
 import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
 import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
-import SampleHouseTour from "../components/SampleHouseTour";
+// import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
 
 const animationScrollCount = 3;
@@ -19,8 +19,8 @@ const SiteDetails64 = () => {
     "section2",
     "section3",
     "section4",
-    "section5",
-    "section6",
+    // "section5",
+    // "section6",
     "section7",
   ];
 
@@ -245,20 +245,20 @@ const SiteDetails64 = () => {
         />
       </Element>
 
-      <Element key="section5" name="section5" className="section">
+      {/* <Element key="section5" name="section5" className="section">
         <Buildings
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
           buildingStage={buildingStage}
         />
-      </Element>
+      </Element> */}
 
-      <Element key="section6" name="section6" className="section">
+      {/* <Element key="section6" name="section6" className="section">
         <SampleHouseTour
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
-      </Element>
+      </Element> */}
 
       <Element key="section7" name="section7" className="section">
         <ConnectWithUs
