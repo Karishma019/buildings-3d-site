@@ -25,6 +25,7 @@ const SiteDetails = () => {
     "section5",
     "section6",
     "section7",
+    "section8",
   ];
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -79,7 +80,6 @@ const SiteDetails = () => {
   const moveToSection = (direction) => {
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
-    console.log("yash")
     if (
       (scrollPosition.current > sectionHeights.current[building_section_index] &&
       scrollPosition.current <
@@ -233,57 +233,61 @@ const SiteDetails = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <Element key="section1" name="section1" className="section">
-        <MainViewSite
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      <Element key="section2" name="section2" className="section">
-        <ProjectDetails
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-          data={data}
-        />
-      </Element>
-      <Element key="section3" name="section3" className="section">
-        <LocationDetails
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      <Element key="section4" name="section4" className="section">
-        <LocationMap
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
 
-      <Element key="section5" name="section5" className="section">
-        <Buildings
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-          buildingStage={buildingStage}
-        />
-      </Element>
+      <div>
+        <Header/>
+        <Element key="section1" name="section1" className="section">
+          <MainViewSite
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
+        <Element key="section2" name="section2" className="section">
+          <ProjectDetails
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
+        <Element key="section3" name="section3" className="section">
+          <LocationDetails
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
+        <Element key="section4" name="section4" className="section">
+          <LocationMap
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
 
-      <Element key="section6" name="section6" className="section">
-        <SampleHouseTour
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
+        <Element key="section5" name="section5" className="section">
+          <Buildings
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+              buildingStage={buildingStage}
+          />
+        </Element>
 
-      <Element key="section7" name="section7" className="section">
-        <ConnectWithUs
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      <Footer />
-    </div>
+        <Element key="section6" name="section6" className="section">
+          <SampleHouseTour
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
+
+        <div className="flex flex-col max-lg:min-h-screen"
+        >
+          <Element key="section7" name="section7" className="section flex-grow min-lg:mb-8">
+            <ConnectWithUs
+                scrollToSection={scrollToSection}
+                storeInputRef={storeInputRef}
+            />
+          </Element>
+          <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
+        </div>
+
+      </div>
   );
 };
 

@@ -142,15 +142,6 @@ const ConnectWithUs = (props) => {
           />
         </div>
       </div>
-      <div
-        className="flex absolute  md:-bottom-10  -bottom-5 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer "
-        onClick={() => scrollToBottom()}
-      >
-        <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
-          <MdKeyboardDoubleArrowDown className="text-2xl rounded  cursor-pointer animate-bounce" />
-        </div>
-        <p className="text-gray-400 text-sm font-semibold">Scroll Down</p>
-      </div>
     </section>
   );
 };
