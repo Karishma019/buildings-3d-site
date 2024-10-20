@@ -85,7 +85,6 @@ const FormDetails = () => {
 
       // Trigger the Razorpay payment after successful form submission
       if (res.data) {
-        console.log("razorpayyyyyyyyyy");
         await triggerRazorpay(res.data.message);
       }
     } catch (err) {
@@ -106,7 +105,6 @@ const FormDetails = () => {
   };
 
   const triggerRazorpay = async (order) => {
-    console.log("yash")
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -119,22 +117,10 @@ const FormDetails = () => {
       key: order.key, // Enter the Key ID from your Razorpay Dashboard
       amount: order.amount, // Amount in the smallest currency unit
       currency: order.currency,
-      name: "Your Company Name",
-      description: "Test Transaction",
+      name: "Estate Explorer",
       order_id: order.id, // This is the order ID from the backend
-      handler: (response) => {
-        alert(`Payment ID: ${response.razorpay_payment_id}`);
-        alert(`Order ID: ${response.razorpay_order_id}`);
-        alert(`Signature: ${response.razorpay_signature}`);
-      },
-      prefill: {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        contact: "9999999999",
-      },
-      theme: {
-        color: "#F37254",
-      },
+      prefill: order.prefill,
+      theme: order.theme,
     };
 
     const paymentObject = new window.Razorpay(options);
