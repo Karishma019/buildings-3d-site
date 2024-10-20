@@ -21,7 +21,7 @@ const LocationMap = (props) => {
             Arcadia 111
           </h1>
           <p className="text-neutral_500 text-sm">
-            12, Times Square, C.G. Road, 380018, Ahmedabad Gujarat, India
+          ARCADIA 111, behind Fun Blast, Chharodi, Ahmedabad, Gujarat 382481
           </p>
         </div>
         <div className="lg:w-1/2 w-full lg:text-end text-center">
