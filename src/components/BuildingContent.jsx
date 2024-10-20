@@ -38,7 +38,6 @@ const BuildingContent = (props) => {
   };
 
   useLayoutEffect(() => {
-    console.log(content1, content2, "haribollll", props.buildingStage);
     if (props.buildingStage == 1) {
       const tl = gsap.timeline();
       tl.to(
