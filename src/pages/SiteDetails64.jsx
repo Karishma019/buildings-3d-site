@@ -211,57 +211,31 @@ const SiteDetails64 = () => {
   }, []);
 
   return (
-    <div>
-      <Header formPage={true}/>
-      <Element key="section1" name="section1" className="section">
-        <MainViewSite64
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      <Element key="section2" name="section2" className="section">
-        <ProjectDetails64
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      {/* <Element key="section3" name="section3" className="section">
-        <LocationDetails
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element> */}
-      {/* <Element key="section4" name="section4" className="section">
-        <LocationMap
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element> */}
+      <div>
+        <Header formPage={true}/>
+        <Element key="section1" name="section1" className="section">
+          <MainViewSite64
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
+        <Element key="section2" name="section2" className="section">
+          <ProjectDetails64
+              scrollToSection={scrollToSection}
+              storeInputRef={storeInputRef}
+          />
+        </Element>
 
-      {/* <Element key="section5" name="section5" className="section">
-        <Buildings
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-          buildingStage={buildingStage}
-        />
-      </Element> */}
-
-      {/* <Element key="section6" name="section6" className="section">
-        <SampleHouseTour
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element> */}
-
-      <Element key="section7" name="section7" className="section">
-        <ConnectWithUs
-          scrollToSection={scrollToSection}
-          storeInputRef={storeInputRef}
-        />
-      </Element>
-      <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
-      {/* <Footer /> */}
-    </div>
+        <div className="flex flex-col max-lg:min-h-screen">
+          <Element key="section7" name="section7" className="section flex-grow min-lg:mb-8">
+            <ConnectWithUs
+                scrollToSection={scrollToSection}
+                storeInputRef={storeInputRef}
+            />
+          </Element>
+          <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
+        </div>
+      </div>
   );
 };
 
