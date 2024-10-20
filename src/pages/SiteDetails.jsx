@@ -9,6 +9,8 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import axios from 'axios';
 
 const animationScrollCount = 3;
 
@@ -24,25 +26,24 @@ const SiteDetails = () => {
     "section7",
   ];
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  // Example: Get a query parameter named "id"
 
   useEffect(() => {
-    // Extract query parameters from the URL
-    const params = new URLSearchParams(window.location.search);
-    const downloadUrl = params.get("download"); // Query parameter: ?download=<URL>
+    const isDownload = searchParams.get('download');
 
-    if (downloadUrl) {
-      // Trigger the download
-      const anchor = document.createElement("a");
-      anchor.href = "https://estate-explorer-apk-store.s3.ap-south-1.amazonaws.com/Arcadia111.apk?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAMaCmFwLXNvdXRoLTEiSDBGAiEAhT8pJ68MPyNg%2FPwYeHzTtoWNIOFRZc5A2%2BUd%2BqPpCFQCIQDAvehdbNsORWNLvpgmXwR5hmbOpT9f50NJyJA75AOuPSr9AghsEAQaDDU0NTI4NTU4NTM0MiIMR4ndc7mRCi0brLtFKtoCLpCX4ZM%2B4EbbJu4fxw5vcZnkMfUwPHDbZBhQDN8OejC%2FQTDGeUOsOQeaeUBf%2BNlTyuMjkgPFLrKbsSrk%2Bn9p5xpqnDnC3kqvkwWDdDhYAGnFHilObDt1N6238xYOYVCPdvKi2%2BUC69omBAd%2Fdiz8K%2BmntJCBF%2F6CsoeldSdX9u9nGIsx%2FSZk9872ZrxOpvJEyzPTCzDUmCt9yXhSOJ1tX8JCUWUFcJFNh86E6HVfL7CNHfz8tUzp29%2Bv0%2FkG%2Fp8DCOHh8x12ZaAkqWT1q3cJWc0zS516iHKhwbv%2BRa80Olj%2BnaJG7SydxChnW2iEeOUwsVfAEqT6Q1p9QM0eI3RBy55ZIgvdjl3W99DTimSE%2BF8vlljmL2qKumj%2Fobkfbj0avGmAWAuaEer6MgtjMKINCNzCYe%2Brd9F62ddUCTMKyJqsNUS0LlzYybSrQ3kRmcz3lhkXlT9O2ZpAHTDx4tG4BjqyAkGbmqPOypGfgLcF0%2BN0MMR0ucBxSUpvG%2BHansn7c7trMrWsPdG9%2BHEzhsWTCVJ1hZ8LaZZizBfe1Mym20M4efqWJYCDbv2gdDcJH8xz6hBIkaCCwaB74VEm3ePM4qaAL%2BsecCxr7kEPpyUWTBOTYVxMAscI8KSf2mK9fCXB2XprE4ZMG8gypT%2FSmXnq170GT2xSzFWoyS00P6LS3vWpnHr8e6Bj2g3o%2BRlFVP4WXjO0mGLn5NyNSUTUfHEmqoSLyKlrxngrvubOdw7GqVJ2lYOaGJ58xRg7YcpQs0KWAfQjyUMA8iUxkgRWheAWw8n9w5PGC5SWqraa%2F3WIefa0Mfh9FA58a50aMRGVkNNh1G43JkxVIB5FMe68Nerd26Ftf%2BJuthqHQqROZTvRhpNmxq44jg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241020T025751Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIAX55MNXG7OKY3APEN%2F20241020%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=6fce220f19d1972ba81df97f1b3908d980a87879dc16673c8d197754d3c49eea";
-      // anchor.download = ""; // Optional: Suggests the file to be downloaded
-      anchor.target = "_blank"; // Open in a new tab (optional)
-      anchor.rel = "noopener noreferrer"; // Security best practices
+    if (isDownload) {
+      // Redirect the user to the file URL
+      window.location.href = "https://d135ncgyvn3lgg.cloudfront.net";
 
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
+      // Wait for a short period to ensure the download starts before redirecting
+      setTimeout(() => {
+        // Navigate to the same page without the query parameters
+        navigate(window.location.pathname, { replace: true });
+      }, 3000); // Adjust the delay as needed (3 seconds here)
     }
-  }, []); // Runs once when the component loads
+  }, [searchParams, navigate]);
 
   const sections_obj = useRef({});
 
