@@ -93,57 +93,10 @@ const BuildingContent = (props) => {
           "<"
         );
     }
-    // const tl = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".building-section",
-    //     start: "top top",
-    //     end: "10% bottom",
-    //     // markers: true,
-    //     scrub: false,
-    //     pin: true,
-    //     toggleActions: "play none reverse none",
-    //   },
-    // });
-    // tl.to(
-    //   content1.current,
-    //   {
-    //     opacity: 0,
-    //     duration: 2,
-    //     ease: "power1.out",
-    //   },
-    //   "<"
-    // );
 
-    // const tl2 = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".building-section",
-    //     start: "28% top",
-    //     end: "40% bottom",
-    //     // markers: true,
-    //     scrub: false,
-    //     pin: true,
-    //     toggleActions: "play none reverse none",
-    //   },
-    // });
 
-    // tl2.to(
-    //   content2.current,
-    //   {
-    //     opacity: 1,
-    //     duration: 2,
-    //     ease: "power1.out",
-    //   },
-    //   "<"
-    // );
-    // .to(
-    //   content2.current,
-    //   {
-    //     top: "6rem",
-    //     duration: 2,
-    //     ease: "power1.out",
-    //   },
-    //   "<"
-    // );
+
+
   }, [props.buildingStage]);
 
   return (
@@ -152,6 +105,8 @@ const BuildingContent = (props) => {
         className="building-section z-10 absolute h-full w-full"
         ref={contentRef}
       >
+        {
+        (props.buildingStage == 0) &&
         <div
           ref={content1}
           className="bg-neutral_0 p-6  lg:w-1/3 w-2/3 rounded-3xl opacity-1 shadow-lg -translate-x-1/2 absolute top-2 left-1/2"
@@ -173,7 +128,10 @@ const BuildingContent = (props) => {
             Start AR Experience{" "}
           </Link>
         </div>
-
+        }
+        {
+        (props.buildingStage > 0 && props.buildingStage < 3) &&
+        
         <div
           ref={content2}
           className="bg-neutral_0  md:p-6 p-4 flex flex-col overflow-hidden gap-3 opacity-0 lg:w-1/3 w-[90%] rounded-3xl shadow-2xl -translate-x-1/2 absolute top-2 left-1/2"
@@ -242,7 +200,10 @@ const BuildingContent = (props) => {
             </p>
           </div>
         </div>
-        <div
+        }
+        {
+          (props.buildingStage == 3) &&
+          <div
           ref={pointerRef}
           className=" p-6 flex justify-center  lg:w-1/3 w-2/3 rounded-3xl opacity-0 -translate-x-1/2 absolute top-5 left-1/2"
         >
@@ -253,6 +214,8 @@ const BuildingContent = (props) => {
             Click to interact with the model{" "}
           </Link>
         </div>
+        }
+
       </div>
     </>
   );
