@@ -259,6 +259,7 @@ const SiteDetails64 = () => {
           storeInputRef={storeInputRef}
         />
       </Element>
+      <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
       {/* <Footer /> */}
     </div>
   );
