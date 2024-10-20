@@ -11,6 +11,7 @@ import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import axios from 'axios';
+import { data } from "autoprefixer";
 
 const animationScrollCount = 3;
 
@@ -244,6 +245,7 @@ const SiteDetails = () => {
         <ProjectDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
+          data={data}
         />
       </Element>
       <Element key="section3" name="section3" className="section">
