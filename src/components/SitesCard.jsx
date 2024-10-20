@@ -13,7 +13,7 @@ const SitesCard = ({ data }) => {
           <div className="flex justify-between items-center">
             <h3 className="font-semibold">{data.title}</h3>
             <Link
-              to={`/view-site/${data.id}`}
+              to={data.id == "509QsdLlPh" ? `/view-site/${data.id}` : `/view-site64/${data.id}`}
               className="bg-white rounded border-primary border px-4 py-1 text-sm text-primary"
             >
               View Site
