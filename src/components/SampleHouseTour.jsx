@@ -6,7 +6,7 @@ import { Suspense, useRef, useState } from "react";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { scrollToSection } from "../utils/scrollToSection";
+import { scrollToSection, scrollToSectionWithoutDelay } from "../utils/scrollToSection";
 import {
   MdKeyboardDoubleArrowDown,
   MdKeyboardDoubleArrowUp,
@@ -20,6 +20,7 @@ const SampleHouseTour = (props) => {
   const handleFullscreenToggle = (image) => {
     setHouseTour(image);
     setIsFullscreen((prev) => !prev);
+    scrollToSectionWithoutDelay("sampleHouseTour")
   };
 
   console.log(window.innerWidth);
