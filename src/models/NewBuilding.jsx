@@ -107,6 +107,30 @@ const NewBuilding = (props) => {
           "<"
         );
     }
+    else if (props.buildingStage == 0) {
+      const tl4 = gsap.timeline();
+      tl4
+        .to(
+          buildingRef.current.position,
+          {
+            x: -0.4,
+            y:1.3,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        )
+        .to(
+          buildingRef.current.rotation,
+          {
+            x: 1,
+            y: -1,
+            duration: 1,
+            ease: "power1.out",
+          },
+          "<"
+        );
+    }
   }, [props.buildingStage]);
 
   return (

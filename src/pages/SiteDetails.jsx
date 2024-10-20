@@ -78,13 +78,17 @@ const SiteDetails = () => {
   const moveToSection = (direction) => {
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
-
+    console.log("yash")
     if (
-      scrollPosition.current > sectionHeights.current[building_section_index] &&
+      (scrollPosition.current > sectionHeights.current[building_section_index] &&
       scrollPosition.current <
         sectionHeights.current[building_section_index + 1] &&
-      tempBuild.current < animationScrollCount &&
-      tempBuild.current > -1
+      tempBuild.current > -1 && direction == "down" && tempBuild.current != animationScrollCount) || 
+      (tempBuild.current < animationScrollCount+1 && direction == "up" &&
+        scrollPosition.current > sectionHeights.current[building_section_index] &&
+      scrollPosition.current <
+        sectionHeights.current[building_section_index + 1] && tempBuild.current != 0
+      )
     ) {
       isThrottling.current = true;
       setTimeout(() => (isThrottling.current = false), 1500);
@@ -104,9 +108,7 @@ const SiteDetails = () => {
       }
 
       return;
-    } else {
-      setBuildingStage((prevValue) => 0);
-    }
+    } 
 
     if (direction === "down" && newSection < sections.length - 1) {
       newSection += 1; // Move to the next section
