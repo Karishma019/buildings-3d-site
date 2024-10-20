@@ -9,6 +9,8 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import axios from 'axios';
 
 const animationScrollCount = 3;
 
@@ -23,6 +25,25 @@ const SiteDetails = () => {
     "section6",
     "section7",
   ];
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  // Example: Get a query parameter named "id"
+
+  useEffect(() => {
+    const isDownload = searchParams.get('download');
+
+    if (isDownload) {
+      // Redirect the user to the file URL
+      window.location.href = "https://d135ncgyvn3lgg.cloudfront.net";
+
+      // Wait for a short period to ensure the download starts before redirecting
+      setTimeout(() => {
+        // Navigate to the same page without the query parameters
+        navigate(window.location.pathname, { replace: true });
+      }, 3000); // Adjust the delay as needed (3 seconds here)
+    }
+  }, [searchParams, navigate]);
 
   const sections_obj = useRef({});
 
