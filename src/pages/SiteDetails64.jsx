@@ -212,7 +212,7 @@ const SiteDetails64 = () => {
 
   return (
     <div>
-      <Header />
+      <Header formPage={true}/>
       <Element key="section1" name="section1" className="section">
         <MainViewSite64
           scrollToSection={scrollToSection}
