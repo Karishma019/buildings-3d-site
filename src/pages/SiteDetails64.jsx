@@ -5,10 +5,11 @@ import ConnectWithUs from "../components/ConnectWithUs";
 import Header from "../components/Header";
 import LocationDetails from "../components/LocationDetails";
 import LocationMap from "../components/LocationMap";
-import MainViewSite from "../components/MainViewSite";
-import ProjectDetails from "../components/ProjectDetails";
+import MainViewSite64 from "../components/MainViewSite64";
+
 // import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
+import ProjectDetails64 from "../components/ProjectDetails64";
 
 const animationScrollCount = 3;
 
@@ -17,8 +18,8 @@ const SiteDetails64 = () => {
   const sections = [
     "section1",
     "section2",
-    "section3",
-    "section4",
+    // "section3",
+    // "section4",
     // "section5",
     // "section6",
     "section7",
@@ -211,31 +212,31 @@ const SiteDetails64 = () => {
 
   return (
     <div>
-      <Header />
+      <Header formPage={true}/>
       <Element key="section1" name="section1" className="section">
-        <MainViewSite
+        <MainViewSite64
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
       <Element key="section2" name="section2" className="section">
-        <ProjectDetails
+        <ProjectDetails64
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section3" name="section3" className="section">
+      {/* <Element key="section3" name="section3" className="section">
         <LocationDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
-      </Element>
-      <Element key="section4" name="section4" className="section">
+      </Element> */}
+      {/* <Element key="section4" name="section4" className="section">
         <LocationMap
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
-      </Element>
+      </Element> */}
 
       {/* <Element key="section5" name="section5" className="section">
         <Buildings
