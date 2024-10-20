@@ -21,15 +21,13 @@ const Home = () => {
         <div className="flex w-full mt-10 justify-between lg:h-[350px]">
           <div className="lg:w-1/2 w-full font-semibold">
             <h1 className="text-2xl text-center sm:text-start md:text-5xl lg:text-6xl">
-              Explore Properties in Immersive 3D
+            Engage customers with an immersive 3D experience
             </h1>
             <p className="text-primary lg:text-2xl md:text-xl mt-3">
               Real Estate made #SIMPLE
             </p>
             <p className="mt-6 lg:text-xl md:text-lg text-sm text-center font-normal">
-              Discover properties in stunning 3D from any device, anytime. Tour
-              every detail virtually and make confident real estate decisions
-              without leaving home.
+            Guide clients from first look to final deal with Estate Explorer, showcasing properties and closing sales faster.
             </p>
           </div>
           <div className="bg-zinc-300 w-1/2 rounded w-[528px] hidden lg:block overflow-hidden">
