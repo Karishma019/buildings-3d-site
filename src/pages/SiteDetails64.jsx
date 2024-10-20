@@ -259,7 +259,7 @@ const SiteDetails64 = () => {
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
