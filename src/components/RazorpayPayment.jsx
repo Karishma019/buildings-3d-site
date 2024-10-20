@@ -51,7 +51,7 @@ const RazorpayPayment = ({ order }) => {
       onClick={handlePayment}
       style={{ padding: "10px", fontSize: "16px" }}
     >
-      Pay Now
+      Pay 1₹ 
     </button>
   );
 };
