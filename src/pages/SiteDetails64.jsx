@@ -55,12 +55,6 @@ const SiteDetails64 = () => {
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
-    console.log(
-      "1",
-      scrollPosition.current,
-      sectionHeights.current,
-      isThrottling.current
-    );
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
 
@@ -99,7 +93,6 @@ const SiteDetails64 = () => {
       newSection -= 1; // Move to the previous section
     }
 
-    console.log("2", newSection, currentSectionRef.current);
 
     if (newSection !== currentSectionRef.current) {
       // currentSectionRef.current = newSection; // Update the ref value
@@ -180,7 +173,6 @@ const SiteDetails64 = () => {
     window.addEventListener("wheel", handleScroll, { passive: false }); // Desktop
     window.addEventListener("touchstart", handleTouchStart, { passive: false }); // Mobile (touch start)
     window.addEventListener("touchmove", handleTouchMove, { passive: false }); // Mobile (touch move)
-    console.log("yasshashash");
 
     let dummy_heights = [];
 

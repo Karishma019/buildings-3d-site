@@ -21,11 +21,9 @@ const NewBuilding = (props) => {
   //   }
   // });
 
-  // console.log(fbx);
 
   useLayoutEffect(() => {
     // new ScrollTrigger({});
-    console.log("hima", props.buildingStage);
     if (props.buildingStage == 1) {
       const tl = gsap.timeline();
       tl.to(buildingRef.current.position, {

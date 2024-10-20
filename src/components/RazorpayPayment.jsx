@@ -27,11 +27,6 @@ const RazorpayPayment = ({ order }) => {
       name: "Your Company Name",
       description: "Test Transaction",
       order_id: order.id, // This is the order ID from the backend
-      handler: (response) => {
-        alert(`Payment ID: ${response.razorpay_payment_id}`);
-        alert(`Order ID: ${response.razorpay_order_id}`);
-        alert(`Signature: ${response.razorpay_signature}`);
-      },
       prefill: {
         name: "John Doe",
         email: "johndoe@example.com",

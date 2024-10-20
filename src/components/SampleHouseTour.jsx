@@ -23,7 +23,6 @@ const SampleHouseTour = (props) => {
     scrollToSectionWithoutDelay("sampleHouseTour")
   };
 
-  console.log(window.innerWidth);
 
   const scrollRef = useRef(null);
 
