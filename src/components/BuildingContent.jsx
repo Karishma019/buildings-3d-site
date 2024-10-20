@@ -117,7 +117,7 @@ const BuildingContent = (props) => {
           </h1>
           <div className="w-full justify-center gap-5 mt-2 lg:flex hidden">
             <div className="w-32 h-20">
-                <QRCodeSVG value={qrValue} level={"H"} size={90} />,
+                <QRCodeSVG value={qrValue} level={"H"} size={90} />
             </div>
             <p className="md:text-sm text-xs  text-start">
               Scan the QR Code with a supported device to launch the AR
