@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoCallOutline } from "react-icons/io5";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import img from "../img/image.png";
 import { BACKENDURL } from "../utils/utils";
@@ -12,14 +12,13 @@ import { toast } from "react-toastify";
 const ConnectWithUs = (props) => {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { id } = useParams(); 
-
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
     email: "",
-    id: id
+    id: id,
   });
 
   const handleChange = (e) => {
@@ -86,9 +85,9 @@ const ConnectWithUs = (props) => {
       </h2>
 
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
-      <div className=" flex items-center px-8 lg:justify-between justify-center h-[80%]">
+      <div className=" flex items-center px-8 lg:justify-between justify-center md:h-[80%] h-[75%]">
         <form
-          className="bg-white flex rounded-xl flex-col items-center p-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0 mt-10"
+          className="bg-white flex rounded-xl flex-col items-center p-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0"
           onSubmit={(e) => handleSubmit(e)}
         >
           <div className="w-full">
@@ -144,7 +143,7 @@ const ConnectWithUs = (props) => {
         </div>
       </div>
       <div
-        className="flex absolute  -bottom-10 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer "
+        className="flex absolute  md:-bottom-10  -bottom-5 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer "
         onClick={() => scrollToBottom()}
       >
         <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
