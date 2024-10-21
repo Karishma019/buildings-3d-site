@@ -15,7 +15,7 @@ import { FaHandPointer } from "react-icons/fa6";
 
 const Model = () => {
   useEffect(() => {
-    localStorage.setItem("fromInteraction", 1);
+    localStorage.setItem("storedSectionIndex", 5);
   }, []);
 
   useEffect(() => {

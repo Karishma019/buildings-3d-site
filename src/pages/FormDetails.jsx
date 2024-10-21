@@ -177,7 +177,7 @@ const FormDetails = () => {
 
         <div className="text-center px-8">
           <h1 className="lg:text-[40px] md:text-[32px] text-[24px] font-semibold">
-            Let Us Bring Your Vision to Life
+            Fill this form to get your projects AR app{" "}
           </h1>
           <p className="lg:text-2xl md:text-xl text-sm">
             Simply fill out the form to get AR App for your project
@@ -364,7 +364,7 @@ const FormDetails = () => {
               className="bg-primary_500 text-neutral_0 rounded-lg px-4 py-2 mt-5"
               onSubmit={(e) => handleSubmit(e)}
             >
-              Pay 1₹ 
+              Pay 1₹
             </button>
           </form>
         </div>

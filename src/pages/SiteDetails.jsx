@@ -9,8 +9,8 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import axios from 'axios';
+import { useNavigate, useSearchParams } from "react-router-dom";
+import axios from "axios";
 import { data } from "autoprefixer";
 
 const animationScrollCount = 3;
@@ -33,7 +33,7 @@ const SiteDetails = () => {
   // Example: Get a query parameter named "id"
 
   useEffect(() => {
-    const isDownload = searchParams.get('download');
+    const isDownload = searchParams.get("download");
 
     if (isDownload) {
       // Redirect the user to the file URL
@@ -81,15 +81,20 @@ const SiteDetails = () => {
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
     if (
-      (scrollPosition.current > sectionHeights.current[building_section_index] &&
-      scrollPosition.current <
-        sectionHeights.current[building_section_index + 1] &&
-      tempBuild.current > -1 && direction == "down" && tempBuild.current != animationScrollCount) || 
-      (tempBuild.current < animationScrollCount+1 && direction == "up" &&
-        scrollPosition.current > sectionHeights.current[building_section_index] &&
-      scrollPosition.current <
-        sectionHeights.current[building_section_index + 1] && tempBuild.current != 0
-      )
+      (scrollPosition.current >
+        sectionHeights.current[building_section_index] &&
+        scrollPosition.current <
+          sectionHeights.current[building_section_index + 1] &&
+        tempBuild.current > -1 &&
+        direction == "down" &&
+        tempBuild.current != animationScrollCount) ||
+      (tempBuild.current < animationScrollCount + 1 &&
+        direction == "up" &&
+        scrollPosition.current >
+          sectionHeights.current[building_section_index] &&
+        scrollPosition.current <
+          sectionHeights.current[building_section_index + 1] &&
+        tempBuild.current != 0)
     ) {
       isThrottling.current = true;
       setTimeout(() => (isThrottling.current = false), 1500);
@@ -109,7 +114,7 @@ const SiteDetails = () => {
       }
 
       return;
-    } 
+    }
 
     if (direction === "down" && newSection < sections.length - 1) {
       newSection += 1; // Move to the next section
@@ -214,15 +219,11 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
-    const fromInteraction = localStorage.getItem("fromInteraction");
-    if (parseInt(fromInteraction) || 0 == 1) {
-      // scroller.scrollTo(sections[5], {
-      //   duration: 0,   // No animation
-      //   delay: 0,      // No delay
-      //   smooth: false, // Disable smooth scrolling
-      //   // offset: -50,   // Optional: Adjust for header offset
-      // });
-      // setBuildingStage((prevValue) => animationScrollCount);
+    const storedSectionIndex = localStorage.getItem("storedSectionIndex");
+
+    if (storedSectionIndex) {
+      scrollToSection(parseInt(storedSectionIndex));
+      localStorage.removeItem("storedSectionIndex"); // Clear after scrolling
     } else {
       scroll.scrollTo(0, {
         duration: 0,
@@ -233,61 +234,62 @@ const SiteDetails = () => {
   }, []);
 
   return (
+    <div>
+      <Header />
+      <Element key="section1" name="section1" className="section">
+        <MainViewSite
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
+      <Element key="section2" name="section2" className="section">
+        <ProjectDetails
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
+      <Element key="section3" name="section3" className="section">
+        <LocationDetails
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
+      <Element key="section4" name="section4" className="section">
+        <LocationMap
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
 
-      <div>
-        <Header/>
-        <Element key="section1" name="section1" className="section">
-          <MainViewSite
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-          />
-        </Element>
-        <Element key="section2" name="section2" className="section">
-          <ProjectDetails
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-          />
-        </Element>
-        <Element key="section3" name="section3" className="section">
-          <LocationDetails
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-          />
-        </Element>
-        <Element key="section4" name="section4" className="section">
-          <LocationMap
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-          />
-        </Element>
+      <Element key="section5" name="section5" className="section">
+        <Buildings
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+          buildingStage={buildingStage}
+        />
+      </Element>
 
-        <Element key="section5" name="section5" className="section">
-          <Buildings
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-              buildingStage={buildingStage}
-          />
-        </Element>
+      <Element key="section6" name="section6" className="section">
+        <SampleHouseTour
+          scrollToSection={scrollToSection}
+          storeInputRef={storeInputRef}
+        />
+      </Element>
 
-        <Element key="section6" name="section6" className="section">
-          <SampleHouseTour
-              scrollToSection={scrollToSection}
-              storeInputRef={storeInputRef}
-          />
-        </Element>
-
-        <div className="flex flex-col max-lg:min-h-screen"
+      <div className="flex flex-col max-lg:min-h-screen">
+        <Element
+          key="section7"
+          name="section7"
+          className="section flex-grow min-lg:mb-8"
         >
-          <Element key="section7" name="section7" className="section flex-grow min-lg:mb-8">
-            <ConnectWithUs
-                scrollToSection={scrollToSection}
-                storeInputRef={storeInputRef}
-            />
-          </Element>
-          <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
-        </div>
-
+          <ConnectWithUs
+            scrollToSection={scrollToSection}
+            storeInputRef={storeInputRef}
+          />
+        </Element>
+        <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
       </div>
+    </div>
   );
 };
 
