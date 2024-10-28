@@ -78,6 +78,7 @@ const SiteDetails = () => {
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
+    console.log("recalled....");
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
     if (
@@ -219,18 +220,11 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
-    const storedSectionIndex = localStorage.getItem("storedSectionIndex");
-
-    if (storedSectionIndex) {
-      scrollToSection(parseInt(storedSectionIndex));
-      localStorage.removeItem("storedSectionIndex"); // Clear after scrolling
-    } else {
-      scroll.scrollTo(0, {
-        duration: 0,
-        duration: 0,
-        smooth: "easeInOutQuart",
-      });
-    }
+    scroll.scrollTo(0, {
+      duration: 0,
+      duration: 0,
+      smooth: "easeInOutQuart",
+    });
   }, []);
 
   return (
@@ -276,18 +270,17 @@ const SiteDetails = () => {
         />
       </Element>
 
-      <div className="flex flex-col max-lg:min-h-screen">
-        <Element
-          key="section7"
-          name="section7"
-          className="section flex-grow min-lg:mb-8"
-        >
+      <div className="flex flex-col items-between h-screen">
+        <Element key="section7" name="section7" className="section h-1/2">
           <ConnectWithUs
             scrollToSection={scrollToSection}
             storeInputRef={storeInputRef}
           />
         </Element>
-        <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
+        <div className="flex items-end h-1/2">
+          <Footer />
+        </div>
+        {/* <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div> */}
       </div>
     </div>
   );

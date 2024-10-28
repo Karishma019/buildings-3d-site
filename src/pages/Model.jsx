@@ -15,7 +15,7 @@ import { FaHandPointer } from "react-icons/fa6";
 
 const Model = () => {
   useEffect(() => {
-    localStorage.setItem("storedSectionIndex", 5);
+    localStorage.setItem("buildingStage", 3);
   }, []);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Model = () => {
   }, []);
 
   return (
-    <div className="h-screen relative">
+    <div className="h-screen relative ">
       <div className="flex flex-col items-center  absolute top-[20%] z-10 left-[50%] -translate-x-1/2">
         <div className=" rounded-full bg-black bg-opacity-20 absolute h-5 w-5 animate-ping"></div>
         <FaHandPointer />
@@ -37,7 +37,7 @@ const Model = () => {
           <PerspectiveCamera makeDefault position={[0, 1, 9]} />
           <ambientLight args={["#ffffff", 1]} />
           <directionalLight args={["#ffffff0", 3]} position={[-1, 1, 1]} />
-          <NewBuilding scale={4} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+          <NewBuilding scale={3.5} position={[0, 0, 0]} rotation={[0, 0, 0]} />
         </Suspense>
       </Canvas>
     </div>

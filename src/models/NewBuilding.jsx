@@ -1,7 +1,9 @@
 import { OrbitControls, useFBX, useGLTF } from "@react-three/drei";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import * as THREE from "three";
+
 import { angleToRadiants } from "../utils/angleToRadiants";
 import { useFrame } from "@react-three/fiber";
 gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +22,6 @@ const NewBuilding = (props) => {
   //     orbitControlRef.current.setPolarAngle((y + 1) * angleToRadiants(60));
   //   }
   // });
-
 
   useLayoutEffect(() => {
     // new ScrollTrigger({});
@@ -106,15 +107,14 @@ const NewBuilding = (props) => {
           },
           "<"
         );
-    }
-    else if (props.buildingStage == 0) {
+    } else if (props.buildingStage == 0) {
       const tl4 = gsap.timeline();
       tl4
         .to(
           buildingRef.current.position,
           {
             x: -0.4,
-            y:1.3,
+            y: 1.3,
             duration: 1,
             ease: "power1.out",
           },
@@ -133,12 +133,23 @@ const NewBuilding = (props) => {
     }
   }, [props.buildingStage]);
 
+  useEffect(() => {
+    if (buildingRef.current) {
+      // Center the mesh using its bounding box
+      const box = new THREE.Box3().setFromObject(buildingRef.current);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      buildingRef.current.position.set(-center.x, -center.y, -center.z);
+    }
+  }, []);
+
   return (
     <>
       <OrbitControls
         // ref={orbitControlRef}
         enableZoom={false}
-        enablePan={false}
+        target={[0, 0, 0]}
+        // enablePan={false}
         // minPolarAngle={angleToRadiants(66)}
         // maxPolarAngle={angleToRadiants(76)}
       />

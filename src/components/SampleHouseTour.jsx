@@ -6,7 +6,10 @@ import { Suspense, useRef, useState } from "react";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { scrollToSection, scrollToSectionWithoutDelay } from "../utils/scrollToSection";
+import {
+  scrollToSection,
+  scrollToSectionWithoutDelay,
+} from "../utils/scrollToSection";
 import {
   MdKeyboardDoubleArrowDown,
   MdKeyboardDoubleArrowUp,
@@ -20,9 +23,8 @@ const SampleHouseTour = (props) => {
   const handleFullscreenToggle = (image) => {
     setHouseTour(image);
     setIsFullscreen((prev) => !prev);
-    scrollToSectionWithoutDelay("sampleHouseTour")
+    scrollToSectionWithoutDelay("sampleHouseTour");
   };
-
 
   const scrollRef = useRef(null);
 
@@ -89,7 +91,7 @@ const SampleHouseTour = (props) => {
 
       {/* Scroll up & down button for tabs and laptop */}
 
-      <div
+      {/* <div
         className="flex absolute top-24 pt-5 left-1/2 -translate-x-1/2 flex-col items-center cursor-pointer hidden md:flex"
         onClick={() => scrollToSection("arExperience")}
       >
@@ -106,7 +108,7 @@ const SampleHouseTour = (props) => {
         <div className="rounded text-white bg-black bg-opacity-35 px-1 rounded overflow-hidden">
           <MdKeyboardDoubleArrowDown className="text-2xl rounded  cursor-pointer animate-bounce" />
         </div>
-      </div>
+      </div> */}
 
       {/* Heading */}
 
@@ -128,6 +130,14 @@ const SampleHouseTour = (props) => {
           ref={scrollRef}
           className="flex lg:gap-5 w-full overflow-x-auto scroll-hidden"
         >
+          <button
+            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+            onClick={() => {
+              setHouseTour("Foyer.jpg");
+            }}
+          >
+            Foyer
+          </button>
           <button
             className=" text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 py-2 text-center lg:w-1/5 w-full rounded"
             onClick={() => {
@@ -168,14 +178,6 @@ const SampleHouseTour = (props) => {
           >
             Master Bedroom{" "}
           </button>
-          <button
-            className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
-            onClick={() => {
-              setHouseTour("Foyer.jpg");
-            }}
-          >
-            Foyer
-          </button>
         </div>
         <div
           className="bg-black bg-opacity-35 p-2 rounded lg:block hidden"
@@ -188,44 +190,44 @@ const SampleHouseTour = (props) => {
       <div className="w-full gap-5 absolute bottom-[18%] flex flex-col items-center md:hidden">
         <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
+            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
+            onClick={() => handleFullscreenToggle("Foyer.jpg")}
+          >
+            <p>Foyer</p>
+          </div>
+          <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
             onClick={() => handleFullscreenToggle("leavingRoom.jpg")}
           >
             <p>Living Area</p>
           </div>
+        </div>
+        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
             onClick={() => handleFullscreenToggle("Kitchen.jpg")}
           >
             <p>Kitchen</p>
           </div>
-        </div>
-        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
             onClick={() => handleFullscreenToggle("Bedroom 1.jpg")}
           >
             <p>Bedroom 1</p>
           </div>
+        </div>
+        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
             onClick={() => handleFullscreenToggle("Bedroom 2.jpg")}
           >
             <p>Bedroom 2</p>
           </div>
-        </div>
-        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
           <div
             className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
             onClick={() => handleFullscreenToggle("Master.jpg")}
           >
             <p>Master Bedroom</p>
-          </div>
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
-            onClick={() => handleFullscreenToggle("Foyer.jpg")}
-          >
-            <p>Foyer</p>
           </div>
         </div>
       </div>

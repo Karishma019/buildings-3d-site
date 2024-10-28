@@ -75,19 +75,19 @@ const ConnectWithUs = (props) => {
 
   return (
     <section
-      className="relative lg:h-auto md:h-[690px] h-[570px]"
+      className="relative h-full"
       id="ConnectWithUs"
       ref={(el) => props.storeInputRef(el, 6)}
     >
-      <h2 className="flex items-center gap-4  pt-32 text-2xl px-8">
+      <h2 className="flex items-center gap-4  pt-28 text-2xl px-8">
         <IoCallOutline className="text-primary_500" />
         Connect With Us
       </h2>
 
       <div className="clipPath flex bg-gradient-to-t from-primary_100 -z-10 via-primary_50 to-white absolute h-full w-full lg:hidden"></div>
-      <div className=" flex items-center px-8 lg:justify-between justify-center md:h-[80%] h-[75%]">
+      <div className=" flex items-center px-8 lg:justify-between justify-center lg:h-auto md:h-[90%] h-[80%]">
         <form
-          className="bg-white flex rounded-xl flex-col items-center p-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0"
+          className="bg-white flex rounded-xl flex-col items-center md:p-8 py-4 px-8 md:w-2/3 w-[90%] lg:w-1/4  gap-4 shadow-2xl lg:mt-0"
           onSubmit={(e) => handleSubmit(e)}
         >
           <div className="w-full">
@@ -138,7 +138,7 @@ const ConnectWithUs = (props) => {
           <img
             src={img}
             alt="building"
-            className="w-[490px] h-[331px] object-cover"
+            className="w-[490px] h-[320px] object-cover"
           />
         </div>
       </div>
