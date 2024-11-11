@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="px-4 sm:p-0">
           <p className="flex items-center gap-2 ">
             <IoLocationOutline />
-            Ahmedabad, Gujrat, India.
+            Ahmedabad, Gujarat, India.
           </p>
           <p className="flex items-center gap-2   ">
             <MdOutlinePhone /> +91 9328340097
