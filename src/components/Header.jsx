@@ -15,7 +15,11 @@ const Header = ({ formPage, setIsOpen, link }) => {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 ">
+    <header
+      className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 "
+      tabIndex="0"
+      onBlur={() => setisOpen(false)}
+    >
       <div
         className={`flex text-white items-center ${
           formPage && "w-full"
