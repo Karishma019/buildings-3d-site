@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
+import { useSiteData } from "../contextAPI/SiteDataContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ const BuildingContent = (props) => {
   const content1 = useRef(null);
   const content2 = useRef(null);
   const pointerRef = useRef(null);
+  const { siteData } = useSiteData();
 
   const scrollToIndex = (index) => {
     if (scrollRef.current) {
@@ -134,16 +136,23 @@ const BuildingContent = (props) => {
             ref={content2}
             className="bg-neutral_0  md:p-6 p-4 flex flex-col overflow-hidden gap-3 opacity-0 lg:w-1/3 w-[90%] rounded-3xl shadow-2xl -translate-x-1/2 absolute top-2 left-1/2"
           >
-            <h1 className="text-primary_500 font-semibold text-normal">
+            {/* <h1 className="text-primary_500 font-semibold text-normal">
               Serenity Clubhouse{" "}
-            </h1>
+            </h1> */}
             <div className="flex overflow-x-auto scroll-hidden" ref={scrollRef}>
-              <p className="md:text-sm text-xs  text-start flex-shrink-0 flex-grow-0 w-full">
-                A versatile space designed for relaxation and social gatherings,
-                offering comfortable seating, entertainment options, and areas
-                for events or activities.
-              </p>
-              <p className="md:text-sm text-xs  text-start flex-shrink-0 w-full">
+              {siteData?.modelContent?.map((item, index) => {
+                return (
+                  <div key={index} className="flex-shrink-0 flex-grow-0 w-full">
+                    <h1 className="text-primary_500 font-semibold text-normal pb-1">
+                      {item?.title}
+                    </h1>
+                    <p className="md:text-sm text-xs  text-start flex-shrink-0 flex-grow-0 w-full">
+                      {item?.description}
+                    </p>
+                  </div>
+                );
+              })}
+              {/* <p className="md:text-sm text-xs  text-start flex-shrink-0 w-full">
                 A versatile space designed for relaxation and social gatherings,
                 offering comfortable seating, entertainment options, and areas
                 for events or activities.
@@ -158,7 +167,7 @@ const BuildingContent = (props) => {
                 A versatile space designed for relaxation and social gatherings,
                 offering comfortable seating, entertainment options, and areas
                 for events or activities.
-              </p>
+              </p> */}
             </div>
             <div className="flex justify-between md:text-sm text-xs  items-center">
               <p
@@ -174,7 +183,7 @@ const BuildingContent = (props) => {
                 {"<"}
               </p>
               <div className="flex gap-2">
-                {[...Array(4)].map((_, index) => (
+                {[...Array(siteData?.modelContent?.length)].map((_, index) => (
                   <div
                     key={index}
                     className={`w-2 h-2 rounded-full cursor-pointer ${

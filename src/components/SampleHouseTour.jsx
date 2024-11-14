@@ -2,7 +2,7 @@ import bgHouse from "../img/housetour.jpeg";
 import { TbScanEye } from "react-icons/tb";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import BuildingView from "../models/BuildingView";
 import { Canvas } from "@react-three/fiber";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
@@ -16,9 +16,13 @@ import {
 } from "react-icons/md";
 import Loader from "./Loader";
 import CanvasLoader from "./CanvasLoader";
+import { useSiteData } from "../contextAPI/SiteDataContext";
 
 const SampleHouseTour = (props) => {
-  const [houseTour, setHouseTour] = useState("leavingRoom.jpg");
+  const { siteData } = useSiteData();
+  const [houseTour, setHouseTour] = useState(
+    siteData?.sampleHouseTour[0]?.imgName
+  );
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreenToggle = (image) => {
     setHouseTour(image);
@@ -37,6 +41,10 @@ const SampleHouseTour = (props) => {
       });
     }
   };
+
+  useEffect(() => {
+    setHouseTour(siteData?.sampleHouseTour[0]?.imgName);
+  }, []);
 
   // Function to handle right scroll
   const scrollRight = () => {
@@ -128,9 +136,23 @@ const SampleHouseTour = (props) => {
         </div>
         <div
           ref={scrollRef}
-          className="flex lg:gap-5 w-full overflow-x-auto scroll-hidden"
+          className="flex lg:gap-5 w-full h-full overflow-x-auto scroll-hidden"
         >
-          <button
+          {siteData?.sampleHouseTour?.map((item, index) => {
+            return (
+              <button
+                key={index}
+                className=" text-sm bg-black h-9 bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
+                onClick={() => {
+                  setHouseTour(item?.imgName);
+                }}
+              >
+                {item?.buttonName}
+              </button>
+            );
+          })}
+
+          {/* <button
             className="  text-sm bg-black bg-opacity-35 hover:bg-opacity-50 lg:border-zinc-600 lg:border flex-shrink-0 text-center lg:w-1/5 w-full  rounded"
             onClick={() => {
               setHouseTour("Foyer.jpg");
@@ -177,7 +199,7 @@ const SampleHouseTour = (props) => {
             }}
           >
             Master Bedroom{" "}
-          </button>
+          </button> */}
         </div>
         <div
           className="bg-black bg-opacity-35 p-2 rounded lg:block hidden"
@@ -187,49 +209,60 @@ const SampleHouseTour = (props) => {
         </div>{" "}
       </div>
       {/*Button For mobile devices */}
-      <div className="w-full gap-5 absolute bottom-[18%] flex flex-col items-center md:hidden">
-        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
-            onClick={() => handleFullscreenToggle("Foyer.jpg")}
-          >
-            <p>Foyer</p>
+      <div className="w-full gap-5 absolute bottom-[18%] text-white w-[90%] font-semibold flex flex-wrap justify-center  items-center md:hidden">
+        {siteData?.sampleHouseTour?.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/3 h-24 flex items-center justify-center rounded-lg cursor-pointer "
+              onClick={() => handleFullscreenToggle(item?.imgName)}
+            >
+              <p>{item?.buttonName}</p>
+            </div>
+          );
+        })}
+        {/* <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
+              onClick={() => handleFullscreenToggle("Foyer.jpg")}
+            >
+              <p>Foyer</p>
+            </div>
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
+              onClick={() => handleFullscreenToggle("leavingRoom.jpg")}
+            >
+              <p>Living Area</p>
+            </div>
           </div>
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
-            onClick={() => handleFullscreenToggle("leavingRoom.jpg")}
-          >
-            <p>Living Area</p>
+          <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
+              onClick={() => handleFullscreenToggle("Kitchen.jpg")}
+            >
+              <p>Kitchen</p>
+            </div>
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
+              onClick={() => handleFullscreenToggle("Bedroom 1.jpg")}
+            >
+              <p>Bedroom 1</p>
+            </div>
           </div>
-        </div>
-        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
-            onClick={() => handleFullscreenToggle("Kitchen.jpg")}
-          >
-            <p>Kitchen</p>
-          </div>
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
-            onClick={() => handleFullscreenToggle("Bedroom 1.jpg")}
-          >
-            <p>Bedroom 1</p>
-          </div>
-        </div>
-        <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
-            onClick={() => handleFullscreenToggle("Bedroom 2.jpg")}
-          >
-            <p>Bedroom 2</p>
-          </div>
-          <div
-            className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
-            onClick={() => handleFullscreenToggle("Master.jpg")}
-          >
-            <p>Master Bedroom</p>
-          </div>
-        </div>
+          <div className=" gap-5 flex text-white w-[90%] h-24 font-semibold">
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer"
+              onClick={() => handleFullscreenToggle("Bedroom 2.jpg")}
+            >
+              <p>Bedroom 2</p>
+            </div>
+            <div
+              className="relative overflow-hidden bg-black bg-opacity-35 w-1/2 flex items-center justify-center rounded-lg cursor-pointer "
+              onClick={() => handleFullscreenToggle("Master.jpg")}
+            >
+              <p>Master Bedroom</p>
+            </div>
+          </div> */}
       </div>
     </section>
   );

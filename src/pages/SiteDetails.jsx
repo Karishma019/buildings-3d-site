@@ -23,13 +23,13 @@ const SiteDetails = () => {
 
   const scrollPosition = useRef(0);
   const sections = [
-    "section1",
-    "section2",
-    "section3",
-    "section4",
-    "section5",
-    "section6",
-    "section7",
+    "section_MainViewSite",
+    "section_ProjectDetails",
+    "section_LocationDetails",
+    "section_LocationMap",
+    "section_Buildings",
+    "section_SampleHouseTour",
+    "section_ConnectWithUs",
     "section8",
   ];
 
@@ -239,32 +239,52 @@ const SiteDetails = () => {
   return (
     <div>
       <Header />
-      <Element key="section1" name="section1" className="section">
+      <Element
+        key="section_MainViewSite"
+        name="section_MainViewSite"
+        className="section"
+      >
         <MainViewSite
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section2" name="section2" className="section">
+      <Element
+        key="section_ProjectDetails"
+        name="section_ProjectDetails"
+        className="section"
+      >
         <ProjectDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section3" name="section3" className="section">
+      <Element
+        key="section_LocationDetails"
+        name="section_LocationDetails"
+        className="section"
+      >
         <LocationDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section4" name="section4" className="section">
+      <Element
+        key="section_LocationMap"
+        name="section_LocationMap"
+        className="section"
+      >
         <LocationMap
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
 
-      <Element key="section5" name="section5" className="section">
+      <Element
+        key="section_Buildings"
+        name="section_Buildings"
+        className="section"
+      >
         <Buildings
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
@@ -272,7 +292,11 @@ const SiteDetails = () => {
         />
       </Element>
 
-      <Element key="section6" name="section6" className="section">
+      <Element
+        key="section_SampleHouseTour"
+        name="section_SampleHouseTour"
+        className="section"
+      >
         <SampleHouseTour
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
@@ -280,7 +304,11 @@ const SiteDetails = () => {
       </Element>
 
       <div className="flex flex-col items-between h-screen">
-        <Element key="section7" name="section7" className="section h-1/2">
+        <Element
+          key="section_ConnectWithUs"
+          name="section_ConnectWithUs"
+          className="section h-1/2"
+        >
           <ConnectWithUs
             scrollToSection={scrollToSection}
             storeInputRef={storeInputRef}

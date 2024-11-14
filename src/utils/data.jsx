@@ -64,6 +64,60 @@ export const sitesCardData = [
     locationMapLink: "https://maps.app.goo.gl/ybHhbaj3xy9hhG1eA",
     locationMapImg: bgImage,
     model: <NewBuilding />,
+    modelContent: [
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+    ],
+    sampleHouseTour: [
+      {
+        buttonName: "Foyer",
+        imgName: "Foyer.jpg",
+      },
+      {
+        buttonName: "Living Area",
+        imgName: "leavingRoom.jpg",
+      },
+
+      {
+        buttonName: "Kitchen",
+        imgName: "Kitchen.jpg",
+      },
+      {
+        buttonName: "Bedroom 1",
+        imgName: "Bedroom 1.jpg",
+      },
+      {
+        buttonName: "Bedroom 2",
+        imgName: "Bedroom 2.jpg",
+      },
+      {
+        buttonName: "Master Bedroom",
+        imgName: "Master.jpg",
+      },
+    ],
   },
   {
     id: "dr2yua2gv8",
@@ -118,5 +172,59 @@ export const sitesCardData = [
     locationMapLink: "https://maps.app.goo.gl/ybHhbaj3xy9hhG1eA",
     locationMapImg: bgImage,
     model: <NewBuilding />,
+    modelContent: [
+      {
+        title: "Serenity Clubhouse64",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+      {
+        title: "Serenity Clubhouse",
+        description:
+          "A versatile space designed for relaxation and social gatherings, offering comfortable seating, entertainment options, and areas for events or activities.",
+      },
+    ],
+    sampleHouseTour: [
+      {
+        buttonName: "Foyer64",
+        imgName: "Foyer.jpg",
+      },
+      {
+        buttonName: "Living Area",
+        imgName: "leavingRoom.jpg",
+      },
+
+      {
+        buttonName: "Kitchen",
+        imgName: "Kitchen.jpg",
+      },
+      {
+        buttonName: "Bedroom 1",
+        imgName: "Bedroom 1.jpg",
+      },
+      {
+        buttonName: "Bedroom 2",
+        imgName: "Bedroom 2.jpg",
+      },
+      {
+        buttonName: "Master Bedroom",
+        imgName: "Master.jpg",
+      },
+    ],
   },
 ];
