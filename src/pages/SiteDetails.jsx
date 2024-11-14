@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Element, scroller, animateScroll as scroll } from "react-scroll";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
@@ -9,13 +9,18 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { data } from "autoprefixer";
+import { sitesCardData } from "../utils/data";
+import { useSiteData } from "../contextAPI/SiteDataContext";
 
 const animationScrollCount = 3;
 
 const SiteDetails = () => {
+  const { id } = useParams();
+  const { setSiteData } = useSiteData();
+
   const scrollPosition = useRef(0);
   const sections = [
     "section1",
@@ -220,8 +225,12 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
+    const data = sitesCardData.find((data) => id == data.id);
+    setSiteData(data);
+  }, [id, setSiteData]);
+
+  useEffect(() => {
     scroll.scrollTo(0, {
-      duration: 0,
       duration: 0,
       smooth: "easeInOutQuart",
     });
