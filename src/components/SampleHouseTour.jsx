@@ -21,8 +21,11 @@ import { useSiteData } from "../contextAPI/SiteDataContext";
 const SampleHouseTour = (props) => {
   const { siteData } = useSiteData();
   const [houseTour, setHouseTour] = useState(
-    siteData?.sampleHouseTour[0]?.imgName
+    siteData?.sampleHouseTour[0]?.imgName || "Foyer.jpg"
   );
+
+  console.log(siteData);
+  console.log(houseTour);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreenToggle = (image) => {
     setHouseTour(image);
@@ -43,8 +46,10 @@ const SampleHouseTour = (props) => {
   };
 
   useEffect(() => {
-    setHouseTour(siteData?.sampleHouseTour[0]?.imgName);
-  }, []);
+    if (siteData?.sampleHouseTour?.[0]?.imgName) {
+      setHouseTour(siteData.sampleHouseTour[0].imgName);
+    }
+  }, [siteData]);
 
   // Function to handle right scroll
   const scrollRight = () => {
