@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SiteDataProvider } from "./contextAPI/SiteDataContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,9 @@ function App() {
 
   return (
     <div>
-      <RouterProvider router={routes} />
+      <SiteDataProvider>
+        <RouterProvider router={routes} />
+      </SiteDataProvider>
       <ToastContainer
         position="top-right"
         theme="colored"

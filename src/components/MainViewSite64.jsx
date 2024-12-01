@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { sitesCardData } from "../utils/data";
 import landing64 from "../img/arcadia64landing.jpeg";
 
-
 const MainViewSite64 = (props) => {
   const [showMessage, setShowMessage] = useState(false);
   const { id } = useParams();
@@ -61,7 +60,10 @@ const MainViewSite64 = (props) => {
       className="h-[calc(100vh-64px)] overflow-hidden"
       ref={(el) => props.storeInputRef(el, 0)}
     >
-      <img src={landing64} className="absolute inset-0 w-full h-full top-0 object-cover" />
+      <img
+        src={landing64}
+        className="absolute inset-0 w-full h-full top-0 object-cover"
+      />
 
       <div className="absolute inset-0 bg-black bg-opacity-50 w-full h-full"></div>
 

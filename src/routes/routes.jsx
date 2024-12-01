@@ -1,10 +1,9 @@
-import {createBrowserRouter, Navigate, redirect} from "react-router-dom";
+import { createBrowserRouter, Navigate, redirect } from "react-router-dom";
 import Home from "../pages/Home";
 import SiteDetails from "../pages/SiteDetails";
 import SiteDetails64 from "../pages/SiteDetails64";
 import FormDetails from "../pages/FormDetails";
-import Model from "../pages/Model";
-import {element} from "three/src/nodes/tsl/TSLCore.js";
+import { element } from "three/src/nodes/tsl/TSLCore.js";
 
 const routes = createBrowserRouter([
   {
@@ -24,17 +23,13 @@ const routes = createBrowserRouter([
     element: <FormDetails />,
   },
   {
-    path: "/model",
-    element: <Model />,
-  },
-  {
     path: "/home",
     element: <Home />,
   },
   {
     path: "/get-app",
     element: <FormDetails />,
-  }
+  },
 ]);
 
 export default routes;

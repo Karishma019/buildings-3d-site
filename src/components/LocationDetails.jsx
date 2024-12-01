@@ -1,14 +1,10 @@
 import { IoLocationOutline } from "react-icons/io5";
-import bgLocation from "../img/bgLocation.mp4";
 import { useRef, useState, useEffect } from "react";
-import { FaGasPump, FaSchool } from "react-icons/fa6";
-import { LiaUniversitySolid } from "react-icons/lia";
-import { FaRegHospital } from "react-icons/fa";
-import { CiAirportSign1 } from "react-icons/ci";
-import { GiRoad } from "react-icons/gi";
 import { scrollToSection } from "../utils/scrollToSection";
+import { useSiteData } from "../contextAPI/SiteDataContext";
 
 const LocationDetails = (props) => {
+  const { siteData } = useSiteData();
   const videoRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -56,7 +52,7 @@ const LocationDetails = (props) => {
       </h2>
       <div className="flex md:flex-row flex-col md:gap-8 gap-4 px-8 my-5">
         <div className="bg-neutral_100 p-4 lg:w-1/4 md:w-1/3 w-full text-sm flex items-center text-center rounded-lg">
-          ARCADIA 111, behind Fun Blast, Chharodi, Ahmedabad, Gujarat 382481{" "}
+          {siteData?.locationDetails}
         </div>
         <div className="bg-neutral_100 lg:w-3/4 md:w-2/3 w-full rounded-lg p-4">
           <p className="font-semibold text-primary lg:text-lg mb-1">
@@ -66,50 +62,50 @@ const LocationDetails = (props) => {
             <div className="lg:w-1/3 w-full flex flex-col gap-2">
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <FaSchool />
-                  SGVP International School
+                  {siteData?.locationAdvantages[0]?.icon}
+                  {siteData?.locationAdvantages[0]?.title}
                 </p>
-                <p>03 min</p>
+                <p> {siteData?.locationAdvantages[0]?.time}</p>
               </div>
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <LiaUniversitySolid />
-                  Nirma University
+                  {siteData?.locationAdvantages[1]?.icon}
+                  {siteData?.locationAdvantages[1]?.title}
                 </p>
-                <p>03 min</p>
+                <p>{siteData?.locationAdvantages[1]?.time}</p>
               </div>
             </div>
             <div className="lg:w-1/3 w-full flex flex-col gap-2">
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <FaGasPump />
-                  Shell Petrol Pump, Sarkhej
+                  {siteData?.locationAdvantages[2]?.icon}
+                  {siteData?.locationAdvantages[2]?.title}
                 </p>
-                <p>03 min</p>
+                <p>{siteData?.locationAdvantages[2]?.time}</p>
               </div>
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <GiRoad />
-                  Gota Cross Road{" "}
+                  {siteData?.locationAdvantages[3]?.icon}
+                  {siteData?.locationAdvantages[3]?.title}
                 </p>
-                <p>08 min</p>
+                <p>{siteData?.locationAdvantages[3]?.time}</p>
               </div>
             </div>
 
             <div className="lg:w-1/3 w-full flex flex-col gap-2">
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <FaRegHospital />
-                  KD Hospital
+                  {siteData?.locationAdvantages[4]?.icon}
+                  {siteData?.locationAdvantages[4]?.title}
                 </p>
-                <p>06 min</p>
+                <p>{siteData?.locationAdvantages[4]?.time}</p>
               </div>
               <div className="flex justify-between">
                 <p className="flex items-center gap-3">
-                  <CiAirportSign1 />
-                  Airport
+                  {siteData?.locationAdvantages[5]?.icon}
+                  {siteData?.locationAdvantages[5]?.title}
                 </p>
-                <p>18 min</p>
+                <p>{siteData?.locationAdvantages[5]?.time}</p>
               </div>
             </div>
           </div>
@@ -134,7 +130,7 @@ const LocationDetails = (props) => {
           <video
             className="w-auto h-auto max-w-full max-h-full"
             ref={videoRef}
-            src={bgLocation}
+            src={siteData?.locationVideo}
             autoPlay
             loop
             muted
@@ -146,7 +142,7 @@ const LocationDetails = (props) => {
         <video
           className="w-full object-cover h-full"
           ref={videoRef}
-          src={bgLocation}
+          src={siteData?.locationVideo}
           autoPlay
           loop
           muted

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Element, scroller, animateScroll as scroll } from "react-scroll";
 import Buildings from "../components/Buildings";
 import ConnectWithUs from "../components/ConnectWithUs";
@@ -9,22 +9,27 @@ import MainViewSite from "../components/MainViewSite";
 import ProjectDetails from "../components/ProjectDetails";
 import SampleHouseTour from "../components/SampleHouseTour";
 import Footer from "../components/Footer";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { data } from "autoprefixer";
+import { sitesCardData } from "../utils/data";
+import { useSiteData } from "../contextAPI/SiteDataContext";
 
 const animationScrollCount = 3;
 
 const SiteDetails = () => {
+  const { id } = useParams();
+  const { setSiteData } = useSiteData();
+
   const scrollPosition = useRef(0);
   const sections = [
-    "section1",
-    "section2",
-    "section3",
-    "section4",
-    "section5",
-    "section6",
-    "section7",
+    "section_MainViewSite",
+    "section_ProjectDetails",
+    "section_LocationDetails",
+    "section_LocationMap",
+    "section_Buildings",
+    "section_SampleHouseTour",
+    "section_ConnectWithUs",
     "section8",
   ];
 
@@ -78,6 +83,7 @@ const SiteDetails = () => {
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
+    console.log("recalled....");
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
     if (
@@ -219,49 +225,66 @@ const SiteDetails = () => {
   }, []);
 
   useEffect(() => {
-    const storedSectionIndex = localStorage.getItem("storedSectionIndex");
+    const data = sitesCardData.find((data) => id == data.id);
+    setSiteData(data);
+  }, [id, setSiteData]);
 
-    if (storedSectionIndex) {
-      scrollToSection(parseInt(storedSectionIndex));
-      localStorage.removeItem("storedSectionIndex"); // Clear after scrolling
-    } else {
-      scroll.scrollTo(0, {
-        duration: 0,
-        duration: 0,
-        smooth: "easeInOutQuart",
-      });
-    }
+  useEffect(() => {
+    scroll.scrollTo(0, {
+      duration: 0,
+      smooth: "easeInOutQuart",
+    });
   }, []);
 
   return (
     <div>
       <Header />
-      <Element key="section1" name="section1" className="section">
+      <Element
+        key="section_MainViewSite"
+        name="section_MainViewSite"
+        className="section"
+      >
         <MainViewSite
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section2" name="section2" className="section">
+      <Element
+        key="section_ProjectDetails"
+        name="section_ProjectDetails"
+        className="section"
+      >
         <ProjectDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section3" name="section3" className="section">
+      <Element
+        key="section_LocationDetails"
+        name="section_LocationDetails"
+        className="section"
+      >
         <LocationDetails
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
-      <Element key="section4" name="section4" className="section">
+      <Element
+        key="section_LocationMap"
+        name="section_LocationMap"
+        className="section"
+      >
         <LocationMap
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
 
-      <Element key="section5" name="section5" className="section">
+      <Element
+        key="section_Buildings"
+        name="section_Buildings"
+        className="section"
+      >
         <Buildings
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
@@ -269,25 +292,32 @@ const SiteDetails = () => {
         />
       </Element>
 
-      <Element key="section6" name="section6" className="section">
+      <Element
+        key="section_SampleHouseTour"
+        name="section_SampleHouseTour"
+        className="section"
+      >
         <SampleHouseTour
           scrollToSection={scrollToSection}
           storeInputRef={storeInputRef}
         />
       </Element>
 
-      <div className="flex flex-col max-lg:min-h-screen">
+      <div className="flex flex-col items-between h-screen">
         <Element
-          key="section7"
-          name="section7"
-          className="section flex-grow min-lg:mb-8"
+          key="section_ConnectWithUs"
+          name="section_ConnectWithUs"
+          className="section h-1/2"
         >
           <ConnectWithUs
             scrollToSection={scrollToSection}
             storeInputRef={storeInputRef}
           />
         </Element>
-        <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
+        <div className="flex items-end h-1/2">
+          <Footer />
+        </div>
+        {/* <div className="bottom-0 left-0 right-0 h-1 bg-blue-500"></div> */}
       </div>
     </div>
   );

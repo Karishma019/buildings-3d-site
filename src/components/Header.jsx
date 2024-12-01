@@ -9,23 +9,34 @@ import { IoCallOutline } from "react-icons/io5";
 import { BiHomeAlt } from "react-icons/bi";
 import { scrollToSection } from "../utils/scrollToSection";
 
-const Header = ({ formPage }) => {
+const Header = ({ formPage, setIsOpen, link }) => {
   const [isOpen, setisOpen] = useState(false);
-
+  console.log(setIsOpen, link);
   const navigate = useNavigate();
 
   return (
-    <header className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 ">
+    <header
+      className="bg-black bg-opacity-35 flex z-50 justify-between items-center sticky md:top-8 top-4 p-4 rounded mx-8 "
+      tabIndex="0"
+      onBlur={() => setisOpen(false)}
+    >
       <div
         className={`flex text-white items-center ${
           formPage && "w-full"
         } sm:gap-16`}
       >
-        <Link
-          to="#"
-          className={`text-2xl ${formPage == undefined && "px-4"}`}
-          onClick={() => navigate(-1)}
-        >{`<`}</Link>
+        {link == undefined ? (
+          <Link
+            to="#"
+            className={`text-2xl ${formPage == undefined && "px-4"}`}
+            onClick={() => navigate(-1)}
+          >{`<`}</Link>
+        ) : (
+          <button
+            className={`text-2xl ${formPage == undefined && "px-4"}`}
+            onClick={() => setIsOpen(false)}
+          >{`<`}</button>
+        )}
         <h1
           className={`uppercase md:text-2xl cursor-pointer  ${
             formPage != undefined && "text-center"
@@ -59,32 +70,48 @@ const Header = ({ formPage }) => {
             <ul className="text-white flex flex-col gap-5 text-sm md:text-lg my-4">
               <li
                 className="hover:bg-black hover:bg-opacity-30 flex items-center gap-2 rounded py-1 cursor-pointer px-3"
-                onClick={() => scrollToSection("projectDetails")}
+                onClick={() => {
+                  setisOpen(false);
+
+                  scrollToSection("projectDetails");
+                }}
               >
                 <TfiMenuAlt /> Project Details
               </li>
               <li
                 className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2 py-1 cursor-pointer px-3"
-                onClick={() => scrollToSection("locationDetails")}
+                onClick={() => {
+                  setisOpen(false);
+                  scrollToSection("locationDetails");
+                }}
               >
                 <IoLocationOutline />
                 Location
               </li>
               <li
                 className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2 py-1 cursor-pointer px-3"
-                onClick={() => scrollToSection("arExperience")}
+                onClick={() => {
+                  setisOpen(false);
+                  scrollToSection("arExperience");
+                }}
               >
                 <TbScanEye /> AR Experience
               </li>
               <li
                 className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2 py-1 cursor-pointer px-3"
-                onClick={() => scrollToSection("sampleHouseTour")}
+                onClick={() => {
+                  setisOpen(false);
+                  scrollToSection("sampleHouseTour");
+                }}
               >
                 <BiHomeAlt /> Sample House Tour
               </li>
               <li
                 className="hover:bg-black hover:bg-opacity-30 rounded flex items-center gap-2 py-1  cursor-pointer px-3"
-                onClick={() => scrollToSection("ConnectWithUs")}
+                onClick={() => {
+                  setisOpen(false);
+                  scrollToSection("ConnectWithUs");
+                }}
               >
                 <IoCallOutline /> Connect With Us{" "}
               </li>

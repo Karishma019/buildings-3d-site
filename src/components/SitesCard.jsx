@@ -7,13 +7,13 @@ const SitesCard = ({ data }) => {
     <>
       <div className="md:w-[350px] w-full lg:w-[440px] rounded-xl flex-shrink-0 flex flex-col border-primary_light overflow-hidden shadow">
         <div className="h-60 overflow-hidden">
-          <img src={data.id == "509QsdLlPh" ? site111Img : site64Img} className="h-80 object-cover w-full" />
+          <img src={data.img} className="h-80 object-cover w-full" />
         </div>
         <div className=" text-black py-2 px-2 mt-2">
           <div className="flex justify-between items-center">
             <h3 className="font-semibold">{data.title}</h3>
             <Link
-              to={data.id == "509QsdLlPh" ? `/view-site/${data.id}` : `/view-site64/${data.id}`}
+              to={`/view-site/${data.id}`}
               className="bg-white rounded border-primary border px-4 py-1 text-sm text-primary"
             >
               View Site
