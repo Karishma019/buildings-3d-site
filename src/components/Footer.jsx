@@ -24,14 +24,14 @@ const Footer = () => {
         <div className="px-4 sm:p-0">
           <p className="flex items-center gap-2 ">
             <IoLocationOutline />
-            12, Times Square, C.G. Road, 380018, Ahmedabad
+            Ahmedabad Gujarat, India
           </p>
           <p className="flex items-center gap-2   ">
-            <MdOutlinePhone /> +91 1234567890
+            <MdOutlinePhone /> +91 9328340097
           </p>
           <p className="flex items-center gap-2   ">
             <CiMail />
-            support@estateexplorer.com
+            hello@innovrative.in
           </p>
         </div>
         <div className="flex flex-col items-center gap-5">
