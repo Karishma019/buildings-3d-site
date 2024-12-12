@@ -23,7 +23,7 @@ const store = createXRStore();
 
 const Buildings = (props) => {
   const { siteData } = useSiteData();
-
+  console.log(siteData);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,12 +53,19 @@ const Buildings = (props) => {
               <PerspectiveCamera makeDefault position={[0, 1, 9]} />
               <ambientLight args={["#ffffff", 1]} />
               <directionalLight args={["#ffffff0", 3]} position={[-1, 1, 1]} />
-              {siteData?.model &&
+              <NewBuilding
+                scale={3.5}
+                position={[0, 0, 0]}
+                rotation={[0, 0, 0]}
+                modelFile={siteData?.modelFile}
+              />
+
+              {/* {siteData?.model &&
                 React.cloneElement(siteData?.model, {
-                  scale: 3.5,
+                  scale: ,
                   position: [0, 0, 0],
                   rotation: [0, 0, 0],
-                })}
+                })} */}
             </Suspense>
           </Canvas>
         </div>
@@ -85,13 +92,22 @@ const Buildings = (props) => {
               position={[5, -2, -15]}
               rotation={[0, -1, 0]}
             /> */}
-            {siteData?.model &&
+
+            <NewBuilding
+              scale={2}
+              position={[-0.4, 1.3, 0]}
+              rotation={[1, -1, 0]}
+              buildingStage={props.buildingStage}
+              modelFile={siteData?.modelFile}
+            />
+
+            {/* {siteData?.model &&
               React.cloneElement(siteData.model, {
-                scale: 2,
+                scale: 0.02,
                 position: [-0.4, 1.3, 0],
                 rotation: [1, -1, 0],
                 buildingStage: props.buildingStage,
-              })}
+              })} */}
           </Suspense>
           {/* </XR> */}
         </Canvas>

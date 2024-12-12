@@ -5,13 +5,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
 
 import { angleToRadiants } from "../utils/angleToRadiants";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 gsap.registerPlugin(ScrollTrigger);
 
 const NewBuilding = (props) => {
-  // const fbx = useFBX("/models/FinalBuilding4.fbx");
-  const { nodes, materials } = useGLTF("/models/a.glb");
+  // const fbx = useFBX(`/models/${props?.modelFile}.fbx`);
+  const gltf = useLoader(GLTFLoader, `/models/${props?.modelFile}.glb`);
 
+  // const { nodes, materials } = useGLTF("/models/a.glb");
   const buildingRef = useRef();
   // const orbitControlRef = useRef();
 
@@ -153,7 +155,7 @@ const NewBuilding = (props) => {
         // minPolarAngle={angleToRadiants(66)}
         // maxPolarAngle={angleToRadiants(76)}
       />
-      <group {...props} dispose={null} ref={buildingRef}>
+      {/* <group {...props} dispose={null} ref={buildingRef}>
         <mesh
           castShadow
           receiveShadow
@@ -269,8 +271,9 @@ const NewBuilding = (props) => {
           geometry={nodes["Component#614_3"].geometry}
           material={materials["[Small Aggregate]"]}
         />
-      </group>
+      </group> */}
       {/* {fbx && <primitive object={fbx} {...props} ref={buildingRef} />} */}
+      {gltf && <primitive object={gltf.scene} ref={buildingRef} {...props} />}
     </>
   );
 };

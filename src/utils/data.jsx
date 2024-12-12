@@ -63,7 +63,8 @@ export const sitesCardData = [
     locationVideo: bgLocation,
     locationMapLink: "https://maps.app.goo.gl/ybHhbaj3xy9hhG1eA",
     locationMapImg: bgImage,
-    model: <NewBuilding />,
+    modelFile: "a",
+
     modelContent: [
       {
         title: "Serenity Clubhouse",
@@ -171,7 +172,7 @@ export const sitesCardData = [
     locationVideo: bgLocation,
     locationMapLink: "https://maps.app.goo.gl/ybHhbaj3xy9hhG1eA",
     locationMapImg: bgImage,
-    model: <NewBuilding />,
+    modelFile: "a",
     modelContent: [
       {
         title: "Serenity Clubhouse64",
