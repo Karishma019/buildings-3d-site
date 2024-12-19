@@ -1,5 +1,6 @@
 import React from 'react';
 import '@google/model-viewer';
+import Header from "../components/Header.jsx";
 
 const ModelViewer = ({ src, alt, autoRotate = true, cameraControls = true, ...props }) => {
 
@@ -13,8 +14,9 @@ const ModelViewer = ({ src, alt, autoRotate = true, cameraControls = true, ...pr
                 camera-controls={cameraControls}
                 {...props}
             >
+                <Header formPage={true} />
                 {/* AR Button */}
-                <button id='ar-button' slot="ar-button"  style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px' }}>
+                <button id='ar-button' slot="ar-button" >
                     View in AR
                 </button>
             </model-viewer>

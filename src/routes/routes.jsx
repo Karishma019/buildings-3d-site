@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import SiteDetails from "../pages/SiteDetails";
 import SiteDetails64 from "../pages/SiteDetails64";
 import FormDetails from "../pages/FormDetails";
-import { element } from "three/src/nodes/tsl/TSLCore.js";
+import ARPage from "../pages/ARPage.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -29,6 +29,10 @@ const routes = createBrowserRouter([
   {
     path: "/get-app",
     element: <FormDetails />,
+  },
+  {
+    path: "/ar",
+    element: <ARPage />,
   },
 ]);
 
