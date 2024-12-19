@@ -11,7 +11,6 @@ import { scrollToSection } from "../utils/scrollToSection";
 
 const Header = ({ formPage, setIsOpen, link }) => {
   const [isOpen, setisOpen] = useState(false);
-  console.log(setIsOpen, link);
   const navigate = useNavigate();
 
   return (

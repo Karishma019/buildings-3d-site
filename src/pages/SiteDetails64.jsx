@@ -204,7 +204,6 @@ const SiteDetails64 = () => {
     } else {
       scroll.scrollTo(0, {
         duration: 0,
-        duration: 0,
         smooth: "easeInOutQuart",
       });
     }

@@ -24,8 +24,6 @@ const SampleHouseTour = (props) => {
     siteData?.sampleHouseTour[0]?.imgName || "Foyer.jpg"
   );
 
-  console.log(siteData);
-  console.log(houseTour);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreenToggle = (image) => {
     setHouseTour(image);

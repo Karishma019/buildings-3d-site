@@ -8,8 +8,6 @@ const MainViewSite = (props) => {
   // const data = sitesCardData.find((data) => id == data.id);
   const { siteData } = useSiteData();
 
-  console.log(siteData);
-
   const copyToClipboard = useCallback(() => {
     const currentUrl = window.location.href;
 

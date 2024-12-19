@@ -83,7 +83,6 @@ const SiteDetails = () => {
 
   // Move to the next or previous section based on direction
   const moveToSection = (direction) => {
-    console.log("recalled....");
     let newSection = currentSectionRef.current;
     let building_section_index = 3;
     if (
